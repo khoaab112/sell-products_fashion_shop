@@ -14,10 +14,19 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 library.add(fas, fab, far)
+    //element-plus
+import ElementPlus from 'element-plus';
+import VN from 'element-plus/dist/locale/vi.mjs';
+// import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import 'element-plus/dist/index.css';
+
 
 window.axios = axios;
 
 const APP = createApp(App);
 APP.component('font-awesome-icon', FontAwesomeIcon);
 APP.use(router);
+APP.use(ElementPlus, {
+    locale: VN,
+});
 APP.mount('#app');
