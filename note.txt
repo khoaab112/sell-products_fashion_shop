@@ -1,0 +1,4 @@
+## cài project 
+b1 : npm install -g @vue/cli
+b2 : vue create fashion_shop
+b3: vue add router
