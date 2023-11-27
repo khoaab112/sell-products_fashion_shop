@@ -68,7 +68,7 @@ import backgroundForgotPassword from '@/assets/images/forgotPassword/background.
   };
   </script>
   
-  <style>
+  <style scoped>
   .img {
     background-size: cover;
     background-repeat: no-repeat;

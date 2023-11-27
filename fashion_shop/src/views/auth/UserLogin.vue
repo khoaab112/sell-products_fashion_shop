@@ -40,12 +40,12 @@
                     <el-checkbox label="Nhớ mật khẩu" class="cb-remember-password" size="large" />
                   </div>
                   <div class="w-50  text-decoration-underline set-end ">
-                    <a href="#" style="color: #fff">Quên mật khẩu ?</a>
+                    <router-link :to="{ name: 'forgotPassword' }" class="forgot-password">Quên mật khẩu</router-link>
                   </div>
                 </div>
               </form>
               <div class=" text-decoration-underline set-end set-center">
-                <a href="#" style="color: #fff">Chưa có tài khoản</a>
+                <router-link :to="{ name: 'Register' }" class="register">Chưa có tài khoản</router-link>
               </div>
               <div class="text-center block-copy">
                 <p class="pt-2">Hoặc</p>
@@ -136,6 +136,14 @@ export default {
 </script>
   
 <style scoped>
+.forgot-password ,
+.register{
+  color: white;
+}
+.forgot-password:hover ,
+.register:hover{
+  color: rgb(255, 30, 30);
+}
 .img {
   background-size: cover;
   background-repeat: no-repeat;
