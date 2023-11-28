@@ -7,3 +7,4 @@ b3: vue add router
 # các thư viện
 bootstrap 5
 https://fontawesome.com/
+https://antoniandre.github.io/vueper-slides

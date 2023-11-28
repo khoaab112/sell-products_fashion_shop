@@ -1,14 +1,16 @@
 <template>
-    <!-- Nội dung giao diện người dùng -->
-    <div>
-home
-      </div>
+  <vueper-slides autoplay>
+    <vueper-slide v-for="i in 5" :key="i" :title="i.toString()" />
+  </vueper-slides>
   </template>
   
   <script>
+  import { VueperSlides, VueperSlide } from 'vueperslides'
+import 'vueperslides/dist/vueperslides.css'
   export default {
     name: 'vueTem',
     components: {
+      VueperSlides, VueperSlide
     },
     setup() {
     },
@@ -16,7 +18,16 @@ home
     },
     data() {
       return {
-        // Dữ liệu của component
+        slides: [
+    {
+      title: 'Slide #1',
+      content: 'Slide 1 content.'
+    },
+    {
+      title: 'Slide #2',
+      content: 'Slide 2 content.'
+    }
+  ]
       };
     },
     created() {
