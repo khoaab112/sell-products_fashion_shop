@@ -9,14 +9,16 @@
         <section id="gif">
             <div class="container">
                 <div class="list-gif">
-                    <!-- <div class="item"><img src="../imgs/img1.jpg" alt=""><a href="#">Khuyến mãi Grab this convenient and free menu with social icons template that can easily work for your page’s header section. There’s also a search bar and a dropdown for you to benefit from.</a></div>
-                <div class="item"><img src="../imgs/img1.jpg" alt=""><a href="#">Khuyến mãi</a></div>
-                <div class="item"><img src="../imgs/img1.jpg" alt=""><a href="#">Khuyến mãi</a></div>
-                <div class="item"><img src="../imgs/img1.jpg" alt=""><a href="#">Khuyến mãi</a></div>
-                <div class="item"><img src="../imgs/img1.jpg" alt=""><a href="#">Khuyến mãi</a></div>
-                <div class="item"><img src="../imgs/img1.jpg" alt=""><a href="#">Khuyến mãi</a></div>
-                <div class="item"><img src="../imgs/img1.jpg" alt=""><a href="#">Khuyến mãi</a></div>
-                <div class="item"><img src="../imgs/img1.jpg" alt=""><a href="#">Khuyến mãi</a></div> -->
+                    <div class="item"><img src="https://i.pinimg.com/564x/d3/f7/74/d3f7742fce9a68304a3ebd04b2fb3580.jpg" alt=""><a href="#">Khuyến mãi Grab this convenient and
+                            free menu with social icons template that can easily work for your page’s header section.
+                            There’s also a search bar and a dropdown for you to benefit from.</a></div>
+                    <div class="item"><img src="https://i.pinimg.com/564x/af/9f/f5/af9ff5fde03cea0598da4e6ffc353623.jpg" alt=""><a href="#">Khuyến mãi</a></div>
+                    <div class="item"><img src="https://i.pinimg.com/564x/9c/8d/a6/9c8da6f5c47b6edc0696a41e59e2c174.jpg" alt=""><a href="#">Khuyến mãi</a></div>
+                    <div class="item"><img src="https://i.pinimg.com/564x/9c/8d/a6/9c8da6f5c47b6edc0696a41e59e2c174.jpg" alt=""><a href="#">Khuyến mãi</a></div>
+                    <div class="item"><img src="https://i.pinimg.com/564x/9c/8d/a6/9c8da6f5c47b6edc0696a41e59e2c174.jpg" alt=""><a href="#">Khuyến mãi</a></div>
+                    <div class="item"><img src="https://i.pinimg.com/564x/9c/8d/a6/9c8da6f5c47b6edc0696a41e59e2c174.jpg" alt=""><a href="#">Khuyến mãi</a></div>
+                    <div class="item"><img src="https://i.pinimg.com/564x/9c/8d/a6/9c8da6f5c47b6edc0696a41e59e2c174.jpg" alt=""><a href="#">Khuyến mãi</a></div>
+                    <div class="item"><img src="https://i.pinimg.com/564x/9c/8d/a6/9c8da6f5c47b6edc0696a41e59e2c174.jpg" alt=""><a href="#">Khuyến mãi</a></div>
 
                 </div>
             </div>
@@ -30,21 +32,7 @@
                     <span class="more">Xem thêm &ensp; <i class="fa-solid fa-angles-right" style="color: blue;"></i></span>
                 </div>
                 <div class="list-product-flash-sale">
-                    <div class="card-product">
-                        <a href="#" class="img-product">
-                            <!-- <img src="../imgs/fbi-meme-1470_0011_4.webp" alt="ảnh-sản-phẩm" class="img"> -->
-                            <div class="number-product">4 sao | bán : 120 sp</div>
-                            <!-- <div class="promotional-products"><img src="../imgs/promotional-products.jpg" alt=""></div> -->
-                            <div class="sale">10%</div>
-                            <div class="middle">
-                                <div class="detail-product">Xem thêm</div>
-                            </div>
-                        </a>
-                        <div class="title-product">Sản phẩm test</div>
-                        <!-- <div class="sale-price price">100.565 <span class="face-value">&nbspVNĐ&nbsp</span><span class="sale">(-10%)</span></div> -->
-                        <!-- <div class="original-price price"><del>100.565<span class="face-value">&nbspVNĐ</span></del></div> -->
-                        <div class="list-color">xanh , đỏ , tím , vàng</div>
-                    </div>
+                    <Product :data="item"></Product>
                 </div>
             </div>
         </section>
@@ -72,11 +60,13 @@
 <script>
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
+import Product from "@/components/ProductItem.vue"
 export default {
     name: 'PageHome',
     components: {
         VueperSlides,
-        VueperSlide
+        VueperSlide,
+        Product
     },
     setup() {
     },
@@ -118,6 +108,57 @@ export default {
                     style: '',
                 },
             ],
+            item: {
+                name: 'product_1',
+                img: 'https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-20.jpg',
+                vote: '3.2',
+                quantitySold: '333',
+                sale: '10',
+                price: '203222',
+                imgGift: 'https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-17.jpg'
+            },
+            listProduct: [
+                {
+                    name: 'product_1',
+                    img: 'https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-20.jpg',
+                    vote: '3.2',
+                    quantitySold: '333',
+                    sale: '10%',
+                    price: '203222',
+                },
+                {
+                    name: 'product_1',
+                    img: 'https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-20.jpg',
+                    vote: '3.2',
+                    quantitySold: '333',
+                    sale: '10%',
+                    price: '203222',
+                },
+                {
+                    name: 'product_1',
+                    img: 'https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-20.jpg',
+                    vote: '3.2',
+                    quantitySold: '333',
+                    sale: '10%',
+                    price: '203222',
+                },
+                {
+                    name: 'product_1',
+                    img: 'https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-20.jpg',
+                    vote: '3.2',
+                    quantitySold: '333',
+                    sale: '10%',
+                    price: '203222',
+                },
+                {
+                    name: 'product_1',
+                    img: 'https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-20.jpg',
+                    vote: '3.2',
+                    quantitySold: '333',
+                    sale: '10%',
+                    price: '203222',
+                },
+            ]
         };
     },
     created() {
@@ -145,8 +186,8 @@ export default {
 .vueperslides--fixed-height {
     height: 35rem;
 }
-@media (max-width:800px)
-{
+
+@media (max-width:800px) {
     .vueperslides--fixed-height {
         height: 35rem;
     }
