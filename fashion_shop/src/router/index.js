@@ -6,6 +6,7 @@ const routes = [
     ...auth.auth,
     ...page.directional,
     ...page.home,
+    ...page.test,
 ];
 
 // const router = createRouter({

@@ -4,7 +4,12 @@ const directional = [{
     component: () =>
         import ('../views/home/PageHome.vue'),
 }];
-
+const test = [{
+    path: '/testa',
+    name: 'TestView',
+    component: () =>
+        import ('../views/test/testView.vue'),
+}];
 const home = [{
     path: '/',
     name: 'PageHome',
@@ -35,5 +40,6 @@ const home = [{
 
 export default {
     home,
-    directional
+    directional,
+    test
 };
