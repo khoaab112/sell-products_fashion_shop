@@ -1007,6 +1007,18 @@ footer .copyright {
     }
 }
 
+@media (max-width: 576px) {
+    footer .title .icon {
+        display: block;
+    }
+    footer .col-xl-4.col-sm-6 {
+        text-align: center;
+    }
+    html {
+        font-size: 14px;
+    }
+}
+
 @media (max-width: 520px) {
     header {
         padding: 0 2rem 0 2rem;
@@ -1023,14 +1035,5 @@ footer .copyright {
     }
     .title-menu {
         display: none;
-    }
-}
-
-@media (max-width: 576px) {
-    footer .title .icon {
-        display: block;
-    }
-    footer .col-xl-4.col-sm-6 {
-        text-align: center;
     }
 }
