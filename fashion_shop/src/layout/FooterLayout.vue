@@ -11,9 +11,10 @@
                         <img :src="logoZalo" alt="logo-zalo">
                     </div>
                     <div class="sologan mt-2">
-                        <span>"</span>Slogan là một câu văn ngắn gọn cô đọng đầy đủ ý nghĩa, thông điệp với mục đích mô tả
-                        hoặc thuyết phục vấn đề nào đó. Thông thường, Slogan rất nổi bật, dễ nhớ và thu hút đối với mọi
-                        người.<span>"</span>
+                        <span>"</span><strong>Slogan là một câu văn ngắn gọn cô đọng đầy đủ ý nghĩa, thông điệp với mục đích
+                            mô tả
+                            hoặc thuyết phục vấn đề nào đó. Thông thường, Slogan rất nổi bật, dễ nhớ và thu hút đối với mọi
+                            người.</strong><span>"</span>
                     </div>
                     <div class="hotline">
                         <font-awesome-icon class="me-2" icon="fa-solid fa-phone" /> 0833.872.6589
@@ -24,11 +25,11 @@
                         Về shop<i class="fa-solid fa-caret-down icon"></i>
                     </div>
                     <ul class="sub">
-                        <li>Giới thiêu</li>
-                        <li>Liên hệ</li>
-                        <li>Tuyển dụng</li>
-                        <li>Tin tức</li>
-                        <li>Hệ thống cửa hàng</li>
+                        <li><router-link :to="{ name: 'TestView' }">Giới thiêu</router-link></li>
+                        <li><router-link :to="{ name: 'TestView' }">Liên hệ</router-link></li>
+                        <li><router-link :to="{ name: 'TestView' }">Tuyển dụng</router-link></li>
+                        <li><router-link :to="{ name: 'TestView' }">Tin tức</router-link></li>
+                        <li><router-link :to="{ name: 'TestView' }">Hệ thống cửa hàng</router-link></li>
                     </ul>
                 </div>
                 <div class="col-xl-2 col-sm-6">
@@ -36,9 +37,9 @@
                         Các chính sách và hỗ trợ<i class="fa-solid fa-caret-down icon"></i>
                     </div>
                     <ul class="sub">
-                        <li>Chính sách</li>
-                        <li>Bảo mật thông tin</li>
-                        <li>Tiếp nhận phản hồi</li>
+                        <li><router-link :to="{ name: 'TestView' }">Chính sách</router-link></li>
+                        <li><router-link :to="{ name: 'TestView' }">Bảo mật thông tin</router-link></li>
+                        <li><router-link :to="{ name: 'TestView' }">Tiếp nhận phản hồi</router-link></li>
                     </ul>
                 </div>
                 <div class="col-xl-4 col-sm-6">
@@ -46,26 +47,33 @@
                         Chi nhánh<i class="fa-solid fa-caret-down icon"></i>
                     </div>
                     <ul class="sub">
-                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
-                            Hà Nội, Việt Nam</li>
-                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
-                            Hà Nội, Việt Nam</li>
-                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
-                            Hà Nội, Việt Nam</li>
-                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
-                            Hà Nội, Việt Nam</li>
-                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
-                            Hà Nội, Việt Nam</li>
+                        <li><router-link :to="{ name: 'TestView' }"><font-awesome-icon
+                                    icon="fa-solid fa-location-dot" />&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
+                                Hà Nội, Việt Nam</router-link></li>
+                        <li><router-link :to="{ name: 'TestView' }"><font-awesome-icon
+                                    icon="fa-solid fa-location-dot" />&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
+                                Hà Nội, Việt Nam</router-link></li>
+                        <li><router-link :to="{ name: 'TestView' }"><font-awesome-icon
+                                    icon="fa-solid fa-location-dot" />&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
+                                Hà Nội, Việt Nam</router-link></li>
+                        <li><router-link :to="{ name: 'TestView' }"><font-awesome-icon
+                                    icon="fa-solid fa-location-dot" />&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
+                                Hà Nội, Việt Nam</router-link></li>
+                        <li><router-link :to="{ name: 'TestView' }"><font-awesome-icon
+                                    icon="fa-solid fa-location-dot" />&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
+                                Hà Nội, Việt Nam</router-link></li>
+                        <li class="text-end more"><router-link :to="{ name: 'TestView' }" style="color:orange;">Xem
+                                thêm</router-link></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright text-center">
                 <hr>
-                <span>© Shop - Bản quyền thuộc về Công ty cổ phần thời trang </span>
+                <strong>© Shop - Bản quyền thuộc về Công ty cổ phần thời trang </strong>
             </div>
         </div>
         <button id="back-to-top" :class="{ show: btnOnTopVisible }" @click="scrollToTop"><font-awesome-icon
-            icon="fa-solid fa-chevron-up" style="color: #1a71ff;" /></button>
+                icon="fa-solid fa-chevron-up" style="color: #1a71ff;" /></button>
     </footer>
 </template>
   
@@ -199,6 +207,21 @@ export default {
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
     }
-}</style>
->>>>>>> Stashed changes
+}
+
+footer li>a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer li>a:hover {
+    color: blue;
+}
+
+ul.sub {
+    text-align: left;
+}
+</style>
+
   
