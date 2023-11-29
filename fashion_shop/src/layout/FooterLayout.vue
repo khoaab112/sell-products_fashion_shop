@@ -64,6 +64,8 @@
                 <span>© Shop - Bản quyền thuộc về Công ty cổ phần thời trang </span>
             </div>
         </div>
+        <button id="back-to-top" :class="{ show: btnOnTopVisible }" @click="scrollToTop"><font-awesome-icon
+            icon="fa-solid fa-chevron-up" style="color: #1a71ff;" /></button>
     </footer>
 </template>
   
@@ -95,7 +97,7 @@ export default {
         // Logic khi component được khởi tạo
     },
     mounted() {
-        // Logic sau khi component được gắn kết (render) vào DOM
+        window.addEventListener('scroll', this.scrollHandler);
     },
     computed() {
         // được sử dụng để định nghĩa các thuộc tính tính toán
@@ -107,7 +109,16 @@ export default {
 
     },
     methods: {
-        // Các phương thức xử lý sự kiện hoặc logic khác
+        scrollHandler() {
+            if (window.pageYOffset > 300) {
+                this.btnOnTopVisible = true;
+            } else {
+                this.btnOnTopVisible = false;
+            }
+        },
+        scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
     },
 };
 </script>
