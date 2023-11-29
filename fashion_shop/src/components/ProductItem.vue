@@ -1,30 +1,33 @@
 <template>
     <div class="card-product">
         <a href="#" class="img-product">
-            <img :src="product.img" :alt="'Sản phẩm ' + product.name" class="img">
+            <img :src="showImage" :alt="'Sản phẩm ' + product.name" class="img">
             <div class="number-product">{{ product.vote }} sao | bán : {{ product.quantitySold }} sp</div>
             <div class="promotional-products"><img :src="product.imgGift" :alt="'Quà ' + product.name"></div>
             <div class="sale">-{{ product.sale }}%</div>
             <div class="middle">
-                <div class="detail-product">Xem thêm</div>
+                <button class="mb-2"><font-awesome-icon icon="fa-brands fa-shirtsinbulk" />Mua</button>
+                <button class="mb-2">Giỏ hàng</button>
+                <router-link :to="{ name: 'Home' }" class="detail-product mb-2">Xem thêm</router-link>
             </div>
         </a>
+        <div class="list-color">
+            <vueper-slides class="no-shadow" id="product-img" :visible-slides="3" :slide-ratio="1 / 4"
+                :dragging-distance="10" fixed-height="3rem" :arrows=true :bullets=false :slideMultiple=false>
+                <vueper-slide v-for="(i, key) in product.imgs" :key="key" :image="i.img" @click="selectPhoto(i.img)" />
+            </vueper-slides>
+        </div>
         <div class="title-product">{{ product.name }} </div>
         <div class="sale-price price">{{ Number(product.price) * Number(product.sale) / 100 }}<span class="face-value"> VNĐ
             </span><span class="sale">(-{{ product.sale }}%)</span></div>
         <div class="original-price price"><del>{{ product.price }}<span class="face-value"> VNĐ</span></del></div>
-        <div class="list-color">
-            <vueper-slides class="no-shadow" :visible-slides="3" :slide-ratio="1 / 4" :dragging-distance="70" fixed-height="2rem">
-                <vueper-slide v-for="i in 9" :key="i" :title="i.toString()" />
-            </vueper-slides>
-        </div>
     </div>
 </template>
       
 <script>
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
-//   data = name , img , vote , quantitySold ,sale ,price,imgGift ,
+//   data = name , imgs [ {key : ,img : }] , vote , quantitySold ,sale ,price,imgGift ,
 export default {
     name: 'ProductItem',
     props: ['data'],
@@ -33,14 +36,78 @@ export default {
     },
     setup() {
     },
+    created() {
+        this.getDefaultImage();
+    },
     directives: {
     },
     data() {
         return {
             product: this.data,
+            showImage: '',
         };
+    },
+    methods: {
+        selectPhoto(img) {
+            this.showImage = img;
+        },
+        getDefaultImage() {
+            if (this.product.imgs.length > 0) {
+                this.showImage = this.product.imgs[0].img;
+            }
+        }
     },
 };
 </script>
       
-<style></style>
+<style >
+#product-img .vueperslides__arrow {
+    color: #f5222d !important;
+    font-size: 7px;
+}
+
+#product-img .vueperslide__content-wrapper {
+    height: 3rem !important;
+}
+
+#product-img .vueperslide {
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: 10px;
+    margin-right: 0.5rem;
+}
+
+#product-img .vueperslide--active {
+    transform: scale(1);
+    box-shadow: 0 0 10px #0003;
+    z-index: 1;
+}
+
+#product-img .vueperslide__content-wrapper:hover,
+#product-img .vueperslide__content-wrapper:active {
+    border: 1px solid #1677ff;
+    border-radius: 10px;
+}
+
+.card-product .middle button {
+    border: none;
+    width: 7rem;
+    height: 3rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    justify-content: center;
+}
+.card-product .middle button:first-child {
+    background-color: #40b883;
+}
+.card-product .middle button:nth-child(2) {
+    background-color: #e6f4ff;
+}
+.card-product .middle .detail-product {
+    text-decoration: none;
+    padding: 0.8rem 1.2rem;
+    display: block;
+}
+</style>

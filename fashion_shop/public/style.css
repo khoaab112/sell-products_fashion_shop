@@ -663,10 +663,9 @@ section#gif {
 }
 
 .detail-product {
-    background-color: var(--bs-yellow);
+    background-color: #4096ff;
     color: white;
     font-size: 16px;
-    padding: 2px 31px;
     border-radius: 10px;
 }
 
@@ -718,7 +717,6 @@ section#gif {
 }
 
 .card-product .title-product {
-    margin-top: 1rem;
     font-weight: bold;
     font-size: 120%;
 }
@@ -741,6 +739,9 @@ pulseFooter .card-product .sale-price {
 
 .card-product .list-color {
     display: inline-block;
+    width: 100%;
+    height: 2rem;
+    margin-top: 0.5rem;
 }
 
 

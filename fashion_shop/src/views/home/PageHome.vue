@@ -110,7 +110,14 @@ export default {
             ],
             item: {
                 name: 'product_1',
-                img: 'https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-20.jpg',
+                imgs: [
+                    {name:'xanh',img:'https://i.pinimg.com/564x/11/7b/ae/117bae9845cd9758c8323639a28b663e.jpg'},
+                    {name:'Dổ',img:'https://i.pinimg.com/564x/67/af/b3/67afb335f3e0cf5ba519ac29b19ee383.jpg'},
+                    {name:'xanh',img:'https://i.pinimg.com/564x/12/52/f7/1252f7650a473bbbef328d1b0a4d72ce.jpg'},
+                    {name:'vang',img:'https://i.pinimg.com/564x/bb/3b/30/bb3b3033c79b78c5582acb274bacee72.jpg'},
+                    {name:'xanh',img:'https://i.pinimg.com/736x/b3/77/a5/b377a5c3bd632c04f40caf17661fd655.jpg'},
+                    {name:'xanh',img:'https://i.pinimg.com/564x/b7/c3/92/b7c392a35e18cb1133a50006dda4356d.jpg'},
+                ],
                 vote: '3.2',
                 quantitySold: '333',
                 sale: '10',
