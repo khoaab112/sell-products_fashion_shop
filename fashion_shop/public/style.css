@@ -679,7 +679,7 @@ section#gif {
 
 .card-product>a {
     position: relative;
-    height: 80%;
+    height: 70%;
 }
 
 .card-product .number-product {
@@ -809,8 +809,8 @@ footer .sologan span {
 }
 
 footer .list-trademark img {
-    width: 3rem;
-    height: 3rem;
+    width: 2rem;
+    height: 2rem;
     margin-top: 1rem;
     margin-right: 1rem;
     object-fit: cover;
@@ -818,7 +818,38 @@ footer .list-trademark img {
 }
 
 footer .list-trademark img:hover {
-    transform: scale(1.1);
+    -webkit-animation: rotate-scale-down-hor 0.65s linear both;
+    animation: rotate-scale-down-hor 0.65s linear both;
+}
+
+@-webkit-keyframes rotate-scale-down-hor {
+    0% {
+        -webkit-transform: scale(1) rotateX(0);
+        transform: scale(1) rotateX(0);
+    }
+    50% {
+        -webkit-transform: scale(0.5) rotateX(-180deg);
+        transform: scale(0.5) rotateX(-180deg);
+    }
+    100% {
+        -webkit-transform: scale(1) rotateX(-360deg);
+        transform: scale(1) rotateX(-360deg);
+    }
+}
+
+@keyframes rotate-scale-down-hor {
+    0% {
+        -webkit-transform: scale(1) rotateX(0);
+        transform: scale(1) rotateX(0);
+    }
+    50% {
+        -webkit-transform: scale(0.5) rotateX(-180deg);
+        transform: scale(0.5) rotateX(-180deg);
+    }
+    100% {
+        -webkit-transform: scale(1) rotateX(-360deg);
+        transform: scale(1) rotateX(-360deg);
+    }
 }
 
 footer .list-trademark img:active {

@@ -3,25 +3,31 @@
         <div class="container-xxl">
             <div class="row">
                 <div class="col-xl-4 col-sm-6">
-                    <!-- <div class="icon"><img src="../imgs/logoAdmin.png" alt="icon"><span>SHOP</span></div> -->
+                    <div class="icon"><img :src="logo" alt="icon"><span>SHOP</span></div>
                     <div class="list-trademark">
-                        <!-- <img src="../imgs/fb.png" alt="">
-                        <img src="../imgs/fb.png" alt="">
-                        <img src="../imgs/fb.png" alt="">
-                        <img src="../imgs/fb.png" alt="">
-                        <img src="../imgs/fb.png" alt="">
-                        <img src="../imgs/fb.png" alt="">
-                        <img src="../imgs/fb.png" alt="">
-                        <img src="../imgs/fb.png" alt="">
-                        <img src="../imgs/img1.jpg" alt=""> -->
+                        <img :src="facebook" alt="logo-facebook">
+                        <img :src="logoInstagram" alt="logo-instagram">
+                        <img :src="logoTwitter" alt="logo-twitter">
+                        <img :src="logoZalo" alt="logo-zalo">
                     </div>
+<<<<<<< Updated upstream
                     <div class="sologan">
+<<<<<<< HEAD
                         <span>"</span>Slogan là một câu văn ngắn gọn cô đọng đầy đủ ý nghĩa, thông điệp với mục đích mô tả
                         hoặc thuyết phục vấn đề nào đó. Thông thường, Slogan rất nổi bật, dễ nhớ và thu hút đối với mọi
                         người.<span>"</span>
+=======
+                        <span>"</span>Slogan là một câu văn ngắn gọn cô đọng đầy đủ ý nghĩa, thông điệp với mục đích mô tả hoặc thuyết phục vấn đề nào đó. Thông thường, Slogan rất nổi bật, dễ nhớ và thu hút đối với mọi người.<span>"</span>
+=======
+                    <div class="sologan mt-2">
+                        <span>"</span>Slogan là một câu văn ngắn gọn cô đọng đầy đủ ý nghĩa, thông điệp với mục đích mô tả
+                        hoặc thuyết phục vấn đề nào đó. Thông thường, Slogan rất nổi bật, dễ nhớ và thu hút đối với mọi
+                        người.<span>"</span>
+>>>>>>> Stashed changes
+>>>>>>> Layout
                     </div>
                     <div class="hotline">
-                        0833.872.6589
+                        <font-awesome-icon class="me-2" icon="fa-solid fa-phone" />   0833.872.6589
                     </div>
                 </div>
                 <div class="col-xl-2 col-sm-6">
@@ -74,8 +80,23 @@
     </footer>
 </template>
   
+<<<<<<< HEAD
 <script>
 export default {
+=======
+<<<<<<< Updated upstream
+  <script>
+  export default {
+=======
+<script>
+import logoPage from "@/assets/images/logo/logoPage.png";
+import LogoFacebook from "@/assets/images/logo/logoFacebook.png"
+import instagram from "@/assets/images/logo/instagram.png"
+import twitter from "@/assets/images/logo/twitter.png"
+import zalo from "@/assets/images/logo/zalo.png"
+export default {
+>>>>>>> Stashed changes
+>>>>>>> Layout
     name: 'FooterLayout',
     components: {
     },
@@ -84,9 +105,26 @@ export default {
     directives: {
     },
     data() {
+<<<<<<< HEAD
         return {
             btnOnTopVisible: true,
         };
+=======
+<<<<<<< Updated upstream
+      return {
+        // Dữ liệu của component
+      };
+=======
+        return {
+            btnOnTopVisible: true,
+            logo: logoPage,
+            facebook:LogoFacebook,
+            logoInstagram:instagram,
+            logoTwitter:twitter,
+            logoZalo:zalo,
+        };
+>>>>>>> Stashed changes
+>>>>>>> Layout
     },
     created() {
         // Logic khi component được khởi tạo
@@ -118,6 +156,14 @@ export default {
 };
 </script>
   
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+  <style>
+  /* CSS cho component */
+  </style>
+=======
+>>>>>>> Layout
 <style scoped>
 #back-to-top {
     display: inline-block;
@@ -150,10 +196,20 @@ export default {
 #back-to-top:hover {
     cursor: pointer;
     background-color: #9BCDD2;
+<<<<<<< HEAD
+=======
+    -webkit-animation: rotate-center 0.6s ease-in-out both;
+    animation: rotate-center 0.6s ease-in-out both;
+>>>>>>> Layout
 }
 
 #back-to-top:active {
     background-color: #A2CDB0;
+<<<<<<< HEAD
+=======
+    -webkit-animation: rotate-center 0.6s ease-in-out both;
+    animation: rotate-center 0.6s ease-in-out both;
+>>>>>>> Layout
 }
 
 #back-to-top.show {
@@ -165,5 +221,35 @@ export default {
     height: auto;
     opacity: 1;
     transition: height 15ms 18ms, opacity 641ms 24ms;
+<<<<<<< HEAD
 }</style>
+=======
+}
+
+@-webkit-keyframes rotate-center {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate-center {
+    0% {
+        -webkit-transform: rotate(0);
+        transform: rotate(0);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+</style>
+>>>>>>> Stashed changes
+>>>>>>> Layout
   
