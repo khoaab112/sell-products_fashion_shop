@@ -10,18 +10,13 @@
                         <img :src="logoTwitter" alt="logo-twitter">
                         <img :src="logoZalo" alt="logo-zalo">
                     </div>
-<<<<<<< Updated upstream
-                    <div class="sologan">
-                        <span>"</span>Slogan là một câu văn ngắn gọn cô đọng đầy đủ ý nghĩa, thông điệp với mục đích mô tả hoặc thuyết phục vấn đề nào đó. Thông thường, Slogan rất nổi bật, dễ nhớ và thu hút đối với mọi người.<span>"</span>
-=======
                     <div class="sologan mt-2">
                         <span>"</span>Slogan là một câu văn ngắn gọn cô đọng đầy đủ ý nghĩa, thông điệp với mục đích mô tả
                         hoặc thuyết phục vấn đề nào đó. Thông thường, Slogan rất nổi bật, dễ nhớ và thu hút đối với mọi
                         người.<span>"</span>
->>>>>>> Stashed changes
                     </div>
                     <div class="hotline">
-                        <font-awesome-icon class="me-2" icon="fa-solid fa-phone" />   0833.872.6589
+                        <font-awesome-icon class="me-2" icon="fa-solid fa-phone" /> 0833.872.6589
                     </div>
                 </div>
                 <div class="col-xl-2 col-sm-6">
@@ -51,11 +46,16 @@
                         Chi nhánh<i class="fa-solid fa-caret-down icon"></i>
                     </div>
                     <ul class="sub">
-                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm, Hà Nội, Việt Nam</li>
-                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm, Hà Nội, Việt Nam</li>
-                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm, Hà Nội, Việt Nam</li>
-                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm, Hà Nội, Việt Nam</li>
-                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm, Hà Nội, Việt Nam</li>
+                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
+                            Hà Nội, Việt Nam</li>
+                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
+                            Hà Nội, Việt Nam</li>
+                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
+                            Hà Nội, Việt Nam</li>
+                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
+                            Hà Nội, Việt Nam</li>
+                        <li><i class="fa-solid fa-location-dot"></i>&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
+                            Hà Nội, Việt Nam</li>
                     </ul>
                 </div>
             </div>
@@ -65,12 +65,8 @@
             </div>
         </div>
     </footer>
-  </template>
+</template>
   
-<<<<<<< Updated upstream
-  <script>
-  export default {
-=======
 <script>
 import logoPage from "@/assets/images/logo/logoPage.png";
 import LogoFacebook from "@/assets/images/logo/logoFacebook.png"
@@ -78,7 +74,6 @@ import instagram from "@/assets/images/logo/instagram.png"
 import twitter from "@/assets/images/logo/twitter.png"
 import zalo from "@/assets/images/logo/zalo.png"
 export default {
->>>>>>> Stashed changes
     name: 'FooterLayout',
     components: {
     },
@@ -87,47 +82,37 @@ export default {
     directives: {
     },
     data() {
-<<<<<<< Updated upstream
-      return {
-        // Dữ liệu của component
-      };
-=======
         return {
             btnOnTopVisible: true,
             logo: logoPage,
-            facebook:LogoFacebook,
-            logoInstagram:instagram,
-            logoTwitter:twitter,
-            logoZalo:zalo,
+            facebook: LogoFacebook,
+            logoInstagram: instagram,
+            logoTwitter: twitter,
+            logoZalo: zalo,
         };
->>>>>>> Stashed changes
     },
     created() {
-      // Logic khi component được khởi tạo
+        // Logic khi component được khởi tạo
     },
     mounted() {
-      // Logic sau khi component được gắn kết (render) vào DOM
+        // Logic sau khi component được gắn kết (render) vào DOM
     },
     computed() {
-      // được sử dụng để định nghĩa các thuộc tính tính toán
+        // được sử dụng để định nghĩa các thuộc tính tính toán
     },
     updated() {
-  
+
     },
     unmounted() {
-  
+
     },
     methods: {
-      // Các phương thức xử lý sự kiện hoặc logic khác
+        // Các phương thức xử lý sự kiện hoặc logic khác
     },
-  };
-  </script>
+};
+</script>
   
-<<<<<<< Updated upstream
-  <style>
-  /* CSS cho component */
-  </style>
-=======
+
 <style scoped>
 #back-to-top {
     display: inline-block;
@@ -203,7 +188,6 @@ export default {
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
     }
-}
-</style>
+}</style>
 >>>>>>> Stashed changes
   
