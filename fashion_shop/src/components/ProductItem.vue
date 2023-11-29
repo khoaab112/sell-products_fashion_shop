@@ -15,7 +15,7 @@
         </a>
         <div class="list-color">
             <vueper-slides class="no-shadow" id="product-img" :visible-slides="3" :slide-ratio="1 / 4"
-                :dragging-distance="5" fixed-height="3rem" :arrows=true :bullets=false :slideMultiple=true>
+                :dragging-distance="5" fixed-height="3rem" :arrows=isArrows :bullets=false :slideMultiple=true :touchable="false">
                 <vueper-slide v-for="(i, key) in product.imgs" :key="key" :image="i.img" @click="selectPhoto(i.img)" />
             </vueper-slides>
         </div>
@@ -32,7 +32,7 @@ import 'vueperslides/dist/vueperslides.css'
 //   data = name , imgs [ {key : ,img : }] , vote , quantitySold ,sale ,price,imgGift ,
 export default {
     name: 'ProductItem',
-    props: ['data'],
+    props: ['data','arrows'],
     components: {
         VueperSlides, VueperSlide
     },
@@ -47,6 +47,7 @@ export default {
         return {
             product: this.data,
             showImage: '',
+            isArrows:this.arrows,
         };
     },
     methods: {
@@ -103,7 +104,7 @@ export default {
 }
 
 .card-product .middle button:first-child {
-    background-color: #40b883;
+    background-color: #f1e4bd;
 }
 
 .card-product .middle button:nth-child(2) {
