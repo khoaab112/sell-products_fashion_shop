@@ -15,11 +15,7 @@
         </a>
         <div class="list-color">
             <vueper-slides class="no-shadow" id="product-img" :visible-slides="3" :slide-ratio="1 / 4"
-<<<<<<< HEAD
                 :dragging-distance="5" fixed-height="3rem" :arrows=true :bullets=false :slideMultiple=true>
-=======
-                :dragging-distance="5" fixed-height="3rem" :arrows=isArrows :bullets=false :slideMultiple=true :touchable="false">
->>>>>>> Layout
                 <vueper-slide v-for="(i, key) in product.imgs" :key="key" :image="i.img" @click="selectPhoto(i.img)" />
             </vueper-slides>
         </div>
@@ -36,11 +32,7 @@ import 'vueperslides/dist/vueperslides.css'
 //   data = name , imgs [ {key : ,img : }] , vote , quantitySold ,sale ,price,imgGift ,
 export default {
     name: 'ProductItem',
-<<<<<<< HEAD
     props: ['data'],
-=======
-    props: ['data','arrows'],
->>>>>>> Layout
     components: {
         VueperSlides, VueperSlide
     },
@@ -55,10 +47,6 @@ export default {
         return {
             product: this.data,
             showImage: '',
-<<<<<<< HEAD
-=======
-            isArrows:this.arrows,
->>>>>>> Layout
         };
     },
     methods: {
@@ -115,11 +103,7 @@ export default {
 }
 
 .card-product .middle button:first-child {
-<<<<<<< HEAD
     background-color: #40b883;
-=======
-    background-color: #f1e4bd;
->>>>>>> Layout
 }
 
 .card-product .middle button:nth-child(2) {
