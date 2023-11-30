@@ -706,6 +706,7 @@ section#gif {
     padding: 1px 4px;
     border-radius: 5px 0px;
     color: white;
+    font-weight: bold;
 }
 
 .promotional-products img {
@@ -989,6 +990,16 @@ footer .copyright {
 }
 
 @media (max-width: 700px) {
+    .card-product .middle button {
+        width: 5rem;
+        height: 3rem;
+        font-size: 11px;
+    }
+    .card-product .middle .detail-product {
+        padding: 0 !important;
+        font-size: 11px !important;
+        padding-top: 5px !important;
+    }
     div.list-actions {
         display: flex;
         flex-direction: column;
@@ -1005,6 +1016,9 @@ footer .copyright {
     main {
         margin-top: 7rem;
     }
+    html {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -1013,9 +1027,6 @@ footer .copyright {
     }
     footer .col-xl-4.col-sm-6 {
         text-align: center;
-    }
-    html {
-        font-size: 14px;
     }
 }
 

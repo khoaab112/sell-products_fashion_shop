@@ -104,7 +104,8 @@ export default {
 }
 
 .card-product .middle button:first-child {
-    background-color: #f1e4bd;
+    background-color: #52c41a;
+    color: black;
 }
 
 .card-product .middle button:nth-child(2) {
@@ -149,10 +150,44 @@ export default {
   }
   @media (max-width:1100px)
   {
-
+    .card-product .middle button {
+        width: 5rem;
+        height: 3rem;
+    }
+    .card-product .middle .detail-product {
+        padding: 5px 0;
+    }
   }
-  @media (max-width:500px)
+  @media (max-width:700px)
   {
-    
+    .card-product {
+        width: 10rem;
+        height: 21rem;
+    }
+    .card-product .number-product {
+        font-size: 11px;
+    }
+    .card-product .promotional-products {
+        width: 4rem;
+        height: 5rem;
+    }
+    .card-product>a .sale {
+        font-size: 11px;
+    }
+    #product-img .vueperslide {
+        width: 2rem !important;
+        height: 2rem !important;
+    }
+    #product-img .vueperslide__content-wrapper {
+        height: 2rem !important;
+    }
+  }
+  @media (max-width: 500px)
+  {
+    .card-product {
+        width: 10rem;
+        height: 20rem;
+    }
+
   }
 </style>
