@@ -62,7 +62,7 @@
                         <li><router-link :to="{ name: 'TestView' }"><font-awesome-icon
                                     icon="fa-solid fa-location-dot" />&nbsp;Shop 1, 103 Đ. Cầu Diễn, Phúc Diễn, Bắc Từ Liêm,
                                 Hà Nội, Việt Nam</router-link></li>
-                        <li class="text-end more"><router-link :to="{ name: 'TestView' }" style="color:orange;">Xem
+                        <li class="text-end more"><router-link :to="{ name: 'TestView' }">Xem
                                 thêm</router-link></li>
                     </ul>
                 </div>
