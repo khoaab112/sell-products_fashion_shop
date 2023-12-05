@@ -20,6 +20,7 @@
     "element-plus": "^2.4.2",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
+    "vue3-google-map": "^0.18.0",
     "vueperslides": "^3.5.1"
   },
   "devDependencies": {

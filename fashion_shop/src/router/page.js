@@ -39,7 +39,7 @@ const home = [{
             name: 'Test',
             meta: { breadcrumb: 'Test' },
             component: () =>
-                import ('../views/branch/Branch.vue'),
+                import ('../views/test/testView.vue'),
         },
     ],
 }, ];
