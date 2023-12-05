@@ -133,7 +133,8 @@ header {
 }
 
 main {
-    margin-top: 10rem;
+    margin-top: 10.8rem;
+    min-height: 20rem;
 }
 
 header #logo img {
@@ -438,6 +439,10 @@ button.btn-basket .icon:hover {
     }
     .more-mobile {
         display: block;
+    }
+    main {
+        margin-top: 10rem;
+        min-height: 20rem;
     }
 }
 
