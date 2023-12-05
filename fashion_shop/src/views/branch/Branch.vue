@@ -31,12 +31,21 @@
     </section>
 
     <section id="map" class="container">
-      <div class="btn-get-location">
-        <button><font-awesome-icon icon="fa-solid fa-location-dot" class="pe-2"/>Tự lấy vị trí</button>
+      <div class="btns">
+      <div class="btn-next-map">
+        <button><font-awesome-icon icon="fa-solid fa-map-location-dot" class="pe-2" />Chuyển qua map</button>
       </div>
+      <div class="btn-get-location">
+        <button><font-awesome-icon icon="fa-solid fa-location-dot" class="pe-2" />Tự lấy vị trí</button>
+      </div>
+    </div>
       <div class="row">
         <div class="col-xl-7 col-sm-12">
-          <div class="map-google"></div>
+          <div class="map-google">
+            <GoogleMap :api-key=API_KEY style="width: 100%; height: 500px" :center="center" :zoom="15">
+              <Marker :options="{ position: center }" />
+            </GoogleMap>
+          </div>
         </div>
         <div class="col-xl-5 col-sm-12">
           <div class="table-map">
@@ -144,9 +153,12 @@
 </template>
   
 <script>
+import { GoogleMap, Marker } from "vue3-google-map";
+import helpers from "@/helpers/helpers.js"
 export default {
   name: 'BranchVue',
   components: {
+    GoogleMap, Marker
   },
   setup() {
   },
@@ -155,10 +167,12 @@ export default {
   data() {
     return {
       backgroundBranch: 'https://i.pinimg.com/564x/87/51/4d/87514de1412fb49694120aa0eb1a28bc.jpg',
+      center: { lat: 21.0330471, lng: 105.763112 },
+      API_KEY: process.env.VUE_APP_API_KEY_GOOGLE_MAP,
     };
   },
   created() {
-    // Logic khi component được khởi tạo
+    this.setLocationDefault();
   },
   mounted() {
     // Logic sau khi component được gắn kết (render) vào DOM
@@ -173,7 +187,18 @@ export default {
 
   },
   methods: {
-    // Các phương thức xử lý sự kiện hoặc logic khác
+    setLocationDefault() {
+      helpers.methods.getLocation().then(
+        location => {
+          this.center.lat = location.la;
+          this.center.lng = location.lo;
+        },
+        error => {
+          console.error("Error:", error);
+        }
+      );
+
+    }
   },
 };
 </script>
@@ -306,7 +331,11 @@ section#box-info div.personnel {
   background-color: #adb5bd;
 }
 
-
+#map div.btns{
+  display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 /* prepare */
 
 .prepare {
@@ -375,8 +404,49 @@ section#box-info div.personnel {
   padding: 1rem;
   align-items: center;
 }
+.btn-next-map button{
+  background-color: #c3f1d5;
+  display: block !important;
+  border: none;
+  padding: 0.1rem 1.2rem;
+  border-radius: 5px;
+}
+.btn-next-map button:hover{
+  background-color: #11f367;
+  color: black;
+}
+.btn-next-map button:focus{
+  -webkit-animation: swirl-out-bck 0.6s ease-in both;
+  animation: swirl-out-bck 0.6s ease-in both;
+}
 
-.btn-get-location button {
+ @-webkit-keyframes swirl-out-bck {
+  0% {
+    -webkit-transform: rotate(0) scale(1);
+            transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(-540deg) scale(0);
+            transform: rotate(-540deg) scale(0);
+    opacity: 0;
+  }
+}
+@keyframes swirl-out-bck {
+  0% {
+    -webkit-transform: rotate(0) scale(1);
+            transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotate(-540deg) scale(0);
+            transform: rotate(-540deg) scale(0);
+    opacity: 0;
+  }
+}
+
+.btn-get-location button,
+.btn-next-map button{
   display: contents;
   font-weight: bold;
   font-size: 120%;
@@ -483,8 +553,21 @@ section#box-info div.personnel {
 .list-shop hr {
   margin: 0px 14px;
 }
+
 .list-shop .item-shop:hover {
   background: #86b7fe;
+}
+@media (max-width:1200px)
+{
+  .table-map .input-map {
+    margin-top: 2rem;
+}
+}
+@media (max-width:700px)
+{
+  .table-map .input-map {
+    margin-top: 7rem;
+}
 }
 </style>
   
