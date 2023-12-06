@@ -1,5 +1,8 @@
 export default {
     methods: {
+        copyToClipboard(content) {
+            navigator.clipboard.writeText(content);
+        },
         getLocation() {
             return new Promise((resolve, reject) => {
                 navigator.geolocation.getCurrentPosition(

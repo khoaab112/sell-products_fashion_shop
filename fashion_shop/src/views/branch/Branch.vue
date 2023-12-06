@@ -32,13 +32,15 @@
 
     <section id="map" class="container">
       <div class="btns">
-      <div class="btn-next-map">
-        <button><font-awesome-icon icon="fa-solid fa-map-location-dot" class="pe-2" />Chuyển qua map</button>
+        <div class="btn-next-map">
+          <a href="https://www.google.com/maps/place/Tr%C6%B0%E1%BB%9Dng+%C4%91%E1%BA%A1i+h%E1%BB%8Dc+C%C3%B4ng+ngh%E1%BB%87+%C4%90%C3%B4ng+%C3%81/@21.0415956,105.7619684,14.75z/data=!4m6!3m5!1s0x3135096b31fa7abb:0xff645782804911af!8m2!3d21.0400095!4d105.7419583!16s%2Fg%2F11b6dp60m1?hl=vi-VN&entry=ttu"
+            target="_blank">
+            <button> <font-awesome-icon icon="fa-solid fa-map-location-dot" class="pe-2" />Chuyển qua map</button></a>
+        </div>
+        <div class="btn-get-location">
+          <button><font-awesome-icon icon="fa-solid fa-location-dot" class="pe-2" />Tự lấy vị trí</button>
+        </div>
       </div>
-      <div class="btn-get-location">
-        <button><font-awesome-icon icon="fa-solid fa-location-dot" class="pe-2" />Tự lấy vị trí</button>
-      </div>
-    </div>
       <div class="row">
         <div class="col-xl-7 col-sm-12">
           <div class="map-google">
@@ -69,7 +71,7 @@
                   <div class="title">
                     <strong>Cửa hàng ABC</strong>
                   </div>
-                  <div class="address"><span class="icon"><font-awesome-icon
+                  <div class="address"><span class="icon" @click="copyToClipboard"><font-awesome-icon
                         icon="fa-solid fa-location-dot" /></span>&nbsp;<span>666 Đồng Tâm, Thị trấn Đoan Hùng, Huyện Đoan
                       Hùng, Phú Thọ</span></div>
                   <div class="hotline"><span class="icon"><font-awesome-icon
@@ -198,7 +200,7 @@ export default {
         }
       );
 
-    }
+    },
   },
 };
 </script>
@@ -331,11 +333,12 @@ section#box-info div.personnel {
   background-color: #adb5bd;
 }
 
-#map div.btns{
+#map div.btns {
   display: flex;
-    align-items: center;
-    justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
+
 /* prepare */
 
 .prepare {
@@ -404,49 +407,59 @@ section#box-info div.personnel {
   padding: 1rem;
   align-items: center;
 }
-.btn-next-map button{
+
+.btn-next-map a {
+  text-decoration: none;
+}
+
+.btn-next-map button {
   background-color: #c3f1d5;
   display: block !important;
   border: none;
   padding: 0.1rem 1.2rem;
   border-radius: 5px;
 }
-.btn-next-map button:hover{
+
+.btn-next-map button:hover {
   background-color: #11f367;
   color: black;
 }
-.btn-next-map button:focus{
+
+.btn-next-map button:focus {
   -webkit-animation: swirl-out-bck 0.6s ease-in both;
   animation: swirl-out-bck 0.6s ease-in both;
 }
 
- @-webkit-keyframes swirl-out-bck {
+@-webkit-keyframes swirl-out-bck {
   0% {
     -webkit-transform: rotate(0) scale(1);
-            transform: rotate(0) scale(1);
+    transform: rotate(0) scale(1);
     opacity: 1;
   }
+
   100% {
     -webkit-transform: rotate(-540deg) scale(0);
-            transform: rotate(-540deg) scale(0);
+    transform: rotate(-540deg) scale(0);
     opacity: 0;
   }
 }
+
 @keyframes swirl-out-bck {
   0% {
     -webkit-transform: rotate(0) scale(1);
-            transform: rotate(0) scale(1);
+    transform: rotate(0) scale(1);
     opacity: 1;
   }
+
   100% {
     -webkit-transform: rotate(-540deg) scale(0);
-            transform: rotate(-540deg) scale(0);
+    transform: rotate(-540deg) scale(0);
     opacity: 0;
   }
 }
 
 .btn-get-location button,
-.btn-next-map button{
+.btn-next-map button {
   display: contents;
   font-weight: bold;
   font-size: 120%;
@@ -515,6 +528,37 @@ section#box-info div.personnel {
   background-color: #fff;
   border-radius: 50px;
 }
+.list-shop .item-shop span.icon:active{
+  border: 1px solid black;
+}
+.list-shop .item-shop span.icon:hover {
+  -webkit-animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes shadow-drop-center {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+
+@keyframes shadow-drop-center {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.35);
+  }
+}
 
 .list-shop .item-shop .address>.icon {
   padding: 3px 8px;
@@ -557,17 +601,16 @@ section#box-info div.personnel {
 .list-shop .item-shop:hover {
   background: #86b7fe;
 }
-@media (max-width:1200px)
-{
+
+@media (max-width:1200px) {
   .table-map .input-map {
     margin-top: 2rem;
+  }
 }
-}
-@media (max-width:700px)
-{
+
+@media (max-width:700px) {
   .table-map .input-map {
     margin-top: 7rem;
-}
-}
-</style>
+  }
+}</style>
   
