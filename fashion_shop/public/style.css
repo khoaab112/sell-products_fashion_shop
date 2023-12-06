@@ -1088,3 +1088,10 @@ footer .copyright {
         display: none;
     }
 }
+
+
+/* page detail */
+
+#vote .star i.el-icon.el-rate__icon {
+    font-size: 27px;
+}

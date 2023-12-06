@@ -50,9 +50,12 @@
                         </div>
                         <div class="size">
                             <strong class="size-name">Kích thước : {{ sizeDefault.size }} <font-awesome-icon
-                                    icon="fa-solid fa-grip-lines-vertical" style="color: #ff0000;" /> Số lượng : {{sizeDefault.number}}</strong>
+                                    icon="fa-solid fa-grip-lines-vertical" style="color: #ff0000;" /> Số lượng :
+                                {{ sizeDefault.number }}</strong>
                             <div class="list-size">
-                                <button   v-for="(item,key) in listSize" :key="item.key" :class="{ 'active': selectIndexSize == key }" @click="clickSize(item,key)" :disabled="item.number<1"> {{ item.size }}</button>
+                                <button v-for="(item, key) in listSize" :key="item.key"
+                                    :class="{ 'active': selectIndexSize == key }" @click="clickSize(item, key)"
+                                    :disabled="item.number < 1"> {{ item.size }}</button>
                             </div>
                         </div>
                         <div class="suggestion">
@@ -87,11 +90,12 @@
                                 </div>
                             </div>
                             <div class="action">
-                                <button class="support"><span>Hỗ trợ </span><i
-                                        class="fa-solid fa-headset icon"></i></button>
+                                <button class="support"><span>Hỗ trợ </span><font-awesome-icon icon="fa-solid fa-headset"
+                                        class="icon" /></button>
                                 <div class="order">
-                                    <button class="cart">Thêm vào giỏ<br><i class="fa-solid fa-cart-plus"></i></button>
-                                    <button class="buy">Mua<br><i class="fa-regular fa-credit-card"></i></button>
+                                    <button class="cart">Thêm vào giỏ<br><font-awesome-icon
+                                            icon="fa-solid fa-cart-shopping" /></button>
+                                    <button class="buy">Mua<br><font-awesome-icon icon="fa-solid fa-credit-card" /></button>
                                 </div>
                             </div>
                         </div>
@@ -108,11 +112,7 @@
                                     <div class="number-reviews text-center">
                                         <span>5/5</span>
                                         <div class="star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
+                                            <el-rate v-model="valueRate" size="large" />
                                         </div>
                                         <span>123 người đã đánh giá</span>
                                     </div>
@@ -130,11 +130,7 @@
                                 <div class="send-require">
                                     <div class="number-start text-center">
                                         <div class="star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
+                                            <el-rate v-model="valueRate" size="large" />
                                         </div>
                                         <span>5 sao </span>
                                     </div>
@@ -149,18 +145,17 @@
                         <div class="list-feedback">
                             <div class="title">
                                 <h5>Phản hồi của khách hàng</h5>
-                                <i class="fa-solid fa-caret-down"></i>
+                                <font-awesome-icon icon="fa-solid fa-caret-down" class="btn-show-comment"
+                                    :class="{ 'active': isShowComments == false }"
+                                    @click="isShowComments = !isShowComments" />
                             </div>
-                            <div class="list">
-                                <div class="user-feedback">
+                            <div class="list" v-show="isShowComments">
+                                <div class="user-feedback" v-for="item in listUserComments" :key="item.id">
                                     <div class="name">
+                                        <img :src=item.avatar :alt="`avatar ${item.name}`">
                                         <strong>Nguyễn Văn A</strong>
                                         <div class="star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
+                                            <el-rate v-model="item.vote" size="large" disabled/>                                          
                                         </div>
                                     </div>
                                     <div class="comment">
@@ -179,96 +174,6 @@
                                             <button>10<i class="fa-regular fa-thumbs-up like"></i></button>
                                             <button>20<i class="fa-regular fa-comment comment"></i></button>
                                             <button>1<i class="fa-solid fa-triangle-exclamation report"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="user-feedback">
-                                    <div class="name">
-                                        <strong>Nguyễn Văn A</strong>
-                                        <div class="star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="comment">
-                                        <p>Sản phẩm tốt</p>
-                                        <div class="img">
-                                            <!-- <img src="../imgs/img1.jpg" alt="">
-                                            <img src="../imgs/img1.jpg" alt="">
-                                            <img src="../imgs/img1.jpg" alt="">
-                                            <img src="../imgs/img1.jpg" alt=""> -->
-                                            <div class="box">
-                                                <!-- <img src="../imgs/img1.jpg" alt=""> -->
-                                                <div class="much-quantity">+ 14</div>
-                                            </div>
-                                        </div>
-                                        <div class="action">
-                                            <button>10<i class="fa-regular fa-thumbs-up like"></i></button>
-                                            <button>20<i class="fa-regular fa-comment comment"></i></button>
-                                            <button>1<i class="fa-solid fa-triangle-exclamation report"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="user-feedback">
-                                    <div class="name">
-                                        <strong>Nguyễn Văn A</strong>
-                                        <div class="star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="comment">
-                                        <p>Sản phẩm tốt</p>
-                                        <div class="img">
-                                            <!-- <img src="../imgs/img1.jpg" alt="">
-                                            <img src="../imgs/img1.jpg" alt="">
-                                            <img src="../imgs/img1.jpg" alt="">
-                                            <img src="../imgs/img1.jpg" alt=""> -->
-                                            <div class="box">
-                                                <!-- <img src="../imgs/img1.jpg" alt=""> -->
-                                                <div class="much-quantity">+ 14</div>
-                                            </div>
-                                        </div>
-                                        <div class="action">
-                                            <button>10<i class="fa-regular fa-thumbs-up like"></i></button>
-                                            <button>20<i class="fa-regular fa-comment comment"></i></button>
-                                            <button>1<i class="fa-solid fa-triangle-exclamation report"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="user-feedback">
-                                    <div class="name">
-                                        <strong>Nguyễn Văn A</strong>
-                                        <div class="star">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="comment">
-                                        <p>Sản phẩm tốt</p>
-                                        <div class="img">
-                                            <!-- <img src="../imgs/img1.jpg" alt="">
-                                            <img src="../imgs/img1.jpg" alt="">
-                                            <img src="../imgs/img1.jpg" alt="">
-                                            <img src="../imgs/img1.jpg" alt=""> -->
-                                            <div class="box">
-                                                <!-- <img src="../imgs/img1.jpg" alt=""> -->
-                                                <div class="much-quantity">+ 14</div>
-                                            </div>
-                                        </div>
-                                        <div class="action">
-                                            <button>10 <i class="fa-regular fa-thumbs-up like"></i></button>
-                                            <button>20 <i class="fa-regular fa-comment comment"></i></button>
-                                            <button>1 <i class="fa-solid fa-triangle-exclamation report"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -306,11 +211,13 @@ export default {
     },
     data() {
         return {
+            isShowComments: true,
+            valueRate: 0,
             selectIndexColor: null,
             selectIndexSize: null,
             sizeDefault: {
-                size:'NAN',
-                number:'NAN',
+                size: 'NAN',
+                number: 'NAN',
             },
             number: 'NAN',
             imgDefault: 'https://i.pinimg.com/564x/a2/4a/cb/a24acb241327b3947d3ae33aef5a6ddf.jpg',
@@ -364,6 +271,42 @@ export default {
                     'key': 5, size: 35, number: 70
                 },
             ],
+            listUserComments: [
+                {
+                    id: '1', name: 'Nguyễn Văn A',
+                    avatar:"https://i.pinimg.com/236x/61/c2/33/61c233fe615dbba599115c678d5c9416.jpg",
+                     listImg: [
+                        'https://i.pinimg.com/564x/c5/73/cd/c573cdbfb67934651115ce1a9ce006b2.jpg',
+                        'https://i.pinimg.com/236x/25/61/f6/2561f6ef60492ad53897c35c077e2167.jpg',
+                        'https://i.pinimg.com/236x/e1/b7/fe/e1b7fed48b90321e524426a42c35259b.jpg',
+                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
+                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
+                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
+                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
+                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
+                    ], like: 50, comments: 5, report: 3,vote:2
+                },
+                {
+                    id: '2', name: 'Nguyễn Nhi', 
+                    avatar:"https://i.pinimg.com/236x/61/c2/33/61c233fe615dbba599115c678d5c9416.jpg",                    
+                    listImg: [
+                        'https://i.pinimg.com/564x/c5/73/cd/c573cdbfb67934651115ce1a9ce006b2.jpg',
+                        'https://i.pinimg.com/236x/25/61/f6/2561f6ef60492ad53897c35c077e2167.jpg',
+                        'https://i.pinimg.com/236x/e1/b7/fe/e1b7fed48b90321e524426a42c35259b.jpg',
+                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
+                    ], like: 50, comments: 5, report: 3,vote: 1
+                },
+                {
+                    id: '3', name: 'Nguyên Minh',
+                    avatar:"https://i.pinimg.com/236x/61/c2/33/61c233fe615dbba599115c678d5c9416.jpg",                    
+                    listImg: [
+                        'https://i.pinimg.com/564x/c5/73/cd/c573cdbfb67934651115ce1a9ce006b2.jpg',
+                        'https://i.pinimg.com/236x/25/61/f6/2561f6ef60492ad53897c35c077e2167.jpg',
+                        'https://i.pinimg.com/236x/e1/b7/fe/e1b7fed48b90321e524426a42c35259b.jpg',
+                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
+                    ], like: 50, comments: 5, report: 3,vote:5
+                },
+            ],
         };
     },
     created() {
@@ -396,6 +339,25 @@ export default {
 </script>
   
 <style scoped>
+.btn-show-comment:hover {
+    color: orange;
+    user-select: none;
+}
+
+.btn-show-comment {
+    font-size: 30px;
+}
+
+.btn-show-comment.active {
+    transform: rotate(180deg);
+}
+
+.star {
+    background: white;
+    padding: 0 5px 6px 5px;
+
+}
+
 /* side */
 .list-color .vueperslides {
     width: 100%;
@@ -660,8 +622,6 @@ form.frm-suggestion .body-measurements {
 
 .suggestion .action .icon {
     position: absolute;
-    right: 0;
-    left: 0;
     font-size: 32px;
     color: #0a58ca40;
     z-index: 2;
@@ -782,6 +742,7 @@ section#vote h4.title {
 
 .user-feedback .name {
     display: flex;
+    align-items: center;
 }
 
 .user-feedback .name .star {
@@ -897,6 +858,5 @@ section#vote h4.title {
     .suggestion .action .order button.cart {
         margin-right: 1rem;
     }
-}
-</style>
+}</style>
   
