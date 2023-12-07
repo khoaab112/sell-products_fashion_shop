@@ -150,36 +150,12 @@
                                     @click="isShowComments = !isShowComments" />
                             </div>
                             <div class="list" v-show="isShowComments">
-                                <div class="user-feedback" v-for="item in listUserComments" :key="item.id">
-                                    <div class="name">
-                                        <img :src=item.avatar :alt="`avatar ${item.name}`">
-                                        <strong>Nguyễn Văn A</strong>
-                                        <div class="star">
-                                            <el-rate v-model="item.vote" size="large" disabled/>                                          
-                                        </div>
-                                    </div>
-                                    <div class="comment">
-                                        <p>Sản phẩm tốt</p>
-                                        <div class="img">
-                                            <!-- <img src="../imgs/img1.jpg" alt="">
-                                            <img src="../imgs/img1.jpg" alt="">
-                                            <img src="../imgs/img1.jpg" alt="">
-                                            <img src="../imgs/img1.jpg" alt=""> -->
-                                            <div class="box">
-                                                <!-- <img src="../imgs/img1.jpg" alt=""> -->
-                                                <div class="much-quantity">+ 14</div>
-                                            </div>
-                                        </div>
-                                        <div class="action">
-                                            <button>10<i class="fa-regular fa-thumbs-up like"></i></button>
-                                            <button>20<i class="fa-regular fa-comment comment"></i></button>
-                                            <button>1<i class="fa-solid fa-triangle-exclamation report"></i></button>
-                                        </div>
-                                    </div>
+                                <div v-for="item in listUserComments" :key="item.id">
+                                    <CommentVue :data="item"></CommentVue>
                                 </div>
-                                <div class="text-center">
+                                <div class="text-center more">
                                     <strong>Xem thêm</strong>
-                                    <p><i class="fa-solid fa-angles-down" style="color: blue;"></i></p>
+                                    <p><font-awesome-icon icon="fa-solid fa-angles-down" style="color: blue;" class="icon-more"/></p>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +166,15 @@
             <section id="suggestion-product">
                 <h4 class="title">Sản phẩm liên quan</h4>
                 <div class="list-product">
-
+                    <vueper-slides class="no-shadow" id="slide-flash-sale" :visible-slides="visibleSlides"
+                        :slide-ratio="1 / 4" :dragging-distance="70" :fixed-height="true" :touchable="true" :bullets="false"
+                        slide-multiple>
+                        <vueper-slide v-for="(item, key) in listProduct" :key="key">
+                            <template #content>
+                                <Product :data="item" :arrows="false"></Product>
+                            </template>
+                        </vueper-slide>
+                    </vueper-slides>
                 </div>
             </section>
         </div>
@@ -198,12 +182,18 @@
 </template>
   
 <script>
+import CommentVue from '@/components/Comment.vue'
+import Product from "@/components/ProductItem.vue"
+
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
 export default {
     name: 'DetailProduct',
     components: {
-        VueperSlides, VueperSlide
+        VueperSlides,
+        VueperSlide,
+        CommentVue,
+        Product
     },
     setup() {
     },
@@ -221,6 +211,106 @@ export default {
             },
             number: 'NAN',
             imgDefault: 'https://i.pinimg.com/564x/a2/4a/cb/a24acb241327b3947d3ae33aef5a6ddf.jpg',
+            visibleSlides: 5,
+            listProduct: [
+                {
+                    name: 'product_1',
+                    imgs: [
+                        { name: 'xanh', img: 'https://i.pinimg.com/564x/11/7b/ae/117bae9845cd9758c8323639a28b663e.jpg' },
+                        { name: 'Dổ', img: 'https://i.pinimg.com/564x/67/af/b3/67afb335f3e0cf5ba519ac29b19ee383.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/564x/12/52/f7/1252f7650a473bbbef328d1b0a4d72ce.jpg' },
+                        { name: 'vang', img: 'https://i.pinimg.com/564x/bb/3b/30/bb3b3033c79b78c5582acb274bacee72.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/736x/b3/77/a5/b377a5c3bd632c04f40caf17661fd655.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/564x/b7/c3/92/b7c392a35e18cb1133a50006dda4356d.jpg' },
+                    ],
+                    vote: '3.2',
+                    quantitySold: '333',
+                    sale: '10',
+                    price: '203222',
+                    imgGift: 'https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-17.jpg'
+                },
+                {
+                    name: 'product_2',
+                    imgs: [
+                        { name: 'xanh', img: 'https://www.pinterest.com/pin/582582901826138192/' },
+                        { name: 'Dổ', img: 'https://i.pinimg.com/564x/67/af/b3/67afb335f3e0cf5ba519ac29b19ee383.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/564x/12/52/f7/1252f7650a473bbbef328d1b0a4d72ce.jpg' },
+                        { name: 'vang', img: 'https://i.pinimg.com/564x/bb/3b/30/bb3b3033c79b78c5582acb274bacee72.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/736x/b3/77/a5/b377a5c3bd632c04f40caf17661fd655.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/564x/b7/c3/92/b7c392a35e18cb1133a50006dda4356d.jpg' },
+                    ],
+                    vote: '3.2',
+                    quantitySold: '333',
+                    sale: '10',
+                    price: '203222',
+                    imgGift: 'https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-17.jpg'
+                },
+                {
+                    name: 'product_3',
+                    imgs: [
+                        { name: 'xanh', img: 'https://www.pinterest.com/pin/582582901816088821/' },
+                        { name: 'Dổ', img: 'https://i.pinimg.com/564x/67/af/b3/67afb335f3e0cf5ba519ac29b19ee383.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/564x/12/52/f7/1252f7650a473bbbef328d1b0a4d72ce.jpg' },
+                        { name: 'vang', img: 'https://i.pinimg.com/564x/bb/3b/30/bb3b3033c79b78c5582acb274bacee72.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/736x/b3/77/a5/b377a5c3bd632c04f40caf17661fd655.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/564x/b7/c3/92/b7c392a35e18cb1133a50006dda4356d.jpg' },
+                    ],
+                    vote: '3.2',
+                    quantitySold: '333',
+                    sale: '10',
+                    price: '203222',
+                    imgGift: 'https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-17.jpg'
+                },
+                {
+                    name: 'product_4',
+                    imgs: [
+                        { name: 'xanh', img: 'https://i.pinimg.com/236x/88/25/dd/8825dd195accfe22207d6b235d7d5829.jpg' },
+                        { name: 'Dổ', img: 'https://i.pinimg.com/564x/67/af/b3/67afb335f3e0cf5ba519ac29b19ee383.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/564x/12/52/f7/1252f7650a473bbbef328d1b0a4d72ce.jpg' },
+                        { name: 'vang', img: 'https://i.pinimg.com/564x/bb/3b/30/bb3b3033c79b78c5582acb274bacee72.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/736x/b3/77/a5/b377a5c3bd632c04f40caf17661fd655.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/564x/b7/c3/92/b7c392a35e18cb1133a50006dda4356d.jpg' },
+                    ],
+                    vote: '3.2',
+                    quantitySold: '333',
+                    sale: '10',
+                    price: '203222',
+                    imgGift: 'https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-17.jpg'
+                },
+                {
+                    name: 'product_5',
+                    imgs: [
+                        { name: 'xanh', img: 'https://i.pinimg.com/236x/5b/f4/29/5bf429c2ebaf6107bba20b94bfb0bbab.jpg' },
+                        { name: 'Dổ', img: 'https://i.pinimg.com/564x/67/af/b3/67afb335f3e0cf5ba519ac29b19ee383.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/564x/12/52/f7/1252f7650a473bbbef328d1b0a4d72ce.jpg' },
+                        { name: 'vang', img: 'https://i.pinimg.com/564x/bb/3b/30/bb3b3033c79b78c5582acb274bacee72.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/736x/b3/77/a5/b377a5c3bd632c04f40caf17661fd655.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/564x/b7/c3/92/b7c392a35e18cb1133a50006dda4356d.jpg' },
+                    ],
+                    vote: '3.2',
+                    quantitySold: '333',
+                    sale: '10',
+                    price: '203222',
+                    imgGift: 'https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-17.jpg'
+                },
+                {
+                    name: 'product_6',
+                    imgs: [
+                        { name: 'xanh', img: 'https://i.pinimg.com/564x/24/c9/e1/24c9e1b0856037f442528fe3b3373dca.jpg' },
+                        { name: 'Dổ', img: 'https://i.pinimg.com/564x/67/af/b3/67afb335f3e0cf5ba519ac29b19ee383.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/564x/12/52/f7/1252f7650a473bbbef328d1b0a4d72ce.jpg' },
+                        { name: 'vang', img: 'https://i.pinimg.com/564x/bb/3b/30/bb3b3033c79b78c5582acb274bacee72.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/736x/b3/77/a5/b377a5c3bd632c04f40caf17661fd655.jpg' },
+                        { name: 'xanh', img: 'https://i.pinimg.com/564x/b7/c3/92/b7c392a35e18cb1133a50006dda4356d.jpg' },
+                    ],
+                    vote: '3.2',
+                    quantitySold: '333',
+                    sale: '10',
+                    price: '203222',
+                    imgGift: 'https://cdn.diemnhangroup.com/seoulcenter/2022/11/gai-xinh-17.jpg'
+                },
+
+            ],
             listColor: [
                 { name: 'black', color: 'https://i.pinimg.com/564x/c5/73/cd/c573cdbfb67934651115ce1a9ce006b2.jpg' },
                 { name: 'black', color: 'https://i.pinimg.com/564x/ee/86/34/ee8634272b8b54442899975e21fef87a.jpg' },
@@ -274,37 +364,37 @@ export default {
             listUserComments: [
                 {
                     id: '1', name: 'Nguyễn Văn A',
-                    avatar:"https://i.pinimg.com/236x/61/c2/33/61c233fe615dbba599115c678d5c9416.jpg",
-                     listImg: [
-                        'https://i.pinimg.com/564x/c5/73/cd/c573cdbfb67934651115ce1a9ce006b2.jpg',
-                        'https://i.pinimg.com/236x/25/61/f6/2561f6ef60492ad53897c35c077e2167.jpg',
-                        'https://i.pinimg.com/236x/e1/b7/fe/e1b7fed48b90321e524426a42c35259b.jpg',
-                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
-                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
-                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
-                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
-                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
-                    ], like: 50, comments: 5, report: 3,vote:2
-                },
-                {
-                    id: '2', name: 'Nguyễn Nhi', 
-                    avatar:"https://i.pinimg.com/236x/61/c2/33/61c233fe615dbba599115c678d5c9416.jpg",                    
+                    avatar: "https://i.pinimg.com/236x/61/c2/33/61c233fe615dbba599115c678d5c9416.jpg",
                     listImg: [
                         'https://i.pinimg.com/564x/c5/73/cd/c573cdbfb67934651115ce1a9ce006b2.jpg',
                         'https://i.pinimg.com/236x/25/61/f6/2561f6ef60492ad53897c35c077e2167.jpg',
                         'https://i.pinimg.com/236x/e1/b7/fe/e1b7fed48b90321e524426a42c35259b.jpg',
                         'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
-                    ], like: 50, comments: 5, report: 3,vote: 1
+                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
+                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
+                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
+                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
+                    ], like: 50, comments: 5, report: 3, vote: 2
+                },
+                {
+                    id: '2', name: 'Nguyễn Nhi',
+                    avatar: "https://i.pinimg.com/236x/61/c2/33/61c233fe615dbba599115c678d5c9416.jpg",
+                    listImg: [
+                        'https://i.pinimg.com/564x/c5/73/cd/c573cdbfb67934651115ce1a9ce006b2.jpg',
+                        'https://i.pinimg.com/236x/25/61/f6/2561f6ef60492ad53897c35c077e2167.jpg',
+                        'https://i.pinimg.com/236x/e1/b7/fe/e1b7fed48b90321e524426a42c35259b.jpg',
+                        'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
+                    ], like: 50, comments: 5, report: 3, vote: 1
                 },
                 {
                     id: '3', name: 'Nguyên Minh',
-                    avatar:"https://i.pinimg.com/236x/61/c2/33/61c233fe615dbba599115c678d5c9416.jpg",                    
+                    avatar: "https://i.pinimg.com/564x/c5/73/cd/c573cdbfb67934651115ce1a9ce006b2.jpg",
                     listImg: [
                         'https://i.pinimg.com/564x/c5/73/cd/c573cdbfb67934651115ce1a9ce006b2.jpg',
                         'https://i.pinimg.com/236x/25/61/f6/2561f6ef60492ad53897c35c077e2167.jpg',
                         'https://i.pinimg.com/236x/e1/b7/fe/e1b7fed48b90321e524426a42c35259b.jpg',
                         'https://i.pinimg.com/236x/32/7a/9b/327a9bdaf14cac77e3c4b8337ddeefe2.jpg',
-                    ], like: 50, comments: 5, report: 3,vote:5
+                    ], like: 50, comments: 5, report: 3, vote: 5
                 },
             ],
         };
@@ -339,6 +429,90 @@ export default {
 </script>
   
 <style scoped>
+.vueperslides--fixed-height { height: 30rem; }
+.more .icon-more {
+    -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
+    animation: heartbeat 1.5s ease-in-out infinite both;
+}
+
+@-webkit-keyframes heartbeat {
+    from {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    10% {
+        -webkit-transform: scale(0.91);
+        transform: scale(0.91);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    17% {
+        -webkit-transform: scale(0.98);
+        transform: scale(0.98);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    33% {
+        -webkit-transform: scale(0.87);
+        transform: scale(0.87);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    45% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+}
+
+@keyframes heartbeat {
+    from {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transform-origin: center center;
+        transform-origin: center center;
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    10% {
+        -webkit-transform: scale(0.91);
+        transform: scale(0.91);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    17% {
+        -webkit-transform: scale(0.98);
+        transform: scale(0.98);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+
+    33% {
+        -webkit-transform: scale(0.87);
+        transform: scale(0.87);
+        -webkit-animation-timing-function: ease-in;
+        animation-timing-function: ease-in;
+    }
+
+    45% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-animation-timing-function: ease-out;
+        animation-timing-function: ease-out;
+    }
+}
+
 .btn-show-comment:hover {
     color: orange;
     user-select: none;
@@ -739,70 +913,10 @@ section#vote h4.title {
     display: flex;
     justify-content: space-between;
 }
-
-.user-feedback .name {
-    display: flex;
-    align-items: center;
+.list-product{
+    height: 30rem;
 }
 
-.user-feedback .name .star {
-    margin-left: 1rem;
-}
-
-.user-feedback .comment .img {
-    display: flex;
-}
-
-.user-feedback .comment img {
-    height: 2rem;
-    width: 3rem;
-    object-fit: cover;
-    display: block;
-    margin-right: 1rem;
-}
-
-.user-feedback .comment .box {
-    position: relative;
-    height: 2rem;
-    width: 3rem;
-}
-
-.user-feedback .comment .box img {
-    opacity: 0.3;
-}
-
-.user-feedback .comment .box .much-quantity {
-    position: absolute;
-    top: 5px;
-    left: 11%;
-    font-weight: bold;
-}
-
-.user-feedback .comment .action {
-    margin-top: 0.5rem;
-}
-
-.user-feedback .comment .action button {
-    margin-right: 1rem;
-    border: none;
-    background-color: rgb(0 0 0 / 0%);
-}
-
-.user-feedback .comment .action .like:active {
-    color: #0d6efd;
-}
-
-.user-feedback .comment .action .comment:active {
-    color: yellow;
-}
-
-.user-feedback .comment .action .report:active {
-    color: red;
-}
-
-.user-feedback {
-    margin-bottom: 2rem;
-}
 
 @media (max-width: 500px) {
     .selling-price img {
@@ -858,5 +972,7 @@ section#vote h4.title {
     .suggestion .action .order button.cart {
         margin-right: 1rem;
     }
-}</style>
+}
+
+</style>
   
