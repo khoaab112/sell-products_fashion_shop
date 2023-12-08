@@ -49,6 +49,13 @@ const home = [{
                 import ('../views/page/DetailProduct.vue'),
         },
         {
+            path: 'support',
+            name: 'SupportVue',
+            meta: { breadcrumb: 'Hỗ trợ' },
+            component: () =>
+                import ('../views/page/Support/Main.vue'),
+        },
+        {
             path: 'test',
             name: 'Test',
             meta: { breadcrumb: 'Test' },
