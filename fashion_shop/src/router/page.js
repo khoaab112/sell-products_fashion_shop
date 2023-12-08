@@ -35,6 +35,13 @@ const home = [{
                 import ('../views/branch/Branch.vue'),
         },
         {
+            path: 'list',
+            name: 'ListProduct',
+            meta: { breadcrumb: 'Danh sách sản phẩm' },
+            component: () =>
+                import ('../views/page/ListProduct.vue'),
+        },
+        {
             path: 'detail-product',
             name: 'DetailProduct',
             meta: { breadcrumb: 'Chi tiết sản phẩm' },
