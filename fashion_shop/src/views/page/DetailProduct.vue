@@ -211,7 +211,7 @@ export default {
             },
             number: 'NAN',
             imgDefault: 'https://i.pinimg.com/564x/a2/4a/cb/a24acb241327b3947d3ae33aef5a6ddf.jpg',
-            visibleSlides: 5,
+            visibleSlides: 4,
             listProduct: [
                 {
                     name: 'product_1',
@@ -403,7 +403,8 @@ export default {
         // Logic khi component được khởi tạo
     },
     mounted() {
-        // Logic sau khi component được gắn kết (render) vào DOM
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
     },
     computed() {
         // được sử dụng để định nghĩa các thuộc tính tính toán
@@ -423,7 +424,23 @@ export default {
             this.sizeDefault.size = item.size;
             this.sizeDefault.number = item.number;
             this.selectIndexSize = key;
-        }
+        },
+        handleResize() {
+            var screenWidth = window.innerWidth;
+             if(screenWidth<500)
+            {
+                this.visibleSlides = 2;                
+            }
+            else if (screenWidth < 780) {
+                this.visibleSlides = 2;
+            }
+            else if (screenWidth < 1000) {
+                this.visibleSlides = 3;
+            }
+            else{
+                this.visibleSlides = 4;
+            }
+        },
     },
 };
 </script>
@@ -915,6 +932,7 @@ section#vote h4.title {
 }
 .list-product{
     height: 30rem;
+    padding: 0 3rem;
 }
 
 
@@ -973,6 +991,13 @@ section#vote h4.title {
         margin-right: 1rem;
     }
 }
-
+@media (max-width:1000px)
+{
+    .card-product {
+        width: 11rem;
+        height: 23rem;
+        position: relative;
+    }
+}
 </style>
   
