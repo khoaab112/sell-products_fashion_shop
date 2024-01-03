@@ -2,7 +2,7 @@ const directional = [{
     path: '/:pathMatch(.*)*',
     name: 'PageHome',
     component: () =>
-        import ('../views/home/PageHome.vue'),
+        import ('../views/page/home/PageHome.vue'),
 }];
 const test = [{
     path: '/testa',
@@ -24,7 +24,7 @@ const home = [{
             name: 'Home',
             meta: { breadcrumb: 'Home' },
             component: () =>
-                import ('../views/home/PageHome.vue'),
+                import ('../views/page/home/PageHome.vue'),
 
         },
         {
@@ -32,7 +32,7 @@ const home = [{
             name: 'Branch',
             meta: { breadcrumb: 'Chi nhánh' },
             component: () =>
-                import ('../views/branch/Branch.vue'),
+                import ('../views/page/branch/Branch.vue'),
         },
         {
             path: 'list',

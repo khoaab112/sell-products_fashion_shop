@@ -7,7 +7,7 @@
             <div class="contents">
                 <div class="messages">
                     <div class="info-supporter">
-                        <div class="avatar"><img src="../imgs/xinh_1.png" alt=""></div>
+                        <div class="avatar"><img :src="imgDefault" alt=""></div>
                         <div class="name">Nguyễn Thị Nhi
                             <p>Hỗ trợ viên</p>
                         </div>
@@ -15,7 +15,7 @@
                     <div class="mess">
                         <!-- <div class="col-6 respond-messages"> -->
                         <div class="respond">
-                            <div class="avatar"><img src="../imgs/xinh_1.png" alt=""></div>
+                            <div class="avatar"><img :src="imgDefault" alt=""></div>
                             <div class="content">
                                 <div class="name">Nguyễn Thị Nhi</div>
                                 <div class="message-wait">Đang trả lời...</div>
@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div class="respond">
-                            <div class="avatar"><img src="../imgs/xinh_1.png" alt=""></div>
+                            <div class="avatar"><img :src="imgDefault" alt=""></div>
                             <div class="content">
                                 <div class="name">Nguyễn Thị Nhi</div>
                                 <div class="message-wait">Đang trả lời...</div>
@@ -33,7 +33,7 @@
                         <!-- </div> -->
                         <!-- <div class="col-6 reply-message"> -->
                         <div class="reply">
-                            <div class="avatar me-3"><img src="../imgs/xinh_1.png" alt=""></div>
+                            <div class="avatar me-3"><img :src="imgDefault" alt=""></div>
                             <div class="content">
                                 <div class="name text-end me-2">Nguyễn Thị Nhi</div>
                                 <div class="message-wait">Đang trả lời...</div>
@@ -41,7 +41,7 @@
                             </div>
                         </div>
                         <div class="reply">
-                            <div class="avatar me-3"><img src="../imgs/xinh_1.png" alt=""></div>
+                            <div class="avatar me-3"><img :src="imgDefault" alt=""></div>
                             <div class="content">
                                 <div class="name text-end me-2">Nguyễn Thị Nhi</div>
                                 <div class="message-wait">Đang trả lời...</div>
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="respond">
-                            <div class="avatar"><img src="../imgs/xinh_1.png" alt=""></div>
+                            <div class="avatar"><img :src="imgDefault" alt=""></div>
                             <div class="content">
                                 <div class="name">Nguyễn Thị Nhi</div>
                                 <div class="message-wait">Đang trả lời...</div>
@@ -67,6 +67,8 @@
   </template>
   
   <script>
+import customerSupport from "@/assets/images/default/customer_support.jpg";
+
   export default {
     name: 'SupportChat',
     components: {
@@ -80,6 +82,11 @@
       return {
         petitioner:{id:1,name:'',img:'',},
         reciever:{},
+        imgDefault:customerSupport,
+        chatContent:[
+            {id:1,name:'',avatar:'',content:'',file:'',fileType:'',type:'supporter'},
+            {id:1,name:'',avatar:'',content:'',file:'',fileType:'',type:'customer'},
+        ]
       };
     },
     created() {
