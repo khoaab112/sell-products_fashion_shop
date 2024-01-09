@@ -25,7 +25,6 @@
                 <div class="form-group">
                   <input id="password-field" :type=typeInputPassword class="form-control" placeholder="Mật khẩu"
                     autocomplete="off" required>
-
                   <span class="field-icon" @click="showPassWord()">
                     <font-awesome-icon icon="fa-regular fa-eye" v-if="isShowPassWord" />
                     <font-awesome-icon icon="fa-regular fa-eye-slash" v-if="!isShowPassWord" />
@@ -72,6 +71,7 @@
 import backgroundLogin from "@/assets/images/login/bg_login_client.gif";
 import logo from "@/assets/images/logo/google.png";
 import introMp3 from "@/assets/mp3/login/login_client.mp3";
+// import { ElNotification } from 'element-plus';
 export default {
   name: 'UserLogin',
   components: {
@@ -225,7 +225,9 @@ export default {
   -o-transition: 0.3s;
   transition: 0.3s;
 }
-
+.form-control:active{
+  background: rgb(0 0 0 / 49%);
+}
 button,
 input {
   overflow: visible;
@@ -246,7 +248,12 @@ input {
   border: 1px solid #fbceb5 !important;
   color: #000 !important;
 }
-
+.btn.btn-primary:hover{
+  scale: 1.1;
+    border: 2px solid white !important;
+    color: white !important;
+    font-weight: bolder;
+} 
 button:not(:disabled),
 [type="button"]:not(:disabled),
 [type="reset"]:not(:disabled),
@@ -447,14 +454,15 @@ a:hover {
   background: transparent;
   outline: none;
   box-shadow: none;
-  border-color: rgba(255, 255, 255, .4);
+  background: rgb(0 0 0 / 49%);
 }
 
 .form-control:focus {
   background: transparent;
   outline: none;
   box-shadow: none;
-  border-color: rgba(255, 255, 255, .4);
+  background: rgb(0 0 0 / 49%);
+  font-size: 120%;
 }
 
 .form-control::placeholder {
