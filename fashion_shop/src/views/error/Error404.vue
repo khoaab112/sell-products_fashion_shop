@@ -1,23 +1,19 @@
 <template>
-    <div class="permission_denied">
-        <div id="tsparticles"></div>
-        <div class="denied__wrapper">
-            <h1>404</h1>
-            <h3>OH....Cỏ vẻ thứ bạn tìm nó không có ở đây rồi</h3>
-            <p class="text-center">😵‍💫😵‍💫😵‍💫</p>
-            <img class="astronaut" :src="getImage(imgAstronaut)" />
-            <img class="astronaut clone-astronaut" :src="getImage(imgAstronaut)" />
-            <img id="planet" :src="getImage(imgPlanet)" />
-            <a href="#"><button class="denied__link"><router-link class="link_404" to="/">HOME</router-link></button></a>
+    <div id="notfound">
+        <div class="notfound">
+            <div>
+                <div class="notfound-404">
+                    <h1>!</h1>
+                </div>
+                <h2>Error<br>404</h2>
+            </div>
+            <p>Trang bạn yêu cầu không tồn tại. Hãy quay trở vể <router-link to="/" class="home_link"><strong>Trang chủ</strong></router-link>
+            </p>
         </div>
     </div>
 </template>
       
 <script>
-import planet from "@/assets/images/error/planet.svg";
-import astronaut from "@/assets/images/error/astronaut.svg";
-
-import { loadFull } from "tsparticles";
 
 export default {
     name: 'Error-404',
@@ -29,270 +25,221 @@ export default {
     },
     data() {
         return {
-            imgAstronaut: astronaut,
-            imgPlanet: planet,
         };
     },
     created() {
-        // Logic khi component được khởi tạo
     },
     mounted() {
-        try {
-            var particles = {
-                fpsLimit: 60,
-                particles: {
-                    number: {
-                        value: 160,
-                        density: {
-                            enable: true,
-                            area: 800
-                        }
-                    },
-                    color: {
-                        value: "#ffffff"
-                    },
-                    shape: {
-                        type: "circle"
-                    },
-                    opacity: {
-                        value: 1,
-                        random: {
-                            enable: true,
-                            minimumValue: 0.1
-                        },
-                        animation: {
-                            enable: true,
-                            speed: 1,
-                            minimumValue: 0,
-                            sync: false
-                        }
-                    },
-                    size: {
-                        value: 3,
-                        random: {
-                            enable: true,
-                            minimumValue: 1
-                        }
-                    },
-                    move: {
-                        enable: true,
-                        speed: 0.17,
-                        direction: "none",
-                        random: true,
-                        straight: false,
-                        outModes: {
-                            default: "out"
-                        },
-                    }
-                },
-                interactivity: {
-                    detectsOn: "canvas",
-                    events: {
-                        resize: false
-                    }
-                },
-                detectRetina: true
-            };
-            loadFull(tsParticles);
-            tsParticles.load("tsparticles", particles);
-        } catch (error) {
-            console.log(error);
-        }
     },
     computed() {
     },
     updated() {
 
     },
-    destroyed() {
 
-    },
     methods: {
-        getImage(path) {
-            return new URL(path, import.meta.url).href
-        },
+
     },
 };
 </script>
       
 <style scoped>
-.particle-error,
-.permission_denied,
-#tsparticles {
-    width: 100%;
-    height: 100%;
-    margin: 0px !important;
-}
-
-#tsparticles {
-    position: fixed !important;
-    opacity: 0.23;
-}
-
-.permission_denied {
-    font-family: "banabo" !important;
-    /* background: #24344c !important; */
-}
-
-.permission_denied a {
-    text-decoration: none;
-}
-
-.denied__wrapper {
-    font-family: "banabo";
-    max-width: 390px;
-    width: 100%;
-    height: 390px;
-    display: block;
-    margin: 0 auto;
-    position: relative;
-    margin-top: 8vh;
-}
-
-.denied__wrapper p {
-    font-size: 2.5rem !important;
-}
-
-.permission_denied h1 {
-    text-align: center;
-    color: #fff;
-    font-size: 100px;
-    margin-bottom: 0px;
-    font-weight: 800;
-}
-
-.permission_denied h3 {
-    text-align: center;
-    color: #fff;
-    /* font-size: 19px;
-    line-height: 23px;
-    max-width: 330px;
-    margin: 0px auto 30px auto;
-    font-weight: 400; */
-}
-
-.permission_denied h3 span {
-    position: relative;
-    width: 65px;
-    display: inline-block;
-}
-
-.permission_denied h3 span:after {
-    content: "";
-    border-bottom: 3px solid #ffbb39;
-    position: absolute;
-    left: 0;
-    top: 43%;
-    width: 100%;
-}
-
-.denied__link {
-    background: none;
-    color: #fff;
-    padding: 12px 0px 10px 0px;
-    border: 1px solid #fff;
-    outline: none;
-    border-radius: 7px;
-    width: 150px;
-    font-size: 15px;
-    text-align: center;
-    margin: 0 auto;
-    vertical-align: middle;
-    display: block;
-    margin-bottom: 40px;
-    margin-top: 25px;
-    font-weight: 400;
-}
-
-.denied__link:hover {
-    color: #ffbb39;
-    border-color: #ffbb39;
-    cursor: pointer;
-    opacity: 1;
-}
-
-.permission_denied .stars {
-    animation: sparkle 1.6s infinite ease-in-out alternate;
-}
-
-.clone-astronaut {
-    left: 0rem;
-    margin-top: 9rem;
-    animation: spin 5.5s infinite ease-in-out !important;
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-    background-color: var(--page-404-color);
+    padding: 0;
+    margin: 0;
 }
 
-@keyframes sparkle {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0.3;
-    }
+#notfound {
+    position: relative;
+    height: 100vh;
+    text-align: center;
 }
 
-.astronaut {
-    width: 60px;
+#notfound .notfound {
     position: absolute;
-    right: 20px;
-    top: 210px;
-    animation: spin 4.5s infinite linear;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
-@keyframes spin {
-    0% {
-        transform: rotateZ(0deg);
-    }
+.notfound {
+    max-width: 520px;
+    width: 100%;
+    line-height: 1.4;
+}
 
+.notfound>div:first-child {
+    padding-left: 200px;
+    padding-top: 12px;
+    height: 170px;
+    margin-bottom: 20px;
+}
+
+div.notfound-404 {
+    -webkit-animation: wobble-hor-bottom 3s ease-out 2s infinite both;
+    animation: wobble-hor-bottom 3s ease-out 2s infinite both;
+}
+
+@-webkit-keyframes wobble-hor-bottom {
+
+    0%,
     100% {
-        transform: rotateZ(360deg);
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    }
+
+    15% {
+        -webkit-transform: translateX(-30px) rotate(-6deg);
+        transform: translateX(-30px) rotate(-6deg);
+    }
+
+    30% {
+        -webkit-transform: translateX(15px) rotate(6deg);
+        transform: translateX(15px) rotate(6deg);
+    }
+
+    45% {
+        -webkit-transform: translateX(-15px) rotate(-3.6deg);
+        transform: translateX(-15px) rotate(-3.6deg);
+    }
+
+    60% {
+        -webkit-transform: translateX(9px) rotate(2.4deg);
+        transform: translateX(9px) rotate(2.4deg);
+    }
+
+    75% {
+        -webkit-transform: translateX(-6px) rotate(-1.2deg);
+        transform: translateX(-6px) rotate(-1.2deg);
     }
 }
 
-@media (max-width: 600px) {
-    .permission_denied h1 {
-        font-size: 75px;
-    }
+@keyframes wobble-hor-bottom {
 
-    .permission_denied h3 {
-        font-size: 16px;
-        width: 200px;
-        margin: 0 auto;
-        line-height: 23px;
-    }
-
-    .permission_denied h3 span {
-        width: 60px;
-    }
-
-    .astronaut {
-        width: 35px;
-        right: 40px;
-        top: 170px;
-    }
-}
-
-.saturn,
-.saturn-2,
-.hover {
-    animation: hover 2s infinite ease-in-out alternate;
-}
-
-a.link_404 {
-    color: burlywood;
-}
-
-@keyframes hover {
-    0% {
-        transform: translateY(3px);
-    }
-
+    0%,
     100% {
-        transform: translateY(-3px);
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
+    }
+
+    15% {
+        -webkit-transform: translateX(-30px) rotate(-6deg);
+        transform: translateX(-30px) rotate(-6deg);
+    }
+
+    30% {
+        -webkit-transform: translateX(15px) rotate(6deg);
+        transform: translateX(15px) rotate(6deg);
+    }
+
+    45% {
+        -webkit-transform: translateX(-15px) rotate(-3.6deg);
+        transform: translateX(-15px) rotate(-3.6deg);
+    }
+
+    60% {
+        -webkit-transform: translateX(9px) rotate(2.4deg);
+        transform: translateX(9px) rotate(2.4deg);
+    }
+
+    75% {
+        -webkit-transform: translateX(-6px) rotate(-1.2deg);
+        transform: translateX(-6px) rotate(-1.2deg);
     }
 }
-</style>
+
+.notfound .notfound-404 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 170px;
+    height: 170px;
+    background: #e01818;
+    border-radius: 7px;
+    -webkit-box-shadow: 0px 0px 0px 10px #e01818 inset, 0px 0px 0px 20px #fff inset;
+    box-shadow: 0px 0px 0px 10px #e01818 inset, 0px 0px 0px 20px #fff inset;
+}
+
+.notfound .notfound-404 h1 {
+    font-family: 'Chango', cursive;
+    color: #fff;
+    font-size: 118px;
+    margin: 0px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    height: 60px;
+    line-height: 60px;
+}
+
+.notfound h2 {
+    font-family: 'Chango', cursive;
+    font-size: 68px;
+    color: #222;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0px;
+    line-height: 1.1;
+}
+
+.notfound p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #222;
+    margin-top: 5px;
+}
+
+.notfound a {
+    font-family: 'Montserrat', sans-serif;
+    color: #e01818;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.home_link {
+    font-size: 130%;
+}
+
+.home_link:hover {
+    text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.6);
+}
+
+@media only screen and (max-width: 480px) {
+    .notfound {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .notfound>div:first-child {
+        padding: 0px;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .notfound .notfound-404 {
+        position: relative;
+        margin-bottom: 15px;
+    }
+
+    .notfound h2 {
+        font-size: 42px;
+    }
+}</style>
