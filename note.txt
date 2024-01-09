@@ -2,7 +2,10 @@
 b1 : npm install -g @vue/cli
 b2 : vue create fashion_shop
 b3: vue add router
-#chạy dự án :yarn server / npm run serve
+#chạy dự án :yarn serve / npm run serve
+
+tải thư viện dự án :
+yarn install
 
 # các thư viện
 bootstrap 5
