@@ -2,9 +2,13 @@
 b1 : npm install -g @vue/cli
 b2 : vue create fashion_shop
 b3: vue add router
-#chạy dự án :yarn server / npm run serve
+#chạy dự án :yarn serve / npm run serve
 
 # các thư viện
 bootstrap 5
 https://fontawesome.com/
 https://antoniandre.github.io/vueper-slides/
+
+# clone dự án
+yarn install
+yarn serve
