@@ -1,14 +1,17 @@
 <template>
-    <main>
-    <div style="color:red">
-homeádddddddddddddddđ
-      </div>
-    </main>
+<section>
+    <div class="title">Zalo</div>
+    <div class="link"><strong> https://zalo.me/g/ikrdls826</strong><span><i
+                class="fa-solid fa-up-right-from-square"></i></span></div>
+    <div class="content">
+
+    </div>
+</section>
   </template>
   
   <script>
   export default {
-    name: 'testBranch',
+    name: 'SupportZalo',
     components: {
     },
     setup() {

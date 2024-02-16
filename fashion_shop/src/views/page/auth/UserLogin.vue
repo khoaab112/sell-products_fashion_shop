@@ -18,17 +18,23 @@
           <div class="col-md-6 col-lg-4">
             <div class="login-wrap p-0">
               <h3 class="mb-4 text-center">Bạn đã có tài khoản</h3>
-              <form action="#" class="signin-form">
+              <form action="#" class="signin-form" @submit="checkForm">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Tài khoản" autocomplete="off" required>
+                  <input type="text" class="form-control" placeholder="Tài khoản" v-model="state.dataUser.userName"
+                    autocomplete="off">
+                  <span v-if="v$.dataUser.userName.$error" class="error-message-danger">
+                    {{ v$.dataUser.userName.$errors[0].$message }}
+                  </span>
                 </div>
                 <div class="form-group">
                   <input id="password-field" :type=typeInputPassword class="form-control" placeholder="Mật khẩu"
-                    autocomplete="off" required>
-
+                    v-model="state.dataUser.passWord" autocomplete="off">
                   <span class="field-icon" @click="showPassWord()">
                     <font-awesome-icon icon="fa-regular fa-eye" v-if="isShowPassWord" />
                     <font-awesome-icon icon="fa-regular fa-eye-slash" v-if="!isShowPassWord" />
+                  </span>
+                  <span v-if="v$.dataUser.passWord.$error" class="error-message-danger">
+                    {{ v$.dataUser.passWord.$errors[0].$message }}
                   </span>
                 </div>
                 <div class="form-group text-center">
@@ -64,7 +70,6 @@
         </div>
       </div>
     </section>
-
   </div>
 </template>
 
@@ -72,11 +77,37 @@
 import backgroundLogin from "@/assets/images/login/bg_login_client.gif";
 import logo from "@/assets/images/logo/google.png";
 import introMp3 from "@/assets/mp3/login/login_client.mp3";
+import { useVuelidate } from '@vuelidate/core'
+import { required, email, helpers } from '@vuelidate/validators'
+import { reactive, computed } from 'vue'
+// import { ElNotification } from 'element-plus';
 export default {
   name: 'UserLogin',
   components: {
   },
   setup() {
+    const state = reactive({
+      dataUser: {
+        userName: '',
+        passWord: '',
+      },
+    });
+    const rules = computed(() => {
+      return {
+        dataUser: {
+          userName: {
+            required: helpers.withMessage('Tài khoản không được bỏ trống', required),
+            email: helpers.withMessage('Hãy nhập mail', email)
+          },
+          passWord: { required },
+        },
+      }
+    });
+    const v$ = useVuelidate(rules, state);
+    return {
+      state,
+      v$
+    }
   },
   directives: {
   },
@@ -130,20 +161,27 @@ export default {
       this.isMuted = !this.isMuted
       const audio = document.getElementById('intro-audio');
       this.isMuted ? audio.pause() : audio.play();
+    },
+    checkForm(e) {
+      this.v$.$validate();
+      if (this.v$.$error) return e.preventDefault();
+      console.log(this.v$);
     }
   },
 };
 </script>
   
 <style scoped>
-.forgot-password ,
-.register{
+.forgot-password,
+.register {
   color: white;
 }
-.forgot-password:hover ,
-.register:hover{
+
+.forgot-password:hover,
+.register:hover {
   color: rgb(255, 30, 30);
 }
+
 .img {
   background-size: cover;
   background-repeat: no-repeat;
@@ -226,6 +264,10 @@ export default {
   transition: 0.3s;
 }
 
+.form-control:active {
+  background: rgb(0 0 0 / 49%);
+}
+
 button,
 input {
   overflow: visible;
@@ -245,6 +287,13 @@ input {
   background: #fbceb5 !important;
   border: 1px solid #fbceb5 !important;
   color: #000 !important;
+}
+
+.btn.btn-primary:hover {
+  scale: 1.1;
+  border: 2px solid white !important;
+  color: white !important;
+  font-weight: bolder;
 }
 
 button:not(:disabled),
@@ -447,14 +496,15 @@ a:hover {
   background: transparent;
   outline: none;
   box-shadow: none;
-  border-color: rgba(255, 255, 255, .4);
+  background: rgb(0 0 0 / 49%);
 }
 
 .form-control:focus {
   background: transparent;
   outline: none;
   box-shadow: none;
-  border-color: rgba(255, 255, 255, .4);
+  background: rgb(0 0 0 / 49%);
+  font-size: 120%;
 }
 
 .form-control::placeholder {

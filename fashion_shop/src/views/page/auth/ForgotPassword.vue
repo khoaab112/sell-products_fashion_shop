@@ -1,40 +1,44 @@
 <template>
-  <section class="ftco-section img js-fullheight" :style="{'background-image': 'url('+background+')'}">
-      <div class="container content-forgot-password">
-          <div class="row justify-content-center">
-              <div class="col-md-6 text-center ">
-                  <h2 class="heading-section">Quên mật khẩu</h2>
-              </div>
-          </div>
-          <div class="row justify-content-center">
-              <div class="col-md-6 col-lg-4">
-                  <div class="login-wrap p-0">
-                      <form action="#" class="signin-form">
-                          <div class="form-group">
-                              <input type="number" class="form-control" placeholder="số điện thoại hoặc mail"
-                                  autocomplete="on" name="phoneNumberRegister" required>
-                          </div>
-                          <div class="form-group d-flex">
-                              <input type="text" class="form-control input-code-confirm" placeholder="mã xác thực gửi về"
-                                  autocomplete="on" name="nameRegister" required>
-                              <input type="button" class="form-control send-code" value="Gửi mã" required>
-                          </div>
-                          <div class="form-group text-center">
-                              <button type="submit" class="form-control btn btn-primary submit px-3 mt-2">Xác
-                                  nhận</button>
-                          </div>
-                      </form>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
+    <section class="ftco-section img js-fullheight" :style="{ 'background-image': 'url(' + background + ')' }">
+        <div class="container content-forgot-password">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center ">
+                    <h2 class="heading-section">Quên mật khẩu</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <div class="login-wrap p-0">
+                        <form action="#" class="signin-form">
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder="số điện thoại hoặc mail"
+                                    autocomplete="on" name="phoneNumberRegister" required>
+                            </div>
+                            <div class="form-group d-flex">
+                                <input type="text" class="form-control input-code-confirm" placeholder="mã xác thực gửi về"
+                                    autocomplete="on" name="nameRegister" required>
+                                <input type="button" class="form-control send-code" value="Gửi mã" required>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="form-control btn btn-primary submit px-3 mt-2">Xác
+                                    nhận</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="action">
+                <router-link  :to="{ name: 'UserLogin' }" class="back link">Quay lại</router-link>
+                <router-link :to="{ name: 'PageHome' }" class="home link">HOME</router-link>
+            </div>
+        </div>
+    </section>
 </template>
   
-  <script>
+<script>
 import backgroundForgotPassword from '@/assets/images/forgotPassword/background.jpg';
 
-  export default {
+export default {
     name: 'ForgotPassword',
     components: {
     },
@@ -44,32 +48,63 @@ import backgroundForgotPassword from '@/assets/images/forgotPassword/background.
     },
     data() {
         return {
-            background:'',
+            background: '',
         };
     },
     created() {
         this.background = backgroundForgotPassword;
     },
     mounted() {
-      // Logic sau khi component được gắn kết (render) vào DOM
+        // Logic sau khi component được gắn kết (render) vào DOM
     },
     computed() {
-      // được sử dụng để định nghĩa các thuộc tính tính toán
+        // được sử dụng để định nghĩa các thuộc tính tính toán
     },
     updated() {
-  
+
     },
 
     methods: {
-      getBackGround(url) {
+        getBackGround(url) {
             return new URL(url, import.meta.url).href
         },
     },
-  };
-  </script>
+};
+</script>
   
-  <style scoped>
-  .img {
+<style scoped>
+.action {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.action .home {
+    background-color: #FF6D4D;
+}
+
+.action .back {
+    background-color: #ABD760;
+}
+
+.action .link {
+    padding: 0.5rem;
+    width: 7rem;
+    text-align: center;
+    margin-top: 9px;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    text-decoration: none;
+}
+.action .link:hover{
+    scale: 1.1;    
+}
+.img {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -515,6 +550,5 @@ p.text-switch {
     outline: none;
     box-shadow: none;
     border-color: rgba(255, 255, 255, .4);
-}
-  </style>
+}</style>
   

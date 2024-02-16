@@ -5,7 +5,7 @@ const auth = [{
             name: 'UserLogin',
             components: {
                 auth: () =>
-                    import ('../views/auth/UserLogin.vue'),
+                    import ('../views/page/auth/UserLogin.vue'),
             },
         },
         {
@@ -13,7 +13,7 @@ const auth = [{
             name: 'forgotPassword',
             components: {
                 auth: () =>
-                    import ('../views/auth/ForgotPassword.vue'),
+                    import ('../views/page/auth/ForgotPassword.vue'),
             },
         },
         {
@@ -21,7 +21,7 @@ const auth = [{
             name: 'Register',
             components: {
                 auth: () =>
-                    import ('../views/auth/Register.vue'),
+                    import ('../views/page/auth/Register.vue'),
             },
         },
     ]
