@@ -13,12 +13,12 @@
                         :icon="['fas', 'angles-right']" style="color: #ffffff;" />Xem thêm</router-link>
             </div>
         </a>
-        <div class="list-color">
+        <!-- <div class="list-color">
             <vueper-slides class="no-shadow" id="product-img" :visible-slides="3" :slide-ratio="1 / 4"
                 :dragging-distance="5" fixed-height="3rem" :arrows=isArrows :bullets=false :slideMultiple=true :touchable="false">
                 <vueper-slide v-for="(i, key) in product.imgs" :key="key" :image="i.img" @click="selectPhoto(i.img)" />
             </vueper-slides>
-        </div>
+        </div> -->
         <div class="title-product">{{ product.name }} </div>
         <div class="sale-price price">{{ Number(product.price) * Number(product.sale) / 100 }}<span class="face-value"> VNĐ
             </span><span class="sale">(-{{ product.sale }}%)</span></div>
@@ -27,14 +27,14 @@
 </template>
       
 <script>
-import { VueperSlides, VueperSlide } from 'vueperslides'
+// import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
 //   data = name , imgs [ {key : ,img : }] , vote , quantitySold ,sale ,price,imgGift ,
 export default {
     name: 'ProductItem',
     props: ['data','arrows'],
     components: {
-        VueperSlides, VueperSlide
+        // VueperSlides, VueperSlide
     },
     setup() {
     },

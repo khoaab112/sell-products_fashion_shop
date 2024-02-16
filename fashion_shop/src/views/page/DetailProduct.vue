@@ -2,7 +2,7 @@
     <main>
         <div class="container">
             <div class="row  pt-3">
-                <section class="col-xl-6 col-sm-12"><img :src="imgDefault" alt=""
+                <section class="col-xl-6 col-sm-12"><img :class="{ 'fade-in': isActiveImgDefault}" :src="imgDefault" alt=""
                         style="width: 100%; height: 25rem; object-fit: cover; display: block;">
                     <div class="product-escription">
                         <h4 class="title"><span>Mô tả:</span><i class="fa-solid fa-caret-down"></i></h4>
@@ -34,7 +34,10 @@
                                 <img :src="item.color" :alt="`img ${item.name}`">
                             </div> -->
                             <div class="list-color">
-                                <vueper-slides class="no-shadow" :visible-slides="6" :bullets="false" :arrows="true"
+                                <div class="item-color" v-for="(item, key) in  listColor" :key="key">
+                                    <img :class="{ 'active': selectIndexColor == key }" :src="item.color" alt="" srcset="" @click="clickColor(item, key)">
+                                </div>
+                                <!-- <vueper-slides class="no-shadow" :visible-slides="6" :bullets="false" :arrows="true"
                                     :gap="3" :fixed-height="true" slide-multiple>
                                     <template #arrow-left>
                                         <font-awesome-icon icon="fa-solid fa-angle-left" class="icon" />
@@ -45,7 +48,7 @@
                                     <vueper-slide v-for="(item, key) in listColor" :key="key" :image="item.color"
                                         class="item " :class="{ 'active': selectIndexColor == key }"
                                         @click="clickColor(item, key)" />
-                                </vueper-slides>
+                                </vueper-slides> -->
                             </div>
                         </div>
                         <div class="size">
@@ -205,6 +208,7 @@ export default {
             valueRate: 0,
             selectIndexColor: null,
             selectIndexSize: null,
+            isActiveImgDefault:false,
             sizeDefault: {
                 size: 'NAN',
                 number: 'NAN',
@@ -417,8 +421,13 @@ export default {
     },
     methods: {
         clickColor(item, key) {
+            this.isActiveImgDefault=false;
+            setTimeout(() => {
+                this.isActiveImgDefault=true;
+            }, 10);
             this.selectIndexColor = key;
             this.imgDefault = item.color;
+            // this.isActiveImgDefault=true;
         },
         clickSize(item, key) {
             this.sizeDefault.size = item.size;
@@ -446,6 +455,29 @@ export default {
 </script>
   
 <style scoped>
+
+.fade-in {
+	-webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+ @-webkit-keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  
 .vueperslides--fixed-height { height: 30rem; }
 .more .icon-more {
     -webkit-animation: heartbeat 1.5s ease-in-out infinite both;
@@ -630,11 +662,12 @@ span.original.-price {
 .place-an-order .colors .list-color {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
     align-items: center;
     margin-top: 1rem;
+    margin-bottom: 3rem;
     padding: 0 3rem;
     height: 5rem;
+    justify-content: flex-start;
 }
 
 .place-an-order .colors .list-color .icon {
@@ -934,8 +967,11 @@ section#vote h4.title {
     height: 30rem;
     padding: 0 3rem;
 }
-
-
+img.active {
+    border: 2px solid #0a58ca !important;
+    transform: scale(1.1);
+    transition: ease 0.3s;
+}
 @media (max-width: 500px) {
     .selling-price img {
         width: 8rem;
