@@ -104,6 +104,12 @@ a {
     --tran-05: all 0.3s ease;
 }
 
+:root {
+    --main-background: linear-gradient(163deg, rgb(241 228 189) 54%, rgb(0 212 255) 100%);
+    --transform-scale: 1.03;
+    --transition-ease: ease 0.3s;
+}
+
 input {
     outline: none;
 }
@@ -138,6 +144,11 @@ header#header-tem {
     top: 0px;
     z-index: 999;
     width: 100%;
+}
+
+button {
+    transition: var(--transition-ease);
+    cursor: pointer;
 }
 
 main {
@@ -1106,4 +1117,13 @@ footer#footer .copyright {
 
 span.error-message-danger {
     color: #dc3545;
+}
+
+button.btn-home:hover {
+    color: white;
+    background: #1faae4;
+    border: none !important;
+    cursor: pointer;
+    opacity: 1;
+    scale: var(--transform-scale);
 }

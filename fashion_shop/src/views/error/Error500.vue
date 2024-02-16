@@ -194,7 +194,15 @@ h2 {
   transform: rotate(120deg);
   -webkit-transform: rotate(120deg);
 }
+@keyframes clockwise {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
 
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
 @-webkit-keyframes clockwise {
   0% {
     -webkit-transform: rotate(0deg);
@@ -204,7 +212,15 @@ h2 {
     -webkit-transform: rotate(360deg);
   }
 }
+@keyframes anticlockwise {
+  0% {
+    -webkit-transform: rotate(360deg);
+  }
 
+  100% {
+    -webkit-transform: rotate(0deg);
+  }
+}
 @-webkit-keyframes anticlockwise {
   0% {
     -webkit-transform: rotate(360deg);
@@ -214,7 +230,27 @@ h2 {
     -webkit-transform: rotate(0deg);
   }
 }
+@keyframes clockwiseError {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
 
+  20% {
+    -webkit-transform: rotate(30deg);
+  }
+
+  40% {
+    -webkit-transform: rotate(25deg);
+  }
+
+  60% {
+    -webkit-transform: rotate(30deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(0deg);
+  }
+}
 @-webkit-keyframes clockwiseError {
   0% {
     -webkit-transform: rotate(0deg);
@@ -236,7 +272,23 @@ h2 {
     -webkit-transform: rotate(0deg);
   }
 }
+@keyframes anticlockwiseErrorStop {
+  0% {
+    transform: rotate(0deg);
+  }
 
+  20% {
+    transform: rotate(-30deg);
+  }
+
+  60% {
+    transform: rotate(-30deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
 @-webkit-keyframes anticlockwiseErrorStop {
   0% {
     -webkit-transform: rotate(0deg);
@@ -254,7 +306,27 @@ h2 {
     -webkit-transform: rotate(0deg);
   }
 }
+@keyframes  anticlockwiseError {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
 
+  20% {
+    -webkit-transform: rotate(-30deg);
+  }
+
+  40% {
+    -webkit-transform: rotate(-25deg);
+  }
+
+  60% {
+    -webkit-transform: rotate(-30deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(0deg);
+  }
+}
 @-webkit-keyframes anticlockwiseError {
   0% {
     -webkit-transform: rotate(0deg);
@@ -305,15 +377,13 @@ h2 {
   border:2px solid black;
   border-radius: 10px;
 }
-
+.btn-home:hover .link_404{
+color: white;
+} 
 .btn-home a{
 color: black;
 text-decoration: none;
+font-weight: bold;
 }
-button.btn-home:hover{
-  color: red;
-  border-color: red;
-  cursor: pointer;
-  opacity: 1;
-};
+
 </style>

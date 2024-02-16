@@ -104,7 +104,9 @@ import svgBG from "@/assets/images/error/bg_403.gif";
 }
 
 .button-home-403 button:hover {
-    background-color: #0edf12de;
-    color: black;
+  background-color: red;
+  color: #fff;
+  transition:var(--transition-ease) ;
+  scale: var(--transform-scale);
 }
   </style>
