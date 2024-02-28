@@ -249,6 +249,7 @@ export default {
     },
     created() {
         // Logic khi component được khởi tạo
+        console.log(this.$store.state.STATUS_LOGIN);
     },
     mounted() {
         window.addEventListener('resize', this.handleResize);
