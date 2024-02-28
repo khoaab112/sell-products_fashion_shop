@@ -40,7 +40,7 @@
                 </div>
                 <div class="list-product-flash-sale">
                     <vueper-slides class="no-shadow" id="slide-flash-sale" :visible-slides="visibleSlides"
-                        :slide-ratio="1 / 4" :dragging-distance="70" :fixed-height="true" :touchable="true" :bullets="false"
+                        :slide-ratio="1 / 4" :dragging-distance="70" :fixed-height="true" :touchable="false" :bullets="false"
                         slide-multiple>
                         <vueper-slide v-for="(item, key) in listProduct" :key="key">
                             <template #content>
