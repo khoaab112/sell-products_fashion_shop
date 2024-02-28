@@ -11,15 +11,24 @@
                     <div class="login-wrap p-0">
                         <form action="#" class="signin-form">
                             <div class="form-group">
-                                <input type="number" class="form-control" placeholder="số điện thoại hoặc mail"
-                                    autocomplete="on" name="phoneNumberRegister" required>
+                                <input  class="form-control" placeholder="số điện thoại hoặc mail"
+                                    autocomplete="on" name="phoneNumberRegister" v-model="dataUser.phoneOrEmail" required>
+                                <span v-if="messageError.phoneOrEmail" class="error-message-danger">
+                                    {{ messageError.phoneOrEmail }}
+                                </span>
                             </div>
                             <div class="form-group d-flex">
-                                <input type="text" class="form-control input-code-confirm" placeholder="mã xác thực gửi về"
-                                    autocomplete="on" name="nameRegister" required>
-                                <input type="button" class="form-control send-code" value="Gửi mã" required>
+                                <input v-model="dataUser.verificationCodes" type="text"
+                                    class="form-control input-code-confirm " :class="{ off: !isActive }"
+                                    placeholder="mã xác thực gửi về" autocomplete="on" name="nameRegister" required
+                                    :disabled="!isActive">
+                                <input type="button" class="form-control send-code" value="Gửi mã"
+                                    @click="requestAuthenticationCode()">
                             </div>
-                            <div class="form-group text-center">
+                            <span class="error-message-danger" v-if="isActive && messageError.verificationCodes">
+                                {{ messageError.verificationCodes }}
+                            </span>
+                            <div class="form-group text-center" v-if="isActive">
                                 <button type="submit" class="form-control btn btn-primary submit px-3 mt-2">Xác
                                     nhận</button>
                             </div>
@@ -28,7 +37,7 @@
                 </div>
             </div>
             <div class="action">
-                <router-link  :to="{ name: 'UserLogin' }" class="back link">Quay lại</router-link>
+                <router-link :to="{ name: 'UserLogin' }" class="back link">Quay lại</router-link>
                 <router-link :to="{ name: 'PageHome' }" class="home link">HOME</router-link>
             </div>
         </div>
@@ -37,7 +46,6 @@
   
 <script>
 import backgroundForgotPassword from '@/assets/images/forgotPassword/background.jpg';
-
 export default {
     name: 'ForgotPassword',
     components: {
@@ -49,6 +57,15 @@ export default {
     data() {
         return {
             background: '',
+            isActive: false,
+            dataUser: {
+                phoneOrEmail: '',
+                verificationCodes: '',
+            },
+            messageError:{
+                phoneOrEmail: '',
+                verificationCodes: '',
+            }
         };
     },
     created() {
@@ -68,11 +85,46 @@ export default {
         getBackGround(url) {
             return new URL(url, import.meta.url).href
         },
+        requestAuthenticationCode() {
+            this.isActive = true;
+            const phoneRegex = /^[0-9]{10}$/;
+            var checkPhone = phoneRegex.test(this.dataUser.phoneOrEmail);
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var checkMail= emailRegex.test(this.dataUser.phoneOrEmail);
+            if(!checkPhone && !checkMail)
+            {
+                this.messageError.phoneOrEmail = 'Số điện thoại hoặc email không đúng định dạng';
+                this.isActive = false;
+                return;
+            }  
+            this.clearMessageError();          
+        },
+        clearMessageError() {
+            this.messageError.phoneOrEmail = '';
+            this.messageError.verificationCodes = '';
+        },
     },
 };
 </script>
   
 <style scoped>
+input.off {
+    opacity: 0 !important;
+}
+
+input.input-code-confirm {
+    color: #ffc107 !important;
+}
+
+input {
+    font-weight: bold;
+}
+
+button[type="submit"]:hover {
+    scale: 1.03;
+    background-color: #dfc3b3b5 !important;
+}
+
 .action {
     display: flex;
     flex-direction: column;
@@ -101,9 +153,11 @@ export default {
     color: white;
     text-decoration: none;
 }
-.action .link:hover{
-    scale: 1.1;    
+
+.action .link:hover {
+    scale: 1.1;
 }
+
 .img {
     background-size: cover;
     background-repeat: no-repeat;
@@ -550,5 +604,6 @@ p.text-switch {
     outline: none;
     box-shadow: none;
     border-color: rgba(255, 255, 255, .4);
-}</style>
+}
+</style>
   

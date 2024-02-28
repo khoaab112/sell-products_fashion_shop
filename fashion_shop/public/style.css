@@ -1117,6 +1117,7 @@ footer#footer .copyright {
 
 span.error-message-danger {
     color: #dc3545;
+    font-weight: bold;
 }
 
 button.btn-home:hover {
