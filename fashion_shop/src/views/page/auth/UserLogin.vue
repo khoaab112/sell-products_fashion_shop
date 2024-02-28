@@ -60,9 +60,9 @@
               <div class="social text-center">
                 <button class="btn-service"><img :src=logoGoogle alt="google" draggable="false"
                     class="img-service"></button>
-                <button class="btn-service"><img :src=logoGoogle alt="google" draggable="false"
+                <button class="btn-service"><img :src=logoFacebook alt="google" draggable="false"
                     class="img-service"></button>
-                <button class="btn-service"><img :src=logoGoogle alt="google" draggable="false"
+                <button class="btn-service"><img :src=logoTelegram alt="google" draggable="false"
                     class="img-service"></button>
               </div>
             </div>
@@ -75,7 +75,9 @@
 
 <script>
 import backgroundLogin from "@/assets/images/login/bg_login_client.gif";
-import logo from "@/assets/images/logo/google.png";
+import logoGoogle from "@/assets/images/logo/google.png";
+import logoFacebook from "@/assets/images/logo/facebook.png";
+import logoTelegram from "@/assets/images/logo/telegram.png";
 import introMp3 from "@/assets/mp3/login/login_client.mp3";
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, helpers } from '@vuelidate/validators'
@@ -99,7 +101,7 @@ export default {
             required: helpers.withMessage('Tài khoản không được bỏ trống', required),
             email: helpers.withMessage('Hãy nhập mail', email)
           },
-          passWord: { required },
+          passWord: { required :helpers.withMessage('Hãy mật khẩu', required)},
         },
       }
     });
@@ -115,6 +117,8 @@ export default {
     return {
       background: '',
       logoGoogle: '',
+      logoTelegram: '',
+      logoFacebook: '',
       mp3: 'login_client.mp3',
       isShowPassWord: false,
       typeInputPassword: 'password',
@@ -123,7 +127,9 @@ export default {
   },
   created() {
     this.background = backgroundLogin
-    this.logoGoogle = logo;
+    this.logoGoogle = logoGoogle;
+    this.logoTelegram = logoTelegram;
+    this.logoFacebook = logoFacebook;
     this.mp3 = introMp3;
   },
   mounted() {
