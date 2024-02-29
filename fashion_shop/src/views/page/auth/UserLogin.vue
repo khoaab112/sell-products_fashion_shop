@@ -23,7 +23,7 @@
                   <div class="form-floating mb-3">
                     <input id="username" type="text" class="form-control" placeholder="" v-model="state.dataUser.userName"
                       autocomplete="off">
-                    <label for="username">Tài khoản</label>
+                    <label for="username">SĐT/Mail</label>
                     <span v-if="v$.dataUser.userName.$error" class="error-message-danger">
                       {{ v$.dataUser.userName.$errors[0].$message }}
                     </span>
@@ -86,7 +86,7 @@ import logoFacebook from "@/assets/images/logo/facebook.png";
 import logoTelegram from "@/assets/images/logo/telegram.png";
 import introMp3 from "@/assets/mp3/login/login_client.mp3";
 import { useVuelidate } from '@vuelidate/core'
-import { required, email, helpers } from '@vuelidate/validators'
+import { required, helpers } from '@vuelidate/validators'
 import { reactive, computed } from 'vue'
 // import { ElNotification } from 'element-plus';
 export default {
@@ -105,7 +105,7 @@ export default {
         dataUser: {
           userName: {
             required: helpers.withMessage('Tài khoản không được bỏ trống', required),
-            email: helpers.withMessage('Hãy nhập mail', email)
+            // email: helpers.withMessage('Hãy nhập mail', email)
           },
           passWord: { required: helpers.withMessage('Hãy mật khẩu', required) },
         },
@@ -188,6 +188,10 @@ export default {
 </script>
   
 <style scoped>
+section {
+  margin-top: 0;
+}
+
 label[for="username"],
 label[for="password-field"] {
   background-color: none;

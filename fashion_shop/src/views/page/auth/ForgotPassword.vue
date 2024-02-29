@@ -108,6 +108,9 @@ export default {
 </script>
   
 <style scoped>
+section {
+    margin-top: 0;
+ }
 input.off {
     opacity: 0 !important;
 }

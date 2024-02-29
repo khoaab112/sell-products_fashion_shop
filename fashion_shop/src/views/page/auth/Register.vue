@@ -14,9 +14,9 @@
               <div class="form-group d-flex">
                 <div class="block-input">
                   <div class="form-floating">
-                  <input id="last-name" type="text" class="form-control last-name" placeholder="" autocomplete="on"
-                    name="lastNameRegister" v-model="state.dataUser.name.lastName" required>
-                    <label for="last-name">Họ</label>
+                    <input id="last-name" type="text" class="form-control last-name" placeholder="" autocomplete="on"
+                      name="lastNameRegister" v-model="state.dataUser.name.lastName" required>
+                    <label for="last-name">Họ<strong class="text-danger">*</strong></label>
                   </div>
                   <span v-if="v$.dataUser.name.lastName.$error" class="error-message-danger">
                     {{ v$.dataUser.name.lastName.$errors[0].$message }}
@@ -24,10 +24,10 @@
                 </div>
                 <div class="block-input">
                   <div class="form-floating">
-                  <input type="text" id="name" class="form-control name" placeholder="" autocomplete="on" name="nameRegister"
-                    v-model="state.dataUser.name.firstName" @keyup="handleKeyup" required>
-                    <label for="name">Tên</label>
-                    </div>
+                    <input type="text" id="name" class="form-control name" placeholder="" autocomplete="on"
+                      name="nameRegister" v-model="state.dataUser.name.firstName" @keyup="handleKeyup" required>
+                    <label for="name">Tên<strong class="text-danger">*</strong></label>
+                  </div>
                   <span v-if="v$.dataUser.name.firstName.$error" class="error-message-danger">
                     {{ v$.dataUser.name.firstName.$errors[0].$message }}
                   </span>
@@ -35,37 +35,37 @@
               </div>
               <div class="form-group">
                 <div class="form-floating">
-                <input id="phone" type="number" class="form-control" placeholder="" autocomplete="on"
-                  name="phoneNumberRegister" v-model="state.dataUser.phoneNumber" required>
-                  <label for="phone">Số điện thoại</label>
-                  </div>
+                  <input id="phone" type="number" class="form-control" placeholder="" autocomplete="on"
+                    name="phoneNumberRegister" v-model="state.dataUser.phoneNumber" required>
+                  <label for="phone">Số điện thoại<strong class="text-danger">*</strong></label>
+                </div>
                 <span v-if="v$.dataUser.phoneNumber.$error" class="error-message-danger">
                   {{ v$.dataUser.phoneNumber.$errors[0].$message }}
                 </span>
               </div>
               <div class="form-group">
                 <div class="form-floating">
-                <input id="email" type="text" class="form-control" placeholder="" autocomplete="off" name="emailRegister"
-                  v-model="state.dataUser.email" required>
+                  <input id="email" type="text" class="form-control" placeholder="" autocomplete="off"
+                    name="emailRegister" v-model="state.dataUser.email" required>
                   <label for="email">Email</label>
-                  </div>
+                </div>
                 <span v-if="v$.dataUser.email.$error" class="error-message-danger">
                   {{ v$.dataUser.email.$errors[0].$message }}
                 </span>
               </div>
               <div class="form-group">
                 <div class="form-floating">
-                <input id="nickname" type="text" class="form-control" placeholder="" autocomplete="off" name="emailRegister"
-                  v-model="state.dataUser.nickname" required>
-                  <label for="nickname">Tên hiển thị</label>
-                  </div>
+                  <input id="nickname" type="text" class="form-control" placeholder="" autocomplete="off"
+                    name="emailRegister" v-model="state.dataUser.nickname" required>
+                  <label for="nickname">Tên hiển thị<strong class="text-danger">*</strong></label>
+                </div>
               </div>
               <div class="form-group">
                 <div class="block-password">
                   <div class="form-floating">
-                  <input id="password-register" :type=typeInputPassword class="form-control" placeholder=""
-                    autocomplete="off" v-model="state.dataUser.passWord" required>
-                    <label for="password-register">Mật khẩu</label>  
+                    <input id="password-register" :type=typeInputPassword class="form-control" placeholder=""
+                      autocomplete="off" v-model="state.dataUser.passWord" required>
+                    <label for="password-register">Mật khẩu<strong class="text-danger">*</strong></label>
                   </div>
                   <span class="field-icon " @click="showPassword('password')">
                     <font-awesome-icon icon="fa-regular fa-eye" v-if="isShowPassWord" />
@@ -79,11 +79,10 @@
               <div class="form-group">
                 <div class="block-password">
                   <div class="form-floating">
-                  <input id="password-confirm" :type=typeInputPasswordConfirm class="form-control"
-                    placeholder="" autocomplete="off" v-model="state.dataUser.passWordConfirm"
-                    required>
-                    <label for="password-confirm">Xác thực lại mật khẩu</label>
-                    </div>
+                    <input id="password-confirm" :type=typeInputPasswordConfirm class="form-control" placeholder=""
+                      autocomplete="off" v-model="state.dataUser.passWordConfirm" required>
+                    <label for="password-confirm">Xác thực lại mật khẩu<strong class="text-danger">*</strong></label>
+                  </div>
                   <span class="field-icon " @click="showPassword('confirm')">
                     <font-awesome-icon icon="fa-regular fa-eye" v-if="isShowPassWordConfirm" />
                     <font-awesome-icon icon="fa-regular fa-eye-slash" v-else />
@@ -98,9 +97,9 @@
                   <input type="text" class="form-control input-code-confirm" :class="{ off: !isActive }"
                     :disabled="!isActive" placeholder="mã xác thực gửi về" autocomplete="on" name="nameRegister" required
                     v-model="state.dataUser.codeConfirm">
-                  <span v-if="v$.dataUser.codeConfirm.$error" class="error-message-danger">
+                  <!-- <span v-if="v$.dataUser.codeConfirm.$error" class="error-message-danger">
                     {{ v$.dataUser.codeConfirm.$errors[0].$message }}
-                  </span>
+                  </span> -->
                 </div>
                 <input type="button" class="form-control send-code" value="Gửi mã" required @click="sendAuthentication()">
               </div>
@@ -130,7 +129,7 @@
       <template #reference>
         <el-button class="m-2 note"><font-awesome-icon icon="fa-solid fa-exclamation" /></el-button>
       </template>
-      </el-popover>
+    </el-popover>
   </section>
 </template>
   
@@ -138,7 +137,7 @@
 import backgroundRegisterAdmin from '@/assets/images/register/background.jpg';
 import logoGoogle from "@/assets/images/logo/google.png";
 import { useVuelidate } from '@vuelidate/core'
-import { required, email, helpers } from '@vuelidate/validators'
+import { required, email, helpers, sameAs, minLength, maxLength } from '@vuelidate/validators'
 import { reactive, computed } from 'vue'
 export default {
   name: 'RegisterUser',
@@ -163,18 +162,22 @@ export default {
             lastName: { required: helpers.withMessage('Hãy nhập họ', required) },
             firstName: { required: helpers.withMessage('Hãy nhập tên', required) },
           },
-          phoneNumber: { required: helpers.withMessage('Hãy nhập số điện thoại', required) },
+          phoneNumber: {
+            required: helpers.withMessage('Hãy nhập số điện thoại', required),
+            minLength: helpers.withMessage('Phải đủ 10 số', minLength(10)),
+            maxLength: helpers.withMessage('Quá giới hạn (10 số)', maxLength(10)),
+          },
           email: {
             email: helpers.withMessage('Mail không đúng định dạng', email),
-            required: helpers.withMessage('Hãy nhập mail', required)
+            // required: helpers.withMessage('Hãy nhập mail', required)
           },
-          // name: {
-          //   required: helpers.withMessage('Tài khoản không được bỏ trống', required),
-          //   email: helpers.withMessage('Hãy nhập mail', email)
-          // },
           passWord: { required: helpers.withMessage('Hãy nhập mật khẩu', required) },
-          passWordConfirm: { required: helpers.withMessage('Hãy nhập mật khẩu xác thực', required) },
-          codeConfirm: { required: helpers.withMessage('Hãy nhập mã xác thực', required) },
+          passWordConfirm: {
+            required: helpers.withMessage('Hãy nhập mật khẩu xác thực', required),
+            sameAs: helpers.withMessage('Mật khẩu không trùng khớp', sameAs(state.dataUser.passWord)),
+            // sameAs: helpers.withMessage('Mật khẩu không khớp', (value) => {value === v$.value.dataUser.passWord}),
+          },
+          // codeConfirm: { required: helpers.withMessage('Hãy nhập mã xác thực', required) },
         },
       }
     });
@@ -195,7 +198,7 @@ export default {
       isShowPassWordConfirm: false,
       typeInputPassword: 'password',
       typeInputPasswordConfirm: 'password',
-      messageExclamation:"#Việc đăng nhập bằng email hay số điện thoại đều hợp pháp\n#Bạn có thể thay đổi tên hiển thị"
+      messageExclamation: "#Việc đăng nhập bằng email hay số điện thoại đều hợp pháp\n#Bạn có thể thay đổi tên hiển thị"
     };
   },
   created() {
@@ -233,7 +236,9 @@ export default {
 
     },
     sendAuthentication() {
+      this.v$.$validate()
       this.isActive = true;
+
     },
     submitForm() {
       const isFormCorrect = this.v$.$validate()
@@ -261,27 +266,32 @@ export default {
 </script>
   
 <style scoped>
-button.submit:hover{
+button.submit:hover {
   scale: var(--transform-scale);
 
 }
-.note{
-  position: absolute;
+
+.note {
+  position: fixed;
   bottom: 0;
   right: 0;
 }
-input:not(:placeholder-shown) + label,
-input:focus~label{
-  color:white !important;
+
+input:not(:placeholder-shown)+label,
+input:focus~label {
+  color: white !important;
 }
+
 label {
   background-color: none;
   color: #ffffffad !important;
   margin-left: 0.5rem;
 }
+
 label::after {
   background: none !important;
 }
+
 section {
   margin: 0;
 }
