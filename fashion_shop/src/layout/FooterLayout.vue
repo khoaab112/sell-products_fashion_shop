@@ -74,6 +74,11 @@
         </div>
         <button id="back-to-top" :class="{ show: btnOnTopVisible }" @click="scrollToTop"><font-awesome-icon
                 icon="fa-solid fa-chevron-up" style="color: #1a71ff;" /></button>
+        <el-popover placement="top-start" title="Hỗ trợ" :width="200" trigger="hover" content="d">
+            <template #reference>
+                <el-button id="question"><font-awesome-icon icon="fa-solid fa-question" /></el-button>
+            </template>
+        </el-popover>
     </footer>
 </template>
   
@@ -85,8 +90,8 @@ import twitter from "@/assets/images/logo/twitter.png"
 import zalo from "@/assets/images/logo/zalo.png"
 export default {
     name: 'FooterLayout',
-    components: {
-    },
+    // components: {
+    // },
     setup() {
     },
     directives: {

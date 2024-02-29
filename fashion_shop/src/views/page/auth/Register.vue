@@ -261,6 +261,10 @@ export default {
 </script>
   
 <style scoped>
+button.submit:hover{
+  scale: var(--transform-scale);
+
+}
 .note{
   position: absolute;
   bottom: 0;
