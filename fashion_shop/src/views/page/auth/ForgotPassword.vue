@@ -1,4 +1,5 @@
 <template>
+  <ListButtonAuth></ListButtonAuth>
     <section class="ftco-section img js-fullheight" :style="{ 'background-image': 'url(' + background + ')' }">
         <div class="container content-forgot-password">
             <div class="row justify-content-center">
@@ -46,9 +47,12 @@
   
 <script>
 import backgroundForgotPassword from '@/assets/images/forgotPassword/background.jpg';
+import ListButtonAuth from '@/components/ListButtonAuth.vue'
+
 export default {
     name: 'ForgotPassword',
     components: {
+        ListButtonAuth
     },
     setup() {
     },

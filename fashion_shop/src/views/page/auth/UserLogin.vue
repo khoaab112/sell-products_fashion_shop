@@ -1,5 +1,6 @@
 <template>
   <SpinnerVue v-show="isActiveSpinner"></SpinnerVue>
+  <ListButtonAuth :isActiveLogin="true"></ListButtonAuth>
   <audio id="intro-audio" loop>
     <source :src=mp3 type="audio/mpeg">
   </audio>
@@ -90,11 +91,12 @@ import { useVuelidate } from '@vuelidate/core'
 import { required, helpers ,minLength} from '@vuelidate/validators'
 import { reactive, computed } from 'vue'
 import SpinnerVue from '@/components/Spinner.vue'
+import ListButtonAuth from '@/components/ListButtonAuth.vue'
 
 // import { ElNotification } from 'element-plus';
 export default {
   name: 'UserLogin',
-  components: { SpinnerVue},
+  components: { SpinnerVue,ListButtonAuth},
   setup() {
     const state = reactive({
       dataUser: {
@@ -188,7 +190,12 @@ export default {
       const isFormCorrect =await this.v$.$validate();
       if (!isFormCorrect) return ;      
       this.isActiveSpinner = true;
-    }
+    },
+
+    // backLogin()
+    // {
+
+    // },
   },
 };
 </script>
@@ -592,5 +599,8 @@ button.btn-service:hover {
     transition: none;
   }
 }
+
+
+
 </style>
   

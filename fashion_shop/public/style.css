@@ -107,6 +107,7 @@ a {
 :root {
     --main-background: linear-gradient(163deg, rgb(241 228 189) 54%, rgb(0 212 255) 100%);
     --transform-scale: 1.03;
+    --scale-1: 1.1;
     --transition-ease: ease 0.3s;
 }
 

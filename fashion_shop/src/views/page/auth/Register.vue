@@ -1,4 +1,5 @@
 <template>
+  <ListButtonAuth></ListButtonAuth>
   <section class="ftco-section img js-fullheight" :style="{ 'background-image': 'url(' + background + ')' }">
     <div class="container content-register">
       <div class="row justify-content-center">
@@ -138,10 +139,13 @@ import backgroundRegisterAdmin from '@/assets/images/register/background.jpg';
 import logoGoogle from "@/assets/images/logo/google.png";
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, helpers, sameAs, minLength, maxLength } from '@vuelidate/validators'
-import { reactive, computed } from 'vue'
+import { reactive, computed } from 'vue';
+import ListButtonAuth from '@/components/ListButtonAuth.vue'
+
 export default {
   name: 'RegisterUser',
   components: {
+    ListButtonAuth
   },
   setup() {
     const state = reactive({

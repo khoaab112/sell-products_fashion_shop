@@ -7,7 +7,7 @@
 <script>
 export default {
     name: 'SpinnerVue',
-    props: ['data'],
+    // props: ['data'],
     components: {
     },
     setup() {
