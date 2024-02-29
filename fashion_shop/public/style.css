@@ -156,6 +156,10 @@ main {
     min-height: 20rem;
 }
 
+#app {
+    position: relative;
+}
+
 header#header-tem #logo img {
     width: 6rem;
     height: 6rem;

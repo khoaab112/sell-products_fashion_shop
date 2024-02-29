@@ -1,4 +1,5 @@
 <template>
+  <SpinnerVue v-show="isActiveSpinner"></SpinnerVue>
   <audio id="intro-audio" loop>
     <source :src=mp3 type="audio/mpeg">
   </audio>
@@ -38,10 +39,10 @@
                       <font-awesome-icon icon="fa-regular fa-eye" v-if="isShowPassWord" />
                       <font-awesome-icon icon="fa-regular fa-eye-slash" v-if="!isShowPassWord" />
                     </span>
+                  </div>
                     <span v-if="v$.dataUser.passWord.$error" class="error-message-danger">
                       {{ v$.dataUser.passWord.$errors[0].$message }}
                     </span>
-                  </div>
                 </div>
                 <div class="form-group text-center">
                   <button type="button" class="form-control btn btn-primary submit px-3" @click="submitForm">Đăng
@@ -86,13 +87,14 @@ import logoFacebook from "@/assets/images/logo/facebook.png";
 import logoTelegram from "@/assets/images/logo/telegram.png";
 import introMp3 from "@/assets/mp3/login/login_client.mp3";
 import { useVuelidate } from '@vuelidate/core'
-import { required, helpers } from '@vuelidate/validators'
+import { required, helpers ,minLength} from '@vuelidate/validators'
 import { reactive, computed } from 'vue'
+import SpinnerVue from '@/components/Spinner.vue'
+
 // import { ElNotification } from 'element-plus';
 export default {
   name: 'UserLogin',
-  components: {
-  },
+  components: { SpinnerVue},
   setup() {
     const state = reactive({
       dataUser: {
@@ -107,7 +109,9 @@ export default {
             required: helpers.withMessage('Tài khoản không được bỏ trống', required),
             // email: helpers.withMessage('Hãy nhập mail', email)
           },
-          passWord: { required: helpers.withMessage('Hãy mật khẩu', required) },
+          passWord: {
+             required: helpers.withMessage('Hãy mật khẩu', required) ,
+             minLength: helpers.withMessage('Mật khẩu phải có ít nhất 8 ký tự', minLength(8))},
         },
       }
     });
@@ -129,6 +133,7 @@ export default {
       isShowPassWord: false,
       typeInputPassword: 'password',
       isMuted: true,
+      isActiveSpinner: false,
     };
   },
   created() {
@@ -179,9 +184,10 @@ export default {
       if (this.v$.$error) return e.preventDefault();
       console.log(this.v$);
     },
-    submitForm() {
-      const isFormCorrect = this.v$.$validate()
-      if (!isFormCorrect) return
+   async submitForm() {
+      const isFormCorrect =await this.v$.$validate();
+      if (!isFormCorrect) return ;      
+      this.isActiveSpinner = true;
     }
   },
 };
