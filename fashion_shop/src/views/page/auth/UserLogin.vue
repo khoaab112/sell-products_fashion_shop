@@ -20,25 +20,31 @@
               <h3 class="mb-4 text-center">Bạn đã có tài khoản</h3>
               <form action="#" class="signin-form" @submit="checkForm">
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Tài khoản" v-model="state.dataUser.userName"
-                    autocomplete="off">
-                  <span v-if="v$.dataUser.userName.$error" class="error-message-danger">
-                    {{ v$.dataUser.userName.$errors[0].$message }}
-                  </span>
+                  <div class="form-floating mb-3">
+                    <input id="username" type="text" class="form-control" placeholder="" v-model="state.dataUser.userName"
+                      autocomplete="off">
+                    <label for="username">Tài khoản</label>
+                    <span v-if="v$.dataUser.userName.$error" class="error-message-danger">
+                      {{ v$.dataUser.userName.$errors[0].$message }}
+                    </span>
+                  </div>
                 </div>
                 <div class="form-group">
-                  <input id="password-field" :type=typeInputPassword class="form-control" placeholder="Mật khẩu"
-                    v-model="state.dataUser.passWord" autocomplete="off">
-                  <span class="field-icon" @click="showPassWord()">
-                    <font-awesome-icon icon="fa-regular fa-eye" v-if="isShowPassWord" />
-                    <font-awesome-icon icon="fa-regular fa-eye-slash" v-if="!isShowPassWord" />
-                  </span>
-                  <span v-if="v$.dataUser.passWord.$error" class="error-message-danger">
-                    {{ v$.dataUser.passWord.$errors[0].$message }}
-                  </span>
+                  <div class="form-floating mb-3">
+                    <input id="password-field" :type=typeInputPassword class="form-control" placeholder=""
+                      v-model="state.dataUser.passWord" autocomplete="off">
+                    <label for="password-field">Mật khẩu</label>
+                    <span class="field-icon" @click="showPassWord()">
+                      <font-awesome-icon icon="fa-regular fa-eye" v-if="isShowPassWord" />
+                      <font-awesome-icon icon="fa-regular fa-eye-slash" v-if="!isShowPassWord" />
+                    </span>
+                    <span v-if="v$.dataUser.passWord.$error" class="error-message-danger">
+                      {{ v$.dataUser.passWord.$errors[0].$message }}
+                    </span>
+                  </div>
                 </div>
                 <div class="form-group text-center">
-                  <button type="submit" class="form-control btn btn-primary submit px-3">Đăng
+                  <button type="button" class="form-control btn btn-primary submit px-3" @click="submitForm">Đăng
                     nhập</button>
                 </div>
                 <div class="form-group d-md-flex set-center">
@@ -101,7 +107,7 @@ export default {
             required: helpers.withMessage('Tài khoản không được bỏ trống', required),
             email: helpers.withMessage('Hãy nhập mail', email)
           },
-          passWord: { required :helpers.withMessage('Hãy mật khẩu', required)},
+          passWord: { required: helpers.withMessage('Hãy mật khẩu', required) },
         },
       }
     });
@@ -172,12 +178,28 @@ export default {
       this.v$.$validate();
       if (this.v$.$error) return e.preventDefault();
       console.log(this.v$);
+    },
+    submitForm() {
+      const isFormCorrect = this.v$.$validate()
+      if (!isFormCorrect) return
     }
   },
 };
 </script>
   
 <style scoped>
+label[for="username"],
+label[for="password-field"] {
+  background-color: none;
+  color: #ffffffad !important;
+  margin-left: 0.5rem;
+}
+
+label[for="username"]::after,
+label[for="password-field"]::after {
+  background: none !important;
+}
+
 .forgot-password,
 .register {
   color: white;

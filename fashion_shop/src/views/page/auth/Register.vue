@@ -12,46 +12,101 @@
             <h3 class="mb-4 text-center block-copy">Thông tin đăng ký</h3>
             <form action="#" class="signin-form">
               <div class="form-group d-flex">
-                <input type="text" class="form-control last-name" placeholder="Họ" autocomplete="on"
-                  name="lastNameRegister" required>
-                <input type="text" class="form-control name" placeholder="Tên" autocomplete="on" name="nameRegister"
-                  required>
+                <div class="block-input">
+                  <div class="form-floating">
+                  <input id="last-name" type="text" class="form-control last-name" placeholder="" autocomplete="on"
+                    name="lastNameRegister" v-model="state.dataUser.name.lastName" required>
+                    <label for="last-name">Họ</label>
+                  </div>
+                  <span v-if="v$.dataUser.name.lastName.$error" class="error-message-danger">
+                    {{ v$.dataUser.name.lastName.$errors[0].$message }}
+                  </span>
+                </div>
+                <div class="block-input">
+                  <div class="form-floating">
+                  <input type="text" id="name" class="form-control name" placeholder="" autocomplete="on" name="nameRegister"
+                    v-model="state.dataUser.name.firstName" @keyup="handleKeyup" required>
+                    <label for="name">Tên</label>
+                    </div>
+                  <span v-if="v$.dataUser.name.firstName.$error" class="error-message-danger">
+                    {{ v$.dataUser.name.firstName.$errors[0].$message }}
+                  </span>
+                </div>
               </div>
               <div class="form-group">
-                <input type="number" class="form-control" placeholder="Số điện thoại" autocomplete="on"
-                  name="phoneNumberRegister" required>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Email" autocomplete="off" name="emailRegister"
-                  required>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Tên đăng nhập" autocomplete="off"
-                  name="emailRegister" required>
-              </div>
-              <div class="form-group">
-                <input id="password-register" :type=typeInputPassword class="form-control" placeholder="Mật khẩu"
-                  autocomplete="off" required>
-                <span class="field-icon " @click="showPassword('password')">
-                  <font-awesome-icon icon="fa-regular fa-eye" v-if="isShowPassWord" />
-                  <font-awesome-icon icon="fa-regular fa-eye-slash" v-else />
+                <div class="form-floating">
+                <input id="phone" type="number" class="form-control" placeholder="" autocomplete="on"
+                  name="phoneNumberRegister" v-model="state.dataUser.phoneNumber" required>
+                  <label for="phone">Số điện thoại</label>
+                  </div>
+                <span v-if="v$.dataUser.phoneNumber.$error" class="error-message-danger">
+                  {{ v$.dataUser.phoneNumber.$errors[0].$message }}
                 </span>
               </div>
               <div class="form-group">
-                <input id="password-confirm" :type=typeInputPasswordConfirm class="form-control"
-                  placeholder="Xác thực lại mật khẩu" autocomplete="off" required>
-                <span class="field-icon " @click="showPassword('confirm')">
-                  <font-awesome-icon icon="fa-regular fa-eye" v-if="isShowPassWordConfirm" />
-                  <font-awesome-icon icon="fa-regular fa-eye-slash" v-else />
+                <div class="form-floating">
+                <input id="email" type="text" class="form-control" placeholder="" autocomplete="off" name="emailRegister"
+                  v-model="state.dataUser.email" required>
+                  <label for="email">Email</label>
+                  </div>
+                <span v-if="v$.dataUser.email.$error" class="error-message-danger">
+                  {{ v$.dataUser.email.$errors[0].$message }}
+                </span>
+              </div>
+              <div class="form-group">
+                <div class="form-floating">
+                <input id="nickname" type="text" class="form-control" placeholder="" autocomplete="off" name="emailRegister"
+                  v-model="state.dataUser.nickname" required>
+                  <label for="nickname">Tên hiển thị</label>
+                  </div>
+              </div>
+              <div class="form-group">
+                <div class="block-password">
+                  <div class="form-floating">
+                  <input id="password-register" :type=typeInputPassword class="form-control" placeholder=""
+                    autocomplete="off" v-model="state.dataUser.passWord" required>
+                    <label for="password-register">Mật khẩu</label>  
+                  </div>
+                  <span class="field-icon " @click="showPassword('password')">
+                    <font-awesome-icon icon="fa-regular fa-eye" v-if="isShowPassWord" />
+                    <font-awesome-icon icon="fa-regular fa-eye-slash" v-else />
+                  </span>
+                </div>
+                <span v-if="v$.dataUser.passWord.$error" class="error-message-danger">
+                  {{ v$.dataUser.passWord.$errors[0].$message }}
+                </span>
+              </div>
+              <div class="form-group">
+                <div class="block-password">
+                  <div class="form-floating">
+                  <input id="password-confirm" :type=typeInputPasswordConfirm class="form-control"
+                    placeholder="" autocomplete="off" v-model="state.dataUser.passWordConfirm"
+                    required>
+                    <label for="password-confirm">Xác thực lại mật khẩu</label>
+                    </div>
+                  <span class="field-icon " @click="showPassword('confirm')">
+                    <font-awesome-icon icon="fa-regular fa-eye" v-if="isShowPassWordConfirm" />
+                    <font-awesome-icon icon="fa-regular fa-eye-slash" v-else />
+                  </span>
+                </div>
+                <span v-if="v$.dataUser.passWordConfirm.$error" class="error-message-danger">
+                  {{ v$.dataUser.passWordConfirm.$errors[0].$message }}
                 </span>
               </div>
               <div class="form-group d-flex">
-                <input type="text" class="form-control input-code-confirm" placeholder="mã xác thực gửi về"
-                  autocomplete="on" name="nameRegister" required>
-                <input type="button" class="form-control send-code" value="Gửi mã" required>
+                <div>
+                  <input type="text" class="form-control input-code-confirm" :class="{ off: !isActive }"
+                    :disabled="!isActive" placeholder="mã xác thực gửi về" autocomplete="on" name="nameRegister" required
+                    v-model="state.dataUser.codeConfirm">
+                  <span v-if="v$.dataUser.codeConfirm.$error" class="error-message-danger">
+                    {{ v$.dataUser.codeConfirm.$errors[0].$message }}
+                  </span>
+                </div>
+                <input type="button" class="form-control send-code" value="Gửi mã" required @click="sendAuthentication()">
               </div>
               <div class="form-group text-center">
-                <button type="submit" class="form-control btn btn-primary submit px-3 mt-2">Xác nhận</button>
+                <button type="submit" class="form-control btn btn-primary submit px-3 mt-2" :class="{ off: !isActive }"
+                  :disabled="!isActive" @click="submitForm">Xác nhận</button>
               </div>
             </form>
             <div class="text-center block-copy">
@@ -70,17 +125,64 @@
         </div>
       </div>
     </div>
+    <el-popover class="" placement="top-start" title="Chú thích" :width="200" trigger="hover"
+      :content="messageExclamation">
+      <template #reference>
+        <el-button class="m-2 note"><font-awesome-icon icon="fa-solid fa-exclamation" /></el-button>
+      </template>
+      </el-popover>
   </section>
 </template>
   
 <script>
 import backgroundRegisterAdmin from '@/assets/images/register/background.jpg';
 import logoGoogle from "@/assets/images/logo/google.png";
+import { useVuelidate } from '@vuelidate/core'
+import { required, email, helpers } from '@vuelidate/validators'
+import { reactive, computed } from 'vue'
 export default {
   name: 'RegisterUser',
   components: {
   },
   setup() {
+    const state = reactive({
+      dataUser: {
+        name: { 'lastName': '', 'firstName': '' },
+        phoneNumber: '',
+        email: '',
+        nickname: '',
+        passWord: '',
+        passWordConfirm: '',
+        codeConfirm: '',
+      },
+    });
+    const rules = computed(() => {
+      return {
+        dataUser: {
+          name: {
+            lastName: { required: helpers.withMessage('Hãy nhập họ', required) },
+            firstName: { required: helpers.withMessage('Hãy nhập tên', required) },
+          },
+          phoneNumber: { required: helpers.withMessage('Hãy nhập số điện thoại', required) },
+          email: {
+            email: helpers.withMessage('Mail không đúng định dạng', email),
+            required: helpers.withMessage('Hãy nhập mail', required)
+          },
+          // name: {
+          //   required: helpers.withMessage('Tài khoản không được bỏ trống', required),
+          //   email: helpers.withMessage('Hãy nhập mail', email)
+          // },
+          passWord: { required: helpers.withMessage('Hãy nhập mật khẩu', required) },
+          passWordConfirm: { required: helpers.withMessage('Hãy nhập mật khẩu xác thực', required) },
+          codeConfirm: { required: helpers.withMessage('Hãy nhập mã xác thực', required) },
+        },
+      }
+    });
+    const v$ = useVuelidate(rules, state);
+    return {
+      state,
+      v$
+    }
   },
   directives: {
   },
@@ -88,10 +190,12 @@ export default {
     return {
       background: '',
       logoGoogle: '',
+      isActive: false,
       isShowPassWord: false,
       isShowPassWordConfirm: false,
       typeInputPassword: 'password',
       typeInputPasswordConfirm: 'password',
+      messageExclamation:"#Việc đăng nhập bằng email hay số điện thoại đều hợp pháp\n#Bạn có thể thay đổi tên hiển thị"
     };
   },
   created() {
@@ -127,12 +231,69 @@ export default {
           this.isShowPassWord ? this.typeInputPassword = 'text' : this.typeInputPassword = 'password';
       }
 
+    },
+    sendAuthentication() {
+      this.isActive = true;
+    },
+    submitForm() {
+      const isFormCorrect = this.v$.$validate()
+      if (!isFormCorrect) return
+    },
+    handleKeyup() {
+      const text = this.state.dataUser.name.firstName;
+      const processedString = text
+        .split(' ')
+        .map(word => word.replace(/[àáạảãâầấậẩẫăằắặẳẵ]/g, 'a')
+          .replace(/[èéẹẻẽêềếệểễ]/g, 'e')
+          .replace(/[ìíịỉĩ]/g, 'i')
+          .replace(/[òóọỏõôồốộổỗơờớợởỡ]/g, 'o')
+          .replace(/[ùúụủũưừứựửữ]/g, 'u')
+          .replace(/[ỳýỵỷỹ]/g, 'y')
+          .replace(/đ/g, 'd')
+          .replace(/\s+/g, '')
+          .toLowerCase())
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join('');
+      this.state.dataUser.nickname = processedString;
     }
   },
 };
 </script>
   
 <style scoped>
+.note{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+input:not(:placeholder-shown) + label,
+input:focus~label{
+  color:white !important;
+}
+label {
+  background-color: none;
+  color: #ffffffad !important;
+  margin-left: 0.5rem;
+}
+label::after {
+  background: none !important;
+}
+section {
+  margin: 0;
+}
+
+.block-password {
+  position: relative;
+}
+
+.error-message-danger {
+  font-weight: 100;
+}
+
+.off {
+  opacity: 0 !important;
+}
+
 .img {
   background-size: cover;
   background-repeat: no-repeat;
@@ -475,11 +636,11 @@ button.btn-service:hover {
 }
 
 input.last-name {
-  width: 40%;
+  width: 90%;
 }
 
 input.name {
-  width: 40%;
+  width: 100%;
   float: right;
   flex: auto;
   margin-left: 1rem;
