@@ -12,101 +12,18 @@
           <div class="login-wrap p-0">
             <h3 class="mb-4 text-center block-copy">Thông tin đăng ký</h3>
             <form action="#" class="signin-form">
-              <div class="form-group d-flex">
-                <div class="block-input">
-                  <div class="form-floating">
-                    <input id="last-name" type="text" class="form-control last-name" placeholder="" autocomplete="on"
-                      name="lastNameRegister" v-model="state.dataUser.name.lastName" required>
-                    <label for="last-name">Họ<strong class="text-danger">*</strong></label>
-                  </div>
-                  <span v-if="v$.dataUser.name.lastName.$error" class="error-message-danger">
-                    {{ v$.dataUser.name.lastName.$errors[0].$message }}
-                  </span>
-                </div>
-                <div class="block-input">
-                  <div class="form-floating">
-                    <input type="text" id="name" class="form-control name" placeholder="" autocomplete="on"
-                      name="nameRegister" v-model="state.dataUser.name.firstName" @keyup="handleKeyup" required>
-                    <label for="name">Tên<strong class="text-danger">*</strong></label>
-                  </div>
-                  <span v-if="v$.dataUser.name.firstName.$error" class="error-message-danger">
-                    {{ v$.dataUser.name.firstName.$errors[0].$message }}
-                  </span>
-                </div>
-              </div>
               <div class="form-group">
                 <div class="form-floating">
-                  <input id="phone" type="number" class="form-control" placeholder="" autocomplete="on"
-                    name="phoneNumberRegister" v-model="state.dataUser.phoneNumber" required>
-                  <label for="phone">Số điện thoại<strong class="text-danger">*</strong></label>
+                  <input id="phone" type="text" class="form-control" placeholder="" autocomplete="on"
+                    name="phoneNumberRegister" v-model="state.dataUser.account" >
+                  <label for="phone">Số điện thoại / Email<strong class="text-danger">*</strong></label>
                 </div>
-                <span v-if="v$.dataUser.phoneNumber.$error" class="error-message-danger">
-                  {{ v$.dataUser.phoneNumber.$errors[0].$message }}
+                <span v-if="v$.dataUser.account.$error" class="error-message-danger">
+                  {{ v$.dataUser.account.$errors[0].$message }}
                 </span>
-              </div>
-              <div class="form-group">
-                <div class="form-floating">
-                  <input id="email" type="text" class="form-control" placeholder="" autocomplete="off"
-                    name="emailRegister" v-model="state.dataUser.email" required>
-                  <label for="email">Email</label>
-                </div>
-                <span v-if="v$.dataUser.email.$error" class="error-message-danger">
-                  {{ v$.dataUser.email.$errors[0].$message }}
-                </span>
-              </div>
-              <div class="form-group">
-                <div class="form-floating">
-                  <input id="nickname" type="text" class="form-control" placeholder="" autocomplete="off"
-                    name="emailRegister" v-model="state.dataUser.nickname" required>
-                  <label for="nickname">Tên hiển thị<strong class="text-danger">*</strong></label>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="block-password">
-                  <div class="form-floating">
-                    <input id="password-register" :type=typeInputPassword class="form-control" placeholder=""
-                      autocomplete="off" v-model="state.dataUser.passWord" required>
-                    <label for="password-register">Mật khẩu<strong class="text-danger">*</strong></label>
-                  </div>
-                  <span class="field-icon " @click="showPassword('password')">
-                    <font-awesome-icon icon="fa-regular fa-eye" v-if="isShowPassWord" />
-                    <font-awesome-icon icon="fa-regular fa-eye-slash" v-else />
-                  </span>
-                </div>
-                <span v-if="v$.dataUser.passWord.$error" class="error-message-danger">
-                  {{ v$.dataUser.passWord.$errors[0].$message }}
-                </span>
-              </div>
-              <div class="form-group">
-                <div class="block-password">
-                  <div class="form-floating">
-                    <input id="password-confirm" :type=typeInputPasswordConfirm class="form-control" placeholder=""
-                      autocomplete="off" v-model="state.dataUser.passWordConfirm" required>
-                    <label for="password-confirm">Xác thực lại mật khẩu<strong class="text-danger">*</strong></label>
-                  </div>
-                  <span class="field-icon " @click="showPassword('confirm')">
-                    <font-awesome-icon icon="fa-regular fa-eye" v-if="isShowPassWordConfirm" />
-                    <font-awesome-icon icon="fa-regular fa-eye-slash" v-else />
-                  </span>
-                </div>
-                <span v-if="v$.dataUser.passWordConfirm.$error" class="error-message-danger">
-                  {{ v$.dataUser.passWordConfirm.$errors[0].$message }}
-                </span>
-              </div>
-              <div class="form-group d-flex">
-                <div>
-                  <input type="text" class="form-control input-code-confirm" :class="{ off: !isActive }"
-                    :disabled="!isActive" placeholder="mã xác thực gửi về" autocomplete="on" name="nameRegister" required
-                    v-model="state.dataUser.codeConfirm">
-                  <!-- <span v-if="v$.dataUser.codeConfirm.$error" class="error-message-danger">
-                    {{ v$.dataUser.codeConfirm.$errors[0].$message }}
-                  </span> -->
-                </div>
-                <input type="button" class="form-control send-code" value="Gửi mã" required @click="sendAuthentication()">
               </div>
               <div class="form-group text-center">
-                <button type="submit" class="form-control btn btn-primary submit px-3 mt-2" :class="{ off: !isActive }"
-                  :disabled="!isActive" @click="submitForm">Xác nhận</button>
+                <button type="button" class="form-control btn btn-primary submit px-3 mt-2" @click="submitForm">Xác nhận</button>
               </div>
             </form>
             <div class="text-center block-copy">
@@ -138,7 +55,7 @@
 import backgroundRegisterAdmin from '@/assets/images/register/background.jpg';
 import logoGoogle from "@/assets/images/logo/google.png";
 import { useVuelidate } from '@vuelidate/core'
-import { required, email, helpers, sameAs, minLength, maxLength } from '@vuelidate/validators'
+import { required, helpers } from '@vuelidate/validators'
 import { reactive, computed } from 'vue';
 import ListButtonAuth from '@/components/ListButtonAuth.vue'
 
@@ -150,38 +67,20 @@ export default {
   setup() {
     const state = reactive({
       dataUser: {
-        name: { 'lastName': '', 'firstName': '' },
-        phoneNumber: '',
-        email: '',
-        nickname: '',
-        passWord: '',
-        passWordConfirm: '',
-        codeConfirm: '',
+        account: '',
       },
     });
     const rules = computed(() => {
       return {
         dataUser: {
-          name: {
-            lastName: { required: helpers.withMessage('Hãy nhập họ', required) },
-            firstName: { required: helpers.withMessage('Hãy nhập tên', required) },
+          account: {
+            required: helpers.withMessage('Hãy nhập số điện thoại hoặc email', required),
+            customValidation: helpers.withMessage('Không phải là số điện thoại hoặc email hợp lệ', (value) => {
+            const phoneRegex = /^[0-9]{10}$/; 
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+            return phoneRegex.test(value) || emailRegex.test(value);
+          }),
           },
-          phoneNumber: {
-            required: helpers.withMessage('Hãy nhập số điện thoại', required),
-            minLength: helpers.withMessage('Phải đủ 10 số', minLength(10)),
-            maxLength: helpers.withMessage('Quá giới hạn (10 số)', maxLength(10)),
-          },
-          email: {
-            email: helpers.withMessage('Mail không đúng định dạng', email),
-            // required: helpers.withMessage('Hãy nhập mail', required)
-          },
-          passWord: { required: helpers.withMessage('Hãy nhập mật khẩu', required) },
-          passWordConfirm: {
-            required: helpers.withMessage('Hãy nhập mật khẩu xác thực', required),
-            sameAs: helpers.withMessage('Mật khẩu không trùng khớp', sameAs(state.dataUser.passWord)),
-            // sameAs: helpers.withMessage('Mật khẩu không khớp', (value) => {value === v$.value.dataUser.passWord}),
-          },
-          // codeConfirm: { required: helpers.withMessage('Hãy nhập mã xác thực', required) },
         },
       }
     });
@@ -198,11 +97,7 @@ export default {
       background: '',
       logoGoogle: '',
       isActive: false,
-      isShowPassWord: false,
-      isShowPassWordConfirm: false,
-      typeInputPassword: 'password',
-      typeInputPasswordConfirm: 'password',
-      messageExclamation: "#Việc đăng nhập bằng email hay số điện thoại đều hợp pháp\n#Bạn có thể thay đổi tên hiển thị"
+      messageExclamation: "#Việc đăng nhập bằng email hay số điện thoại đều hợp pháp\n#Bạn có thể thay đổi tên hiển thị\n#Số điện thoại hiện đang không được hỗ trợ"
     };
   },
   created() {
@@ -223,48 +118,32 @@ export default {
     getBackGround(url) {
       return new URL(url, import.meta.url).href
     },
-    showPassword(string) {
-      switch (string) {
-        case 'password':
-          this.isShowPassWord = !this.isShowPassWord;
-          this.isShowPassWord ? this.typeInputPassword = 'text' : this.typeInputPassword = 'password';
-          break;
-        case 'confirm':
-          this.isShowPassWordConfirm = !this.isShowPassWordConfirm;
-          this.isShowPassWordConfirm ? this.typeInputPasswordConfirm = 'text' : this.typeInputPasswordConfirm = 'password';
-          break;
-        default:
-          this.isShowPassWord = !this.isShowPassWord;
-          this.isShowPassWord ? this.typeInputPassword = 'text' : this.typeInputPassword = 'password';
-      }
+    // sendAuthentication() {
+    //   this.v$.$validate()
+    //   this.isActive = true;
 
-    },
-    sendAuthentication() {
-      this.v$.$validate()
-      this.isActive = true;
-
-    },
+    // },
     submitForm() {
       const isFormCorrect = this.v$.$validate()
       if (!isFormCorrect) return
     },
-    handleKeyup() {
-      const text = this.state.dataUser.name.firstName;
-      const processedString = text
-        .split(' ')
-        .map(word => word.replace(/[àáạảãâầấậẩẫăằắặẳẵ]/g, 'a')
-          .replace(/[èéẹẻẽêềếệểễ]/g, 'e')
-          .replace(/[ìíịỉĩ]/g, 'i')
-          .replace(/[òóọỏõôồốộổỗơờớợởỡ]/g, 'o')
-          .replace(/[ùúụủũưừứựửữ]/g, 'u')
-          .replace(/[ỳýỵỷỹ]/g, 'y')
-          .replace(/đ/g, 'd')
-          .replace(/\s+/g, '')
-          .toLowerCase())
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join('');
-      this.state.dataUser.nickname = processedString;
-    }
+    // handleKeyup() {
+    //   const text = this.state.dataUser.name.firstName;
+    //   const processedString = text
+    //     .split(' ')
+    //     .map(word => word.replace(/[àáạảãâầấậẩẫăằắặẳẵ]/g, 'a')
+    //       .replace(/[èéẹẻẽêềếệểễ]/g, 'e')
+    //       .replace(/[ìíịỉĩ]/g, 'i')
+    //       .replace(/[òóọỏõôồốộổỗơờớợởỡ]/g, 'o')
+    //       .replace(/[ùúụủũưừứựửữ]/g, 'u')
+    //       .replace(/[ỳýỵỷỹ]/g, 'y')
+    //       .replace(/đ/g, 'd')
+    //       .replace(/\s+/g, '')
+    //       .toLowerCase())
+    //     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    //     .join('');
+    //   this.state.dataUser.nickname = processedString;
+    // }
   },
 };
 </script>
@@ -272,6 +151,9 @@ export default {
 <style scoped>
 button.submit:hover {
   scale: var(--transform-scale);
+  background: var(--el-fill-color-darker) !important;
+  color: black !important;
+  border-color: black !important;
 
 }
 
@@ -651,6 +533,7 @@ button.btn-service:hover {
 
 .heading-section {
   color: white;
+  margin-top: 10rem;
 }
 
 input.last-name {
