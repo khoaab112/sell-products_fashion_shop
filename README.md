@@ -64,7 +64,13 @@ yarn serve
 #The number of project members: 1
 
 ## Other
+<strong>
+Demo images
+</strong>
 
+```javascript
+sell-products_fashion_shop\demo_images\
+```
 # Contact
 
 Gmail :
