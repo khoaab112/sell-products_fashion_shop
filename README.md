@@ -29,20 +29,25 @@
 <span>
 - Download the necessary requirements :Node, Npm, yarn,the fashion_shop API system
 </span>
+
 ```Step 2  :```
 <span>
 - Clone the project to your computer
 - create file env with the same headers and content as in the 'env.example' file.
 </span>
+
 ```Step 3  :```
 <span>
 Check the fashion_shop API address.
 </span>
+
 ```Step 4  :```
 - Install in the command prompt (CMD)
+
 ```javascript
  composer install
 ```
+
 ```javascript
 yarn install
 ```
@@ -55,9 +60,13 @@ yarn serve
 <ul>
 <li>khoa</li>
 </ul>
+
 #The number of project members: 1
+
 ## Other
+
 # Contact
+
 Gmail :
 ```javascript
 nguyenvankhoark@gmail.com
