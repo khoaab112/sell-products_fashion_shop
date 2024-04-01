@@ -92,6 +92,8 @@ import { required, helpers ,minLength} from '@vuelidate/validators'
 import { reactive, computed } from 'vue'
 import SpinnerVue from '@/components/Spinner.vue'
 import ListButtonAuth from '@/components/ListButtonAuth.vue'
+import api from "@/api/server/auth.js";
+
 
 // import { ElNotification } from 'element-plus';
 export default {
@@ -191,7 +193,26 @@ export default {
       if (!isFormCorrect) return ;      
       this.isActiveSpinner = true;
     },
+    login() {
+            const user = {
+                user_name: 'khoa',
+                password: '1231',
+            };
+            try {
+                api.login(user)
+                    .then((response) => {
+                        // const resultsReturned = response.data;
+                        // const results = resultsReturned.results;
+                        console.log(response);
 
+                    })
+                    .catch((error) => {
+                        console.log(222, error);
+                    });
+            } catch (error) {
+                console.log(222, error);
+            }
+        },
     // backLogin()
     // {
 

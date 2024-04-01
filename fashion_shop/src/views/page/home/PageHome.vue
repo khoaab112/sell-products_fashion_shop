@@ -36,12 +36,13 @@
                     <div class="time-title">
                         <h4>FLASH SALE</h4><span>1</span>:<span>1</span>:<span>1</span>
                     </div>
-                    <span class="more">Xem thêm &ensp; <i class="fa-solid fa-angles-right" style="color: blue;"></i></span>
+                    <span class="more">Xem thêm &ensp; <i class="fa-solid fa-angles-right"
+                            style="color: blue;"></i></span>
                 </div>
                 <div class="list-product-flash-sale">
                     <vueper-slides class="no-shadow" id="slide-flash-sale" :visible-slides="visibleSlides"
-                        :slide-ratio="1 / 4" :dragging-distance="70" :fixed-height="true" :touchable="false" :bullets="false"
-                        slide-multiple>
+                        :slide-ratio="1 / 4" :dragging-distance="70" :fixed-height="true" :touchable="false"
+                        :bullets="false" slide-multiple>
                         <vueper-slide v-for="(item, key) in listProduct" :key="key">
                             <template #content>
                                 <Product :data="item" :arrows="false"></Product>
@@ -77,7 +78,7 @@
         </section>
     </main>
 </template>
-  
+
 <script>
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
@@ -267,9 +268,8 @@ export default {
     methods: {
         handleResize() {
             var screenWidth = window.innerWidth;
-             if(screenWidth<500)
-            {
-                this.visibleSlides = 2;                
+            if (screenWidth < 500) {
+                this.visibleSlides = 2;
             }
             else if (screenWidth < 780) {
                 this.visibleSlides = 3;
@@ -277,18 +277,19 @@ export default {
             else if (screenWidth < 1000) {
                 this.visibleSlides = 4;
             }
-            else{
+            else {
                 this.visibleSlides = 5;
             }
         },
     },
 };
 </script>
-  
+
 <style scoped>
 #slide .vueperslides--fixed-height {
     height: 35rem;
 }
+
 .list-product-flash-sale {
     padding: 0 3rem;
 }
@@ -296,60 +297,70 @@ export default {
 .vueperslides--fixed-height {
     height: 25rem;
 }
+
 @media (max-width:1200px) {
     .card-product {
         width: 10rem;
         height: 23rem;
     }
+
     .vueperslides--fixed-height {
         height: 28rem;
     }
 }
+
 @media (max-width:1000px) {
     .card-product {
         width: 9rem;
         height: 22rem;
     }
+
     .vueperslides--fixed-height[data-v-74021e98] {
         height: 24rem;
     }
 }
+
 @media (max-width:800px) {
     .vueperslides--fixed-height {
         height: 22rem;
     }
+
     .card-product .middle button {
         width: 5rem;
         height: 3rem;
         font-size: 11px;
     }
+
     .card-product .middle .detail-product {
-         padding: 0; 
+        padding: 0;
         font-size: 11px;
         padding-top: 5px;
     }
+
     #slide .vueperslides--fixed-height {
         height: 25rem;
     }
+
     #slide {
         min-height: 25rem;
         max-height: 25rem;
     }
 }
-@media (max-width:780px)
-{
+
+@media (max-width:780px) {
     .card-product {
         width: 12rem;
         height: 22rem;
     }
 }
-@media (max-width:770px)
-{
+
+@media (max-width:770px) {
     .card-product {
         width: 8rem;
         height: 20rem;
     }
 }
+
 @media (max-width:500px) {
     .vueperslides--fixed-height {
         height: 24rem;
@@ -357,4 +368,3 @@ export default {
     }
 }
 </style>
-  
