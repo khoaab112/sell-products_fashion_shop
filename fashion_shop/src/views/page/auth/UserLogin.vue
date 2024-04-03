@@ -23,11 +23,14 @@
               <form action="#" class="signin-form" @submit="checkForm">
                 <div class="form-group">
                   <div class="form-floating mb-3">
-                    <input id="username" type="text" class="form-control" placeholder="" v-model="state.dataUser.userName"
-                      autocomplete="off">
+                    <input id="username" type="text" class="form-control" placeholder=""
+                      v-model="state.dataUser.userName" autocomplete="off">
                     <label for="username">SĐT/Mail</label>
                     <span v-if="v$.dataUser.userName.$error" class="error-message-danger">
                       {{ v$.dataUser.userName.$errors[0].$message }}
+                    </span>
+                    <span v-else-if="errorMessage.user_name" class="error-message-danger">
+                      {{ errorMessage.user_name }}
                     </span>
                   </div>
                 </div>
@@ -41,9 +44,12 @@
                       <font-awesome-icon icon="fa-regular fa-eye-slash" v-if="!isShowPassWord" />
                     </span>
                   </div>
-                    <span v-if="v$.dataUser.passWord.$error" class="error-message-danger">
-                      {{ v$.dataUser.passWord.$errors[0].$message }}
-                    </span>
+                  <span v-if="v$.dataUser.passWord.$error" class="error-message-danger">
+                    {{ v$.dataUser.passWord.$errors[0].$message }}
+                  </span>
+                  <span v-else-if="errorMessage.passWord" class="error-message-danger">
+                    {{ errorMessage.passWord }}
+                  </span>
                 </div>
                 <div class="form-group text-center">
                   <button type="button" class="form-control btn btn-primary submit px-3" @click="submitForm">Đăng
@@ -88,7 +94,7 @@ import logoFacebook from "@/assets/images/logo/facebook.png";
 import logoTelegram from "@/assets/images/logo/telegram.png";
 import introMp3 from "@/assets/mp3/login/login_client.mp3";
 import { useVuelidate } from '@vuelidate/core'
-import { required, helpers ,minLength} from '@vuelidate/validators'
+import { required, helpers, minLength } from '@vuelidate/validators'
 import { reactive, computed } from 'vue'
 import SpinnerVue from '@/components/Spinner.vue'
 import ListButtonAuth from '@/components/ListButtonAuth.vue'
@@ -98,7 +104,7 @@ import api from "@/api/server/auth.js";
 // import { ElNotification } from 'element-plus';
 export default {
   name: 'UserLogin',
-  components: { SpinnerVue,ListButtonAuth},
+  components: { SpinnerVue, ListButtonAuth },
   setup() {
     const state = reactive({
       dataUser: {
@@ -114,8 +120,9 @@ export default {
             // email: helpers.withMessage('Hãy nhập mail', email)
           },
           passWord: {
-             required: helpers.withMessage('Hãy mật khẩu', required) ,
-             minLength: helpers.withMessage('Mật khẩu phải có ít nhất 8 ký tự', minLength(8))},
+            required: helpers.withMessage('Hãy nhập mật khẩu', required),
+            minLength: helpers.withMessage('Mật khẩu phải có ít nhất 8 ký tự', minLength(8))
+          },
         },
       }
     });
@@ -138,6 +145,10 @@ export default {
       typeInputPassword: 'password',
       isMuted: true,
       isActiveSpinner: false,
+      errorMessage: {
+        user_name: "",
+        passWord: "",
+      }
     };
   },
   created() {
@@ -188,39 +199,46 @@ export default {
       if (this.v$.$error) return e.preventDefault();
       console.log(this.v$);
     },
-   async submitForm() {
-      const isFormCorrect =await this.v$.$validate();
-      if (!isFormCorrect) return ;      
+    async submitForm() {
+      const isFormCorrect = await this.v$.$validate();
+      console.log(this.v$.dataUser.userName.$errors);
+      if (!isFormCorrect) return;
       this.isActiveSpinner = true;
-    },
-    login() {
-            const user = {
-                user_name: 'khoa',
-                password: '1231',
-            };
-            try {
-                api.login(user)
-                    .then((response) => {
-                        // const resultsReturned = response.data;
-                        // const results = resultsReturned.results;
-                        console.log(response);
-
-                    })
-                    .catch((error) => {
-                        console.log(222, error);
-                    });
-            } catch (error) {
-                console.log(222, error);
+      const user = {
+        user_name: this.state.dataUser.userName,
+        password: this.state.dataUser.passWord
+      }
+        api.login(user)
+          .then((response) => {
+            this.isActiveSpinner = false;
+            // console.log(this.v$.dataUser.userName.$errors[0]);
+            if (response.data.result_code == 200) {
+              console.log(response.data);
             }
-        },
-    // backLogin()
-    // {
+            else {
+              console.log(this.v$.dataUser.userName.$errors);
+              if (response.data.results.password) {
+                this.errorMessage.passWord = response.data.results.password[0];
+              }
+              else if (response.data.results.user_name) {
+                this.errorMessage.user_name  = response.data.results.user_name[0];
+              }
+              else {
+                this.errorMessage.user_name  = response.data.results
+              }
+            }
+          })
+          .catch((error) => {
+            this.isActiveSpinner = false;
+            console.log(error);
+          });
 
-    // },
+
+    },
   },
 };
 </script>
-  
+
 <style scoped>
 section {
   margin-top: 0;
@@ -620,8 +638,4 @@ button.btn-service:hover {
     transition: none;
   }
 }
-
-
-
 </style>
-  

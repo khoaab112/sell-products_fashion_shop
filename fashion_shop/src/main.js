@@ -34,7 +34,6 @@ var store = createStore({
     //     STATUS_LOGIN: (state) => state.STATUS_LOGIN,
     // },
 });
-console.log(process.env)
 window.axios = axios;
 const APP = createApp(App);
 APP.component('font-awesome-icon', FontAwesomeIcon);
