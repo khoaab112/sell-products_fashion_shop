@@ -23,8 +23,8 @@
               <form action="#" class="signin-form" @submit="checkForm">
                 <div class="form-group">
                   <div class="form-floating mb-3">
-                    <input id="username" type="text" class="form-control" placeholder="" v-model="state.dataUser.userName"
-                      autocomplete="off">
+                    <input id="username" type="text" class="form-control" placeholder=""
+                      v-model="state.dataUser.userName" autocomplete="off">
                     <label for="username">SĐT/Mail</label>
                     <span v-if="v$.dataUser.userName.$error" class="error-message-danger">
                       {{ v$.dataUser.userName.$errors[0].$message }}
@@ -41,9 +41,9 @@
                       <font-awesome-icon icon="fa-regular fa-eye-slash" v-if="!isShowPassWord" />
                     </span>
                   </div>
-                    <span v-if="v$.dataUser.passWord.$error" class="error-message-danger">
-                      {{ v$.dataUser.passWord.$errors[0].$message }}
-                    </span>
+                  <span v-if="v$.dataUser.passWord.$error" class="error-message-danger">
+                    {{ v$.dataUser.passWord.$errors[0].$message }}
+                  </span>
                 </div>
                 <div class="form-group text-center">
                   <button type="button" class="form-control btn btn-primary submit px-3" @click="submitForm">Đăng
@@ -66,8 +66,9 @@
                 <p class="w-100 text-center">&mdash; Đăng nhập với cách khác &mdash;</p>
               </div>
               <div class="social text-center">
-                <button class="btn-service"><img :src=logoGoogle alt="google" draggable="false"
-                    class="img-service"></button>
+                <GoogleLogin :callback="loginGoogle"> <button class="btn-service"><img :src=logoGoogle
+                      alt="google" draggable="false" class="img-service"></button>
+                </GoogleLogin>
                 <button class="btn-service"><img :src=logoFacebook alt="google" draggable="false"
                     class="img-service"></button>
                 <button class="btn-service"><img :src=logoTelegram alt="google" draggable="false"
@@ -88,15 +89,16 @@ import logoFacebook from "@/assets/images/logo/facebook.png";
 import logoTelegram from "@/assets/images/logo/telegram.png";
 import introMp3 from "@/assets/mp3/login/login_client.mp3";
 import { useVuelidate } from '@vuelidate/core'
-import { required, helpers ,minLength} from '@vuelidate/validators'
+import { required, helpers, minLength } from '@vuelidate/validators'
 import { reactive, computed } from 'vue'
 import SpinnerVue from '@/components/Spinner.vue'
 import ListButtonAuth from '@/components/ListButtonAuth.vue'
+import { decodeCredential } from "vue3-google-login"
 
 // import { ElNotification } from 'element-plus';
 export default {
   name: 'UserLogin',
-  components: { SpinnerVue,ListButtonAuth},
+  components: { SpinnerVue, ListButtonAuth },
   setup() {
     const state = reactive({
       dataUser: {
@@ -112,8 +114,9 @@ export default {
             // email: helpers.withMessage('Hãy nhập mail', email)
           },
           passWord: {
-             required: helpers.withMessage('Hãy mật khẩu', required) ,
-             minLength: helpers.withMessage('Mật khẩu phải có ít nhất 8 ký tự', minLength(8))},
+            required: helpers.withMessage('Hãy mật khẩu', required),
+            minLength: helpers.withMessage('Mật khẩu phải có ít nhất 8 ký tự', minLength(8))
+          },
         },
       }
     });
@@ -186,12 +189,15 @@ export default {
       if (this.v$.$error) return e.preventDefault();
       console.log(this.v$);
     },
-   async submitForm() {
-      const isFormCorrect =await this.v$.$validate();
-      if (!isFormCorrect) return ;      
+    async submitForm() {
+      const isFormCorrect = await this.v$.$validate();
+      if (!isFormCorrect) return;
       this.isActiveSpinner = true;
     },
-
+    loginGoogle(response) {
+      const userData = decodeCredential(response.credential)
+      console.log("Handle the userData", userData)
+    }
     // backLogin()
     // {
 
@@ -199,7 +205,7 @@ export default {
   },
 };
 </script>
-  
+
 <style scoped>
 section {
   margin-top: 0;
@@ -599,8 +605,4 @@ button.btn-service:hover {
     transition: none;
   }
 }
-
-
-
 </style>
-  

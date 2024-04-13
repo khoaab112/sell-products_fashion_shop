@@ -6230,6 +6230,11 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
+vue3-google-login@^2.0.26:
+  version "2.0.26"
+  resolved "https://registry.yarnpkg.com/vue3-google-login/-/vue3-google-login-2.0.26.tgz#0e55dbb3c6cbb78872dee0de800624c749d07882"
+  integrity sha512-BuTSIeSjINNHNPs+BDF4COnjWvff27IfCBDxK6JPRqvm57lF8iK4B3+zcG8ud6BXfZdyuiDlxletbEDgg4/RFA==
+
 vue3-google-map@^0.18.0:
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/vue3-google-map/-/vue3-google-map-0.18.0.tgz#a190e279d6ccf64fe08a5bd2a7b71082819d8224"
