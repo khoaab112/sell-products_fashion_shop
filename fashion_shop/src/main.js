@@ -21,6 +21,7 @@ import VN from 'element-plus/dist/locale/vi.mjs';
 // import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import 'element-plus/dist/index.css';
 
+import vue3GoogleLogin from 'vue3-google-login'
 var store = createStore({
     state: {
         STATUS_LOGIN: false,
@@ -42,5 +43,8 @@ APP.use(store);
 APP.use(ElementPlus, {
     locale: VN,
 });
+APP.use(vue3GoogleLogin, {
+    clientId: process.env.VUE_APP_GOOGLE_CLIENT_ID
+})
 APP.mount('#app');
 export default { store };

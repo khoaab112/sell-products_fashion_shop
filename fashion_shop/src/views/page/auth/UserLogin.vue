@@ -72,8 +72,9 @@
                 <p class="w-100 text-center">&mdash; Đăng nhập với cách khác &mdash;</p>
               </div>
               <div class="social text-center">
-                <button class="btn-service"><img :src=logoGoogle alt="google" draggable="false"
-                    class="img-service"></button>
+                <GoogleLogin :callback="loginGoogle"> <button class="btn-service"><img :src=logoGoogle
+                      alt="google" draggable="false" class="img-service"></button>
+                </GoogleLogin>
                 <button class="btn-service"><img :src=logoFacebook alt="google" draggable="false"
                     class="img-service"></button>
                 <button class="btn-service"><img :src=logoTelegram alt="google" draggable="false"
@@ -100,6 +101,7 @@ import SpinnerVue from '@/components/Spinner.vue'
 import ListButtonAuth from '@/components/ListButtonAuth.vue'
 import api from "@/api/server/auth.js";
 
+import { decodeCredential } from "vue3-google-login"
 
 // import { ElNotification } from 'element-plus';
 export default {
@@ -201,7 +203,6 @@ export default {
     },
     async submitForm() {
       const isFormCorrect = await this.v$.$validate();
-      console.log(this.v$.dataUser.userName.$errors);
       if (!isFormCorrect) return;
       this.isActiveSpinner = true;
       const user = {
@@ -235,6 +236,14 @@ export default {
 
 
     },
+    loginGoogle(response) {
+      const userData = decodeCredential(response.credential)
+      console.log("Handle the userData", userData)
+    }
+    // backLogin()
+    // {
+
+    // },
   },
 };
 </script>
