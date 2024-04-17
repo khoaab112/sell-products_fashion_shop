@@ -72,8 +72,8 @@
                 <p class="w-100 text-center">&mdash; Đăng nhập với cách khác &mdash;</p>
               </div>
               <div class="social text-center">
-                <GoogleLogin :callback="loginGoogle"> <button class="btn-service"><img :src=logoGoogle
-                      alt="google" draggable="false" class="img-service"></button>
+                <GoogleLogin :callback="loginGoogle"> <button class="btn-service"><img :src=logoGoogle alt="google"
+                      draggable="false" class="img-service"></button>
                 </GoogleLogin>
                 <button class="btn-service"><img :src=logoFacebook alt="google" draggable="false"
                     class="img-service"></button>
@@ -100,12 +100,14 @@ import { reactive, computed } from 'vue'
 import SpinnerVue from '@/components/Spinner.vue'
 import ListButtonAuth from '@/components/ListButtonAuth.vue'
 import api from "@/api/server/auth.js";
+import loginSuccess from "@/helpers/auth";
 
 import { decodeCredential } from "vue3-google-login"
-
+  
 // import { ElNotification } from 'element-plus';
 export default {
   name: 'UserLogin',
+  mixins:[loginSuccess],
   components: { SpinnerVue, ListButtonAuth },
   setup() {
     const state = reactive({
@@ -209,30 +211,32 @@ export default {
         user_name: this.state.dataUser.userName,
         password: this.state.dataUser.passWord
       }
-        api.login(user)
-          .then((response) => {
-            this.isActiveSpinner = false;
-            // console.log(this.v$.dataUser.userName.$errors[0]);
-            if (response.data.result_code == 200) {
-              console.log(response.data);
+      api.login(user)
+        .then((response) => {
+          this.isActiveSpinner = false;
+          // console.log(this.v$.dataUser.userName.$errors[0]);
+          console.log(response);
+          if (response.data.result_code == 200) {
+            console.log(response.data);
+            this.loginSuccess()
+          }
+          else {
+            console.log(this.v$.dataUser.userName.$errors);
+            if (response.data.results.password) {
+              this.errorMessage.passWord = response.data.results.password[0];
+            }
+            else if (response.data.results.user_name) {
+              this.errorMessage.user_name = response.data.results.user_name[0];
             }
             else {
-              console.log(this.v$.dataUser.userName.$errors);
-              if (response.data.results.password) {
-                this.errorMessage.passWord = response.data.results.password[0];
-              }
-              else if (response.data.results.user_name) {
-                this.errorMessage.user_name  = response.data.results.user_name[0];
-              }
-              else {
-                this.errorMessage.user_name  = response.data.results
-              }
+              this.errorMessage.user_name = response.data.results
             }
-          })
-          .catch((error) => {
-            this.isActiveSpinner = false;
-            console.log(error);
-          });
+          }
+        })
+        .catch((error) => {
+          this.isActiveSpinner = false;
+          console.log(error);
+        });
 
 
     },
