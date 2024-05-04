@@ -1,4 +1,4 @@
-const KEY_ACCESS_TOKEN = process.env.KEY_ACCESS_TOKEN;
+const KEY_ACCESS_TOKEN = process.env.VUE_APP_KEY_ACCESS_TOKEN;
 
 function getAccessToken() {
     return localStorage.getItem(KEY_ACCESS_TOKEN);

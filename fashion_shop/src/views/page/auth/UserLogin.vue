@@ -57,7 +57,7 @@
                 </div>
                 <div class="form-group d-md-flex set-center">
                   <div class="w-50">
-                    <el-checkbox label="Nhớ mật khẩu" class="cb-remember-password" size="large" />
+                    <el-checkbox label="Lưu trạng thái đăng nhập" class="cb-remember-password" size="large"   v-model="state.dataUser.autoLogin"/>
                   </div>
                   <div class="w-50  text-decoration-underline set-end ">
                     <router-link :to="{ name: 'forgotPassword' }" class="forgot-password">Quên mật khẩu</router-link>
@@ -114,6 +114,7 @@ export default {
       dataUser: {
         userName: '',
         passWord: '',
+        autoLogin: false,
       },
     });
     const rules = computed(() => {
@@ -209,16 +210,19 @@ export default {
       this.isActiveSpinner = true;
       const user = {
         user_name: this.state.dataUser.userName,
-        password: this.state.dataUser.passWord
+        password: this.state.dataUser.passWord,
+        remember_token: this.state.dataUser.autoLogin,
       }
       api.login(user)
         .then((response) => {
           this.isActiveSpinner = false;
           // console.log(this.v$.dataUser.userName.$errors[0]);
-          console.log(response);
+          // console.log(response);
           if (response.data.result_code == 200) {
-            console.log(response.data);
-            this.loginSuccess()
+            let results = response.data.results;
+            const refreshToken = results.refresh_token;
+            const accessToken = results.token;
+            this.loginSuccess(accessToken,refreshToken);
           }
           else {
             console.log(this.v$.dataUser.userName.$errors);

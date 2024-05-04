@@ -1,5 +1,5 @@
-const KEY_REFRESH_TOKEN = process.env.KEY_REFRESH_TOKEN;
-const TIME_REFRESH_TOKEN = process.env.TIME_REFRESH_TOKEN_CLIENT;
+const KEY_REFRESH_TOKEN = process.env.VUE_APP_KEY_REFRESH_TOKEN;
+const TIME_REFRESH_TOKEN = process.env.VUE_APP_TIME_REFRESH_TOKEN_CLIENT;
 
 function setCookie(cookieValue) {
     const cookieName = KEY_REFRESH_TOKEN;

@@ -3,7 +3,6 @@ import auth from '../router/auth';
 import page from '../router/page';
 import error from '../router/error';
 import jwt from '../helpers/jwt';
-import main from '../main'
 // // import cookie from '@/helpers/cookie';
 // import localStorage from '@/helpers/localStorage';
 
@@ -22,8 +21,7 @@ const router = createRouter({
     })
     //check login
 router.beforeEach((to, from, next) => {
-    console.log(main.store.state.STATUS_LOGIN)
-        // const KEY_LOGIN = 'isLogin' + process.env.VUE_APP_NAME;
+    console.log(jwt.decodePayloadRefreshToken());
     if (to.path.startsWith('/api'))
         return next('/error404');
     const isLogin = to.path === "/auth/login";
@@ -32,22 +30,14 @@ router.beforeEach((to, from, next) => {
     const expiryDate = jwt.checkExpiryDateRefreshToken();
     const expiryDateAccessToken = jwt.checkExpiryDateAccessToken();
     const reservation = jwt.decodePayloadAccessToken().reservation;
-    if (existRefreshToken && isRememberMe && expiryDate) {
-        main.store.commit('setLoginStatus', true);
-    } else if (existRefreshToken && reservation && expiryDate && expiryDateAccessToken) {
-        main.store.commit('setLoginStatus', true);
-    } else {
-        main.store.commit('setLoginStatus', false);
-    }
+    console.log(1);
+
     if (isLogin) {
         if (existRefreshToken && isRememberMe && expiryDate) {
-            main.store.commit('setLoginStatus', true);
-            return next({ name: 'PageHome' });
+            return next({ name: 'Home' });
         } else if (existRefreshToken && reservation && expiryDate && expiryDateAccessToken) {
-            main.store.commit('setLoginStatus', true);
-            return next({ name: 'PageHome' });
+            return next({ name: 'Home' });
         } else {
-            main.store.commit('setLoginStatus', false);
             return next();
         }
     }
