@@ -21,7 +21,6 @@ const router = createRouter({
     })
     //check login
 router.beforeEach((to, from, next) => {
-    console.log(jwt.decodePayloadRefreshToken());
     if (to.path.startsWith('/api'))
         return next('/error404');
     const isLogin = to.path === "/auth/login";
@@ -30,7 +29,6 @@ router.beforeEach((to, from, next) => {
     const expiryDate = jwt.checkExpiryDateRefreshToken();
     const expiryDateAccessToken = jwt.checkExpiryDateAccessToken();
     const reservation = jwt.decodePayloadAccessToken().reservation;
-    console.log(1);
 
     if (isLogin) {
         if (existRefreshToken && isRememberMe && expiryDate) {

@@ -1,5 +1,5 @@
 <template>
-  <ListButtonAuth></ListButtonAuth>
+    <ListButtonAuth></ListButtonAuth>
     <section class="ftco-section img js-fullheight" :style="{ 'background-image': 'url(' + background + ')' }">
         <div class="container content-forgot-password">
             <div class="row justify-content-center">
@@ -12,27 +12,33 @@
                     <div class="login-wrap p-0">
                         <form action="#" class="signin-form">
                             <div class="form-group">
-                                <input  class="form-control" placeholder="số điện thoại hoặc mail"
-                                    autocomplete="on" name="phoneNumberRegister" v-model="dataUser.phoneOrEmail" required>
+                                <input class="form-control" placeholder="số điện thoại hoặc mail" autocomplete="on"
+                                    name="phoneNumberRegister" v-model="dataUser.phoneOrEmail" required>
                                 <span v-if="messageError.phoneOrEmail" class="error-message-danger">
                                     {{ messageError.phoneOrEmail }}
                                 </span>
+                                <span v-if="successMessage" class="error-message-success">
+                                    {{ successMessage }}
+                                </span>
+                            </div>
+                            <div class="spinner" v-if="isActive">
+                                <SpinnerV2></SpinnerV2>
                             </div>
                             <div class="form-group d-flex">
-                                <input v-model="dataUser.verificationCodes" type="text"
+                                <!-- <input v-model="dataUser.verificationCodes" type="text"
                                     class="form-control input-code-confirm " :class="{ off: !isActive }"
                                     placeholder="mã xác thực gửi về" autocomplete="on" name="nameRegister" required
-                                    :disabled="!isActive">
+                                    :disabled="!isActive"> -->
                                 <input type="button" class="form-control send-code" value="Gửi mã"
-                                    @click="requestAuthenticationCode()">
+                                    @click="requestAuthenticationCode()" v-if="!isActive">
                             </div>
                             <span class="error-message-danger" v-if="isActive && messageError.verificationCodes">
                                 {{ messageError.verificationCodes }}
                             </span>
-                            <div class="form-group text-center" v-if="isActive">
+                            <!-- <div class="form-group text-center" v-if="isActive">
                                 <button type="submit" class="form-control btn btn-primary submit px-3 mt-2">Xác
                                     nhận</button>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
                 </div>
@@ -44,15 +50,17 @@
         </div>
     </section>
 </template>
-  
+
 <script>
 import backgroundForgotPassword from '@/assets/images/forgotPassword/background.jpg';
 import ListButtonAuth from '@/components/ListButtonAuth.vue'
-
+import SpinnerV2 from '@/components/Spinner_v2.vue'
+import api from "@/api/server/auth.js";
 export default {
     name: 'ForgotPassword',
     components: {
-        ListButtonAuth
+        ListButtonAuth,
+        SpinnerV2,
     },
     setup() {
     },
@@ -66,10 +74,11 @@ export default {
                 phoneOrEmail: '',
                 verificationCodes: '',
             },
-            messageError:{
+            messageError: {
                 phoneOrEmail: '',
                 verificationCodes: '',
-            }
+            },
+            successMessage: ""
         };
     },
     created() {
@@ -90,31 +99,75 @@ export default {
             return new URL(url, import.meta.url).href
         },
         requestAuthenticationCode() {
-            this.isActive = true;
-            const phoneRegex = /^[0-9]{10}$/;
-            var checkPhone = phoneRegex.test(this.dataUser.phoneOrEmail);
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            var checkMail= emailRegex.test(this.dataUser.phoneOrEmail);
-            if(!checkPhone && !checkMail)
-            {
-                this.messageError.phoneOrEmail = 'Số điện thoại hoặc email không đúng định dạng';
-                this.isActive = false;
-                return;
-            }  
-            this.clearMessageError();          
+            if (!this.isActive) {
+                // this.isActive = true;
+                const phoneRegex = /^[0-9]{10}$/;
+                var checkPhone = phoneRegex.test(this.dataUser.phoneOrEmail);
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                var checkMail = emailRegex.test(this.dataUser.phoneOrEmail);
+                if (!checkPhone && !checkMail) {
+                    this.messageError.phoneOrEmail = 'Số điện thoại hoặc email không đúng định dạng';
+                    this.isActive = false;
+                    return;
+                }
+                this.clearMessageError();
+                this.clearMessageServer();
+                this.isActive = true;
+            }
+            if (this.isActive) {
+                this.isActive = true;
+                var data = { email: this.dataUser.phoneOrEmail };
+                api.resetPassword(data)
+                    .then((response) => {
+                        console.log(response);
+                        this.clearMessageError();
+                        this.clearMessageServer();
+                        this.isActive = false;
+                        if (response.data.result_code == 200) {
+                            this.successMessage = response.data.results;
+                        }
+                        else {
+                            this.successMessage = response.data.results;
+                        }
+                    })
+                    .catch((error) => {
+                        this.isActiveSpinner = false;
+                        console.log(error);
+                    });
+            }
         },
         clearMessageError() {
             this.messageError.phoneOrEmail = '';
             this.messageError.verificationCodes = '';
         },
+        clearMessageServer() {
+            this.successMessage = "";
+        },
+        resetPassword() {
+            api.resetPassword()
+                .then((response) => {
+                    console.log(response);
+                    // if (response.data.result_code == 200) {
+
+                    // }
+                    // else {
+
+                    // }
+                })
+                .catch((error) => {
+                    this.isActiveSpinner = false;
+                    console.log(error);
+                });
+        }
     },
 };
 </script>
-  
+
 <style scoped>
 section {
     margin-top: 0;
- }
+}
+
 input.off {
     opacity: 0 !important;
 }
@@ -591,8 +644,7 @@ input[type="number"] {
 }
 
 .send-code {
-    width: 40%;
-    margin-left: 3rem;
+
     background-color: #8CC0DE;
 }
 
@@ -612,5 +664,10 @@ p.text-switch {
     box-shadow: none;
     border-color: rgba(255, 255, 255, .4);
 }
+
+.spinner {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
 </style>
-  

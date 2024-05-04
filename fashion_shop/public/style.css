@@ -1125,6 +1125,11 @@ span.error-message-danger {
     font-weight: bold;
 }
 
+span.error-message-success {
+    color: #a5dc86;
+    font-weight: bold;
+}
+
 button.btn-home:hover {
     color: white;
     background: #1faae4;
