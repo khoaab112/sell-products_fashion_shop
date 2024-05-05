@@ -15,15 +15,22 @@
               <div class="form-group">
                 <div class="form-floating">
                   <input id="phone" type="text" class="form-control" placeholder="" autocomplete="on"
-                    name="phoneNumberRegister" v-model="state.dataUser.account" >
+                    name="phoneNumberRegister" v-model="state.dataUser.account">
                   <label for="phone">Số điện thoại / Email<strong class="text-danger">*</strong></label>
                 </div>
                 <span v-if="v$.dataUser.account.$error" class="error-message-danger">
                   {{ v$.dataUser.account.$errors[0].$message }}
                 </span>
+                <span v-if="successMessage" class="error-message-success">
+                  {{ successMessage }}
+                </span>
+              </div>
+              <div class="spinner" v-if="isActive">
+                <SpinnerV2></SpinnerV2>
               </div>
               <div class="form-group text-center">
-                <button type="button" class="form-control btn btn-primary submit px-3 mt-2" @click="submitForm">Xác nhận</button>
+                <button type="button" class="form-control btn btn-primary submit px-3 mt-2" @click="submitForm">Xác
+                  nhận</button>
               </div>
             </form>
             <div class="text-center block-copy">
@@ -50,7 +57,7 @@
     </el-popover>
   </section>
 </template>
-  
+
 <script>
 import backgroundRegisterAdmin from '@/assets/images/register/background.jpg';
 import logoGoogle from "@/assets/images/logo/google.png";
@@ -58,11 +65,14 @@ import { useVuelidate } from '@vuelidate/core'
 import { required, helpers } from '@vuelidate/validators'
 import { reactive, computed } from 'vue';
 import ListButtonAuth from '@/components/ListButtonAuth.vue'
+import api from "@/api/server/auth.js";
+import SpinnerV2 from '@/components/Spinner_v2.vue'
 
 export default {
   name: 'RegisterUser',
   components: {
-    ListButtonAuth
+    ListButtonAuth,
+    SpinnerV2
   },
   setup() {
     const state = reactive({
@@ -76,10 +86,10 @@ export default {
           account: {
             required: helpers.withMessage('Hãy nhập số điện thoại hoặc email', required),
             customValidation: helpers.withMessage('Không phải là số điện thoại hoặc email hợp lệ', (value) => {
-            const phoneRegex = /^[0-9]{10}$/; 
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
-            return phoneRegex.test(value) || emailRegex.test(value);
-          }),
+              const phoneRegex = /^[0-9]{10}$/;
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              return phoneRegex.test(value) || emailRegex.test(value);
+            }),
           },
         },
       }
@@ -97,7 +107,8 @@ export default {
       background: '',
       logoGoogle: '',
       isActive: false,
-      messageExclamation: "#Việc đăng nhập bằng email hay số điện thoại đều hợp pháp\n#Bạn có thể thay đổi tên hiển thị\n#Số điện thoại hiện đang không được hỗ trợ"
+      messageExclamation: "#Việc đăng nhập bằng email hay số điện thoại đều hợp pháp\n#Bạn có thể thay đổi tên hiển thị\n#Số điện thoại hiện đang không được hỗ trợ",
+      successMessage: "",
     };
   },
   created() {
@@ -123,10 +134,35 @@ export default {
     //   this.isActive = true;
 
     // },
-    submitForm() {
-      const isFormCorrect = this.v$.$validate()
-      if (!isFormCorrect) return
+    async submitForm() {
+      this.isActive = true;
+      const isFormCorrect = await this.v$.$validate()
+      if (!isFormCorrect) {
+        this.isActive = false;
+        return
+      }
+      this.clearMessage();
+      const data = {
+        "email": this.state.dataUser.account
+      }
+      await api.register(data)
+        .then((response) => {
+          if (response.data.result_code == 200) {
+            this.successMessage = response.data.results;
+          }
+          else {
+            this.successMessage = response.data.results;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      this.isActive = false;
     },
+    clearMessage: function () {
+      this.successMessage = "";
+      // this.v$.dataUser.account.$errors[0].$message="";
+    }
     // handleKeyup() {
     //   const text = this.state.dataUser.name.firstName;
     //   const processedString = text
@@ -147,7 +183,7 @@ export default {
   },
 };
 </script>
-  
+
 <style scoped>
 button.submit:hover {
   scale: var(--transform-scale);
@@ -667,6 +703,10 @@ input[type="number"] {
   user-select: none;
 }
 
+.spinner {
+  display: flex;
+  justify-content: center;
+}
+
 @media(max-width:1500px) {}
 </style>
-  
