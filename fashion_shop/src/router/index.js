@@ -3,6 +3,7 @@ import auth from '../router/auth';
 import page from '../router/page';
 import error from '../router/error';
 import jwt from '../helpers/jwt';
+import main from '../main'
 // // import cookie from '@/helpers/cookie';
 // import localStorage from '@/helpers/localStorage';
 
@@ -28,12 +29,20 @@ router.beforeEach((to, from, next) => {
     const isRememberMe = (jwt.decodePayloadRefreshToken().remember) === 'true';
     const expiryDate = jwt.checkExpiryDateRefreshToken();
     const expiryDateAccessToken = jwt.checkExpiryDateAccessToken();
-    const reservation = jwt.decodePayloadAccessToken().reservation;
-
+    // const reservation = jwt.decodePayloadAccessToken().reservation;
+    if (existRefreshToken && expiryDate) {
+        let userData = {
+            "user_name": existRefreshToken.user_name,
+            "id": existRefreshToken.id
+        };
+        main.store.commit('setLoginStatus', true);
+        main.store.commit('setUserData', userData);
+    }
+    console.log(1);
     if (isLogin) {
         if (existRefreshToken && isRememberMe && expiryDate) {
             return next({ name: 'Home' });
-        } else if (existRefreshToken && reservation && expiryDate && expiryDateAccessToken) {
+        } else if (existRefreshToken && expiryDate && expiryDateAccessToken) {
             return next({ name: 'Home' });
         } else {
             return next();
