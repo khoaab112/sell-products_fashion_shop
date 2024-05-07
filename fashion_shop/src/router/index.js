@@ -38,7 +38,6 @@ router.beforeEach((to, from, next) => {
         main.store.commit('setLoginStatus', true);
         main.store.commit('setUserData', userData);
     }
-    console.log(1);
     if (isLogin) {
         if (existRefreshToken && isRememberMe && expiryDate) {
             return next({ name: 'Home' });

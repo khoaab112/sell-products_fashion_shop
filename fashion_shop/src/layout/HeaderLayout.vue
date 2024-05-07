@@ -19,14 +19,24 @@
             <font-awesome-icon icon="fa-solid fa-phone" /><span>095.555.666</span>
           </p>
         </div>
-        <div class="list-actions">
-          <button class="btn-action btn-login">Đăng nhập</button>
-          <button class="btn-action btn-register">Đăng ký</button>
+        <div class="list-actions" v-if="!isLogin">
+          <router-link :to="{ name: 'UserLogin' }">
+            <button class="btn-action btn-login" >
+              Đăng nhập</button>
+          </router-link>
+          <router-link :to="{ name: 'Register' }" >
+            <button class="btn-action btn-register">Đăng ký</button>
+          </router-link>
           <button class="btn-basket"><font-awesome-icon icon="fa-solid fa-cart-shopping"
               style="color: #343a4099;" /><span class="item-number pulse">90</span></button>
         </div>
-        <div class="avatar-user">
-          <button>khoa</button>
+        <div class="avatar-user" v-else>
+          <router-link :to="{ name: 'SupportVue' }" >
+          <button><img src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg" alt=""
+              loading="lazy"></button>
+          </router-link>
+          <span class="notification-cart">1</span>
+          <span class="notification-success">1</span>
         </div>
       </div>
     </div>
@@ -87,12 +97,12 @@ export default {
     return {
       logo: logoPage,
       isLogin: false,
-      user:{},
+      user: {},
     };
   },
   created() {
-    this.isLogin = this.$store.state.STATUS_LOGIN ;
-    this.user = this.$store.state.USER_DATA ;
+    this.isLogin = this.$store.state.STATUS_LOGIN;
+    this.user = this.$store.state.USER_DATA;
   },
   mounted() {
     // Logic sau khi component được gắn kết (render) vào DOM
@@ -134,5 +144,61 @@ button.btn-action.btn-register {
   position: static;
   background: #343a407a;
   border: none;
+}
+
+div.avatar-user,
+div.avatar-user button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50px 50px;
+  position: relative;
+}
+
+div.avatar-user button:hover {
+  scale: var(--scale-1);
+  transition: var(--transition-ease);
+  box-shadow: -1px 1px 10px 6px rgba(0, 0, 0, 0.37);
+  -webkit-box-shadow: -1px 1px 10px 6px rgba(0, 0, 0, 0.37);
+  -moz-box-shadow: -1px 1px 10px 6px rgba(0, 0, 0, 0.37);
+}
+
+div.avatar-user img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50px 50px;
+}
+
+div.avatar-user span {
+  position: absolute;
+  z-index: 1;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 80%;
+}
+div.avatar-user button:hover ~  span{
+  scale: var(--scale-1);
+  transition: var(--transition-ease);
+}
+div.avatar-user span.notification-cart {
+  color: white;
+  top: 7px;
+  right: -7px;
+  background-color: #ff3100;
+}
+div.avatar-user span.notification-success {
+  color: white;
+  top: -5px;
+  right: 5px;
+  background-color: #28a745;
+}
+.list-actions a{
+  display: flex;
+  text-decoration: none;
 }
 </style>
