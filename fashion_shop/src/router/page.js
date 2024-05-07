@@ -56,6 +56,13 @@ const home = [{
                 import ('../views/page/Support/Main.vue'),
         },
         {
+            path: 'profile',
+            name: 'ProfileVue',
+            meta: { breadcrumb: 'Hồ sơ' },
+            component: () =>
+                import ('../views/page/profile/Main.vue'),
+        },
+        {
             path: 'test',
             name: 'Test',
             meta: { breadcrumb: 'Test' },
