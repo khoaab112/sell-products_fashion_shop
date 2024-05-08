@@ -59,6 +59,7 @@
                     <button class="nav-link" id="v-pills-canceled-order-tab" data-bs-toggle="pill"
                         data-bs-target="#v-pills-canceled-order" type="button" role="tab"
                         aria-controls="v-pills-canceled-order" aria-selected="false">Đơn hãng hủy</button>
+                        <button class="nav-link" id="btn-log-out"  type="button" role="tab" @click="logOut">Đăng xuất</button>
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
                     <UserInfo></UserInfo>
@@ -94,6 +95,7 @@ import ListOfCanceledOrders from "./ListOfCanceledOrders.vue";
 import PurchaseHistory from "./PurchaseHistory.vue";
 import SearchForm from "./SearchForm.vue";
 import OrderFailed from "./OrderFailed.vue";
+import logout from "@/helpers/auth";
 
 export default {
     name: 'ProfileVue',
@@ -108,6 +110,7 @@ export default {
         SearchForm,
         OrderFailed,
     },
+    mixins:[logout],
     setup() {
     },
     directives: {
@@ -134,7 +137,10 @@ export default {
 
     },
     methods: {
-        // Các phương thức xử lý sự kiện hoặc logic khác
+        logOut()
+        {
+            this.logout();
+        }
     },
 };
 </script>
@@ -158,7 +164,10 @@ main#profile input[type="number"]::-webkit-outer-spin-button {
 main#profile input[type="number"] {
     -moz-appearance: textfield;
 }
-
+#btn-log-out{
+    color: red !important;
+    margin-bottom: 1rem;
+}
 div.icon-close {
     position: absolute;
     right: 6px;

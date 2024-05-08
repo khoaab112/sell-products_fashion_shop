@@ -31,7 +31,7 @@
               style="color: #343a4099;" /><span class="item-number pulse">90</span></button>
         </div>
         <div class="avatar-user" v-else>
-          <router-link :to="{ name: 'SupportVue' }" >
+          <router-link :to="{ name: 'ProfileVue' }" >
           <button><img src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg" alt=""
               loading="lazy"></button>
           </router-link>
@@ -47,7 +47,7 @@
         <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="fa fa-bars"></span> Menu
               </button> -->
-        <button class="navbar-toggler" type="button" @click=clickMunuMb>
+        <button class="navbar-toggler" type="button" @click=clickMenuMb>
           <font-awesome-icon icon="fa-solid fa-bars" /> <span class="title-menu">Menu</span>
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
@@ -117,7 +117,7 @@ export default {
 
   },
   methods: {
-    clickMunuMb() {
+    clickMenuMb() {
       var ul = document.getElementById('ftco-nav');
       console.log(ul.classList);
       if (ul.classList.contains('show')) {
