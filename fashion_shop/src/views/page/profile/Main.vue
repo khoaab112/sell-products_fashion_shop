@@ -1,12 +1,16 @@
 <template>
     <main id="profile">
         <div class="mt-5"></div>
-        <div class="active-mb"><input type="checkbox" class="btn-change-mobile" id="btn-active"><i
-                class="fa-solid fa-bars icon"></i></div>
+        <div class="active-mb"><input type="checkbox" class="btn-change-mobile" id="btn-active"
+                @click="isActiveTab = !isActiveTab">
+            <font-awesome-icon icon="fa-solid fa-bars" class="icon-bars icon" />
+        </div>
         <div class="container">
             <div class="d-flex align-items-start">
-                <div class="nav flex-column nav-pills  list-btn" id="v-pills-tab" role="tablist"
-                    aria-orientation="vertical">
+                <div class="nav flex-column nav-pills  list-btn" :class="{ 'show-tap': isActiveTab }" id="v-pills-tab"
+                    role="tablist" aria-orientation="vertical">
+                    <div class="icon-close" @click="isActiveTab = false"><font-awesome-icon icon="fa-solid fa-xmark" />
+                    </div>
                     <div class="card-info-user text-center">
                         <div class="avatar-user"> <img
                                 src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg"
@@ -57,531 +61,23 @@
                         aria-controls="v-pills-canceled-order" aria-selected="false">Đơn hãng hủy</button>
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
-                    <!-- thông tin người dùng -->
-                    <div class="tab-pane fade container show active" id="v-pills-info-user" role="tabpanel"
-                        aria-labelledby="v-pills-info-user-tab">
-                        <div class="title">Thông tin</div>
-                        <div class="row mb-3">
-                            <div class="col-xl-6 col-xs-12">
-                                <strong>
-                                    Thông tin cá nhấn
-                                </strong>
-                                <div class="full-name"><span>Họ tên</span><strong>Nguyễn Minh Nhi</strong></div>
-                                <div class="year-old"><span>Tuổi</span><strong>24</strong></div>
-                                <div class="address"><span>Địa chỉ</span><strong>Hà Nội</strong></div>
-                                <div class="phone-number"><span>Số điện thoại</span><strong>059.258.2228</strong></div>
-                                <div class="email"><span>Email</span><strong>mail@mail.com</strong></div>
-                            </div>
-                            <div class="col-xl-6 col-xs-12">
-                                <strong>Địa chỉ nhận hàng</strong>
-                                <div class="list-address">
-                                    <div><strong>Địa chỉ 1 :<span>Hà Nội</span></strong><i
-                                            class="fa-solid fa-arrow-down icon"></i></div>
-                                    <div><strong>Địa chỉ 2 :<span>139 Đ. Phú Diễn, Phú Diễn, Từ Liêm, Hà Nội, Việt
-                                                Nam</span></strong><i class="fa-solid fa-arrow-up icon"></i></div>
-                                </div>
-                                <button class="add-address"><i class="fa-solid fa-plus"></i></button>
-                            </div>
-                        </div>
-                        <button class="edit-data">Chỉnh sửa/thay đổi</button>
-                        <div class="rank-information">
-                            <strong>Ưu đãi hãng</strong><img
-                                src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg"
-                                alt="">
-                        </div>
-                        <div class="container">
-                            <div class="current-level">
-                                <strong> Cấp độ hiện tại : Vàng</strong>
-                            </div>
-                            <div class="percentage mt-3 mb-3 detail">
-                                <div class="percentage100">
-                                    <div class="percentage0"><strong>60%</strong></div>
-                                </div>
-                            </div>
-                            <span class="note-percentage">Bạn cần 190 điểm nữa để nên hạng</span>
-                            <div class="current-level mt-3"><strong>Hạng tiếp theo :kim cương</strong></div>
-                            <div class="content-rank">
-                                <div class="title">Thông tin hạng hiện tại</div>
-                                <div class="content ms-2">
-                                    Using color to add meaning only provides a visual indication, which will not be
-                                    conveyed to users of assistive technologies – such as screen readers. Ensure that
-                                    information denoted by the color is either obvious from the content itself (e.g. the
-                                    visible
-                                    text), or is included through alternative means, such as additional text hidden with
-                                    the .visually-hidden class.
-                                </div>
-                            </div>
-                            <div class="content-rank">
-                                <div class="title">Thông tin hạng tiếp theo</div>
-                                <div class="content ms-2">
-                                    Using color to add meaning only provides a visual indication, which will not be
-                                    conveyed to users of assistive technologies – such as screen readers. Ensure that
-                                    information denoted by the color is either obvious from the content itself (e.g. the
-                                    visible
-                                    text), or is included through alternative means, such as additional text hidden with
-                                    the .visually-hidden class.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <UserInfo></UserInfo>
                     <!-- đổi mật khẩu -->
-                    <div class="tab-pane fade  container" id="v-pills-change-password" role="tabpanel"
-                        aria-labelledby="v-pills-change-password-tab">
-                        <div class="title">Đổi mật khẩu</div>
-                        <div class="row ">
-                            <div class="col-xl-8 col-sm-12">
-                                <form action="" class="change-password">
-                                    <div>
-                                        <label for="password-old">Mật khẩu hiện tại <input type="password"
-                                                id="password-old"><i class="fa-regular fa-eye icon"></i></label>
-                                        <a href="#" class="forgot-password">Quên mật khẩu ?</a>
-                                    </div>
-                                    <div class="mt-2">
-                                        <label for="password-new">Mật khẩu mới <input type="password"
-                                                id="password-new"><i class="fa-regular fa-eye icon"></i></label>
-                                    </div>
-                                    <div>
-                                        <label for="password-comfirm">Mật khẩu mới <input type="password"
-                                                id="password-comfirm"><i class="fa-regular fa-eye icon"></i></label>
-                                    </div>
-                                    <div class="action">
-                                        <button type="reset" class="reset">Hủy</button>
-                                        <button class="comfirm">Xác nhận</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="col-xl-4 col-sm-0"></div>
-                        </div>
-                    </div>
+                    <ChangePassword></ChangePassword>
                     <!-- đặt hàng -->
-                    <div class="tab-pane fade container" id="v-pills-order" role="tabpanel"
-                        aria-labelledby="v-pills-order-tab">
-                        <div class="title">Danh sách đơn hàng</div>
-                        <!-- chi tiết đơn hàng khi người dùng click vão đơn hàng -->
-                        <div class="title">Chi tiết</div>
-                        <section id="detail-product">
-                            <button class="back-list"><i class="fa-solid fa-arrow-left"></i></button>
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xl-5 col-sm-12 right">
-                                        <div class="mt-3"><strong>Mã đơn hàng</strong><span>#344355545</span></div>
-                                        <div><strong>Ngày đặt hàng</strong><span>20/12/2023</span></div>
-                                        <div><strong>Địa chỉ đặt hàng</strong><span>139 Đ. Phú Diễn, Phú Diễn, Từ Liêm,
-                                                Hà Nội, Việt Nam</span></div>
-                                        <div><strong>Thanh toán</strong><span>Tiền mặt</span></div>
-                                        <div><strong>Đã thanh toán</strong><span>chưa</span></div>
-                                        <div><strong>Phí phát sinh</strong><span>0 vnđ</span></div>
-                                        <div><span>Hình thức nhận hàng</span><span>Vận chuyển</span></div>
-                                        <div><span>Trạng thái</span><span>Đã xác thực</span></div>
-                                        <div><span>Thời gian dự kiến</span><span>12/2/2023</span></div>
-                                        <div><span>Đơn vị vận chuyển</span><span>VN-POST</span></div>
-                                        <div><span>Tình trạng vận chuyển</span><span>thôn 12 , xã a, huyện b</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-7 col-sm-12">
-                                        <div><strong>Số sản phẩm : </strong><span style="color: red;">9</span></div>
-                                        <table>
-                                            <tr>
-                                                <th>Ảnh</th>
-                                                <th>Tên</th>
-                                                <th>Số lượng</th>
-                                                <th>Đơn giá</th>
-                                                <th>Thành tiền</th>
-                                            </tr>
-                                            <tr>
-                                                <th><img src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg"
-                                                        alt=""></th>
-                                                <th>Áo abc</th>
-                                                <th>5</th>
-                                                <th>92.266</th>
-                                                <th>920.266</th>
-                                            </tr>
-                                            <tr>
-                                                <th><img src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg"
-                                                        alt=""></th>
-                                                <th>Áo abc</th>
-                                                <th>5</th>
-                                                <th>92.266</th>
-                                                <th>920.266</th>
-                                            </tr>
-                                            <tr>
-                                                <th><img src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg"
-                                                        alt=""></th>
-                                                <th>Áo abc</th>
-                                                <th>5</th>
-                                                <th>92.266</th>
-                                                <th>920.266</th>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                                <th></th>
-                                                <th>Tổng</th>
-                                                <th>3.920.266</th>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                                <th></th>
-                                                <th>(10%)</th>
-                                                <th>Khuyến mãi</th>
-                                                <th>-234.000</th>
-                                            </tr>
-                                            <tr>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th>Thực tế</th>
-                                                <th>3.500.000</th>
-                                            </tr>
-                                        </table>
-                                        <div class="note">
-                                            <div class="title">Nội dung:</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-button">
-                                <button>Gửi khiếu nại</button>
-                                <button>Yêu cầu hỗ trợ</button>
-                                <button>Quay lại</button>
-                            </div>
-                        </section>
-                    </div>
+                    <ListOfCanceledOrders></ListOfCanceledOrders>
                     <!--Giỏ hàng  -->
-                    <div class="tab-pane fade container " id="v-pills-basket" role="tabpanel"
-                        aria-labelledby="v-pills-basket-tab">
-                        <div class="title">Giỏ hàng</div>
-                        <section id="order-confirmation">
-                            <div class="title">Xác nhận đơn hàng</div>
-                            <button class="back-list"><i class="fa-solid fa-arrow-left"></i></button>
-                            <button class="remove-item"><i class="fa-solid fa-trash-can"></i></button>
-                            <div class="scroll mt-2">
-                                <table class="mt-2">
-                                    <tr>
-                                        <th>1</th>
-                                        <th><img src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg"
-                                                alt=""></th>
-                                        <th>
-                                            <p><strong class="product-name"><span>Áo abc</span></strong></p>
-                                            <p>Màu sắc : Xanh </p>
-                                            <p>size : 35 </p>
-                                            <p class="price"> <strong>Giá : 900.222(-10%)</strong>
-                                                <strong class="ps-2"><del>555.555</del></strong>
-                                            </p>
-                                            <p><span style="color: red;">Kho : 999</span></p>
-                                        </th>
-                                        <th>
-                                            <div class="number">
-                                                <button>-</button>2<button>+</button>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="total">
-                                                <strong>Tổng : </strong><strong style="color: red;">999.999 VNĐ</strong>
-                                            </div>
-                                        </th>
-                                        <th><input type="checkbox"></th>
-                                    </tr>
-                                    <tr>
-                                        <th>1</th>
-                                        <th><img src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg"
-                                                alt=""></th>
-                                        <th>
-                                            <p><strong class="product-name"><span>Áo abc</span></strong></p>
-                                            <p>Màu sắc : Xanh </p>
-                                            <p>size : 35 </p>
-                                            <p class="price"> <strong>Giá : 900.222(-10%)</strong>
-                                                <strong class="ps-2"><del>555.555</del></strong>
-                                            </p>
-                                            <p><span style="color: red;">Kho : 999</span></p>
-                                        </th>
-                                        <th>
-                                            <div class="number">
-                                                <button>-</button>2<button>+</button>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="total">
-                                                <strong>Tổng : </strong><strong style="color: red;">999.999 VNĐ</strong>
-                                            </div>
-                                        </th>
-                                        <th><input type="checkbox"></th>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <th><img src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg"
-                                                alt=""></th>
-                                        <th>
-                                            <p><strong class="product-name"><span>Áo abc</span></strong></p>
-                                            <p>Màu sắc : Xanh </p>
-                                            <p>size : 35 </p>
-                                            <p class="price"> <strong>Giá : 900.222(-10%)</strong>
-                                                <strong class="ps-2"><del>555.555</del></strong>
-                                            </p>
-                                            <p><span style="color: red;">Kho : 999</span></p>
-                                        </th>
-                                        <th>
-                                            <div class="number">
-                                                <button>-</button>2<button>+</button>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="total">
-                                                <strong>Tổng : </strong><strong style="color: red;">999.999 VNĐ</strong>
-                                            </div>
-                                        </th>
-                                        <th><input type="checkbox"></th>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <th><img src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg"
-                                                alt=""></th>
-                                        <th>
-                                            <p><strong class="product-name"><span>Áo abc</span></strong></p>
-                                            <p>Màu sắc : Xanh </p>
-                                            <p>size : 35 </p>
-                                            <p class="price"> <strong>Giá : 900.222(-10%)</strong>
-                                                <strong class="ps-2"><del>555.555</del></strong>
-                                            </p>
-                                            <p><span style="color: red;">Kho : 999</span></p>
-                                        </th>
-                                        <th>
-                                            <div class="number">
-                                                <button>-</button>2<button>+</button>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="total">
-                                                <strong>Tổng : </strong><strong style="color: red;">999.999 VNĐ</strong>
-                                            </div>
-                                        </th>
-                                        <th><input type="checkbox"></th>
-                                    </tr>
-                                    <tr>
-                                        <th>4</th>
-                                        <th><img src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg"
-                                                alt=""></th>
-                                        <th>
-                                            <p><strong class="product-name"><span>Áo abc</span></strong></p>
-                                            <p>Màu sắc : Xanh </p>
-                                            <p>size : 35 </p>
-                                            <p class="price"> <strong>Giá : 900.222(-10%)</strong>
-                                                <strong class="ps-2"><del>555.555</del></strong>
-                                            </p>
-                                            <p><span style="color: red;">Kho : 999</span></p>
-                                        </th>
-                                        <th>
-                                            <div class="number">
-                                                <button>-</button>2<button>+</button>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="total">
-                                                <strong>Tổng : </strong><strong style="color: red;">999.999 VNĐ</strong>
-                                            </div>
-                                        </th>
-                                        <th><input type="checkbox"></th>
-                                    </tr>
-
-                                    <!-- <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th>(10%)</th>
-                                    <th>Khuyến mãi</th>
-                                    <th>-234.000</th>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th>Thực tế</th>
-                                    <th>3.500.000</th>
-                                </tr> -->
-                                </table>
-                            </div>
-                            <div class="actual-payment mt-2">
-                                <strong class="mt-2">Số lượng : 7</strong>
-                                <strong class="mt-2">Tổng tiền : 933.556 VNĐ</strong>
-                            </div>
-                            <div class="payment-methods">
-                                <div>
-                                    <div class="title">Hình thức nhận hàng</div>
-                                    <select class="form-select" aria-label="Hình thức">
-                                        <option selected>Chọn hình thức nhận hàng</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <div class="title">Hình thức thanh toán</div>
-                                    <select class="form-select" aria-label="Hình thức">
-                                        <option selected>Chọn hình thức thanh toán</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <div class="title">Số điện thoại </div>
-                                    <select class="form-select" aria-label="Hình thức">
-                                        <option selected>Chọn hình thức thanh toán</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <div class="title">Địa chỉ nhận hàng</div>
-                                    <select class="form-select" aria-label="Hình thức">
-                                        <option selected>Chọn địa chỉ</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </select>
-                                    <span class="note">Nếu địa chỉ không đúng như ý bạn , hay đăng kí lại địa chỉ</span>
-                                    <button class="registered-address">đăng ký địa chỉ</button>
-                                </div>
-                                <div class="mt-3 delivery-time"><span>Thời gian dự kiến nhận được
-                                        hàng</span><strong>12/12/2023</strong></div>
-                                <div class="mt-3 delivery-time"><span>Tiền giao hàng</span><strong>40.000</strong></div>
-                            </div>
-                            <div class="use-code mt-3">
-                                <div>
-                                    <strong>Mã khuyến mãi</strong>
-                                    <div><input type="text" name="" id=""><button><i
-                                                class="fa-solid fa-magnifying-glass icon-search"></i></button><i
-                                            class="fa-solid fa-wallet icon-wallet ms-4"></i></div>
-                                    <br> <i class="ms-3">Lưu ý : sử dụng tối đa 2 mã khuyến mãi</i>
-                                </div>
-                                <div class="list-gifcode">
-                                    <div class="item">
-                                        <strong class="code">MKASS10%</strong><strong>= 231.421 - 10%</strong>
-                                    </div>
-                                    <div class="item">
-                                        <strong class="code">MKASS10%</strong><strong>= 231.421 - 10% </strong>
-                                    </div>
-                                    <div class="item">
-                                        <strong class="code">MKASS10%</strong><strong>= 231.421 - 10% </strong>
-                                    </div>
-                                    <hr>
-                                    <div class="total-x">
-                                        <strong class="code">Tổng</strong><strong style="color: red;">= 231.421</strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-action me-4">
-                                <button class="cancel">Hủy</button>
-                                <button class="comfirm">Xác nhận</button>
-                            </div>
-                            <div class="pt-5 pb-5"></div>
-                        </section>
-
-                    </div>
+                    <CartVue></CartVue>
                     <!--Mã giảm giá  -->
-                    <div class="tab-pane fade container " id="v-pills-discount-code" role="tabpanel"
-                        aria-labelledby="v-pills-discount-code">
-                        <section id="list-code">
-                            <div class="scroll mt-2">
-                                <table class="mt-2">
-                                    <tr>
-                                        <th>1</th>
-                                        <th><img src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg"
-                                                alt=""></th>
-                                        <th>
-                                            <div>
-                                                <strong class="name">AKSEOOO</strong>
-                                                <p><strong>Nội dung : </strong><span> giảm các sản phẩm với mặt hàng
-                                                    </span></p>
-                                                <p class="start-day"><strong>Bắt đầu : </strong><span>12/12/2023</span>
-                                                </p>
-                                                <p class="end-day"><strong>Kết thúc : </strong><span>12/12/2023</span>
-                                                </p>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <button>Sao chép</button>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>1</th>
-                                        <th><img src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg"
-                                                alt=""></th>
-                                        <th>
-                                            <div>
-                                                <strong class="name">AKSEOOO</strong>
-                                                <p><strong>Nội dung : </strong><span> giảm các sản phẩm với mặt hàng
-                                                    </span></p>
-                                                <p class="start-day"><strong>Bắt đầu : </strong><span>12/12/2023</span>
-                                                </p>
-                                                <p class="end-day"><strong>Kết thúc : </strong><span>12/12/2023</span>
-                                                </p>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <button>Sao chép</button>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>1</th>
-                                        <th><img src="https://top10tphcm.com/wp-content/uploads/2023/02/gai-dep-nhat-viet-nam-6.jpg"
-                                                alt=""></th>
-                                        <th>
-                                            <div>
-                                                <strong class="name">AKSEOOO</strong>
-                                                <p><strong>Nội dung : </strong><span> giảm các sản phẩm với mặt hàng
-                                                    </span></p>
-                                                <p class="start-day"><strong>Bắt đầu : </strong><span>12/12/2023</span>
-                                                </p>
-                                                <p class="end-day"><strong>Kết thúc : </strong><span>12/12/2023</span>
-                                                </p>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <button>Sao chép</button>
-                                        </th>
-                                    </tr>
-                                </table>
-                            </div>
-                        </section>
-                    </div>
+                    <DiscountCode></DiscountCode>
                     <!-- Yêu thích -->
-                    <div class="tab-pane fade container " id="v-pills-preferred-item" role="tabpanel"
-                        aria-labelledby="v-pills-preferred-item">
-                        Bảo trì
-                    </div>
+                    <FavoriteProduct></FavoriteProduct>
                     <!-- Kiểm tra -->
-                    <div class="tab-pane fade container" id="v-pills-track-order" role="tabpanel"
-                        aria-labelledby="v-pills-track-order">
-                        Bảo trì
-
-                    </div>
+                    <SearchForm></SearchForm>
                     <!-- Lịch sử -->
-                    <div class="tab-pane fade container" id="v-pills-purchase-history" role="tabpanel"
-                        aria-labelledby="v-pills-purchase-history">
-                        <div class="title">Lịch sử mua hàng</div>
-                        <section id="history-buy">
-                            <div class="list-box">
-                                <div class="box">
-                                    Đã chi :999.999 VNĐ
-                                </div>
-                                <div class="box">
-                                    Đã tiết kiệm :999.999 VNĐ
-                                </div>
-                                <div class="box">
-                                    Đã chi trong tháng :999.999 VNĐ
-                                </div>
-                                <div class="box">
-                                    Tiết kiệm được trong tháng :999.999 VNĐ
-                                </div>
-                            </div>
-                        </section>
-                    </div>
+                    <PurchaseHistory></PurchaseHistory>
                     <!-- Đơn đã hủy -->
-                    <div class="tab-pane fade container" id="v-pills-canceled-order" role="tabpanel"
-                        aria-labelledby="v-pills-canceled-order">
-                        <div class="title">Đơn hàng đã hủy</div>
-                        <section id=""></section>
-                    </div>
+                    <OrderFailed></OrderFailed>
                 </div>
             </div>
         </div>
@@ -589,9 +85,28 @@
 </template>
 
 <script>
+import UserInfo from "./UserInfo.vue";
+import ChangePassword from "./ChangePassword.vue";
+import CartVue from "./Cart.vue";
+import DiscountCode from "./DiscountCode.vue";
+import FavoriteProduct from "./FavoriteProduct.vue";
+import ListOfCanceledOrders from "./ListOfCanceledOrders.vue";
+import PurchaseHistory from "./PurchaseHistory.vue";
+import SearchForm from "./SearchForm.vue";
+import OrderFailed from "./OrderFailed.vue";
+
 export default {
     name: 'ProfileVue',
     components: {
+        UserInfo,
+        ChangePassword,
+        CartVue,
+        DiscountCode,
+        FavoriteProduct,
+        ListOfCanceledOrders,
+        PurchaseHistory,
+        SearchForm,
+        OrderFailed,
     },
     setup() {
     },
@@ -599,6 +114,7 @@ export default {
     },
     data() {
         return {
+            isActiveTab: false,
             // Dữ liệu của component
         };
     },
@@ -641,6 +157,22 @@ main#profile input[type="number"]::-webkit-outer-spin-button {
 
 main#profile input[type="number"] {
     -moz-appearance: textfield;
+}
+
+div.icon-close {
+    position: absolute;
+    right: 6px;
+    top: 5px;
+    color: red;
+    font-size: 120%;
+    display: none;
+}
+
+div.icon-close:active,
+.icon-bars:hover {
+    scale: 1.5;
+    transition: var(--transition-ease);
+    color: #2e72fd;
 }
 
 .active-mb {
@@ -1226,13 +758,13 @@ button.remove-item {
 
 .use-code>div>div>button {
     position: absolute;
-    right: 40px;
-    top: 1px;
+    right: 17px;
+    top: 0px;
     border-radius: 0px 5px 5px 0px !important;
     background: #6c757d !important;
     color: white !important;
     width: 4rem !important;
-    height: 2.1rem;
+    height: 2.3rem;
 }
 
 .use-code .list-gifcode {
@@ -1274,6 +806,9 @@ button.remove-item {
 }
 
 @media(max-width: 700px) {
+    div.icon-close{
+        display: block;
+    }
     input.btn-change-mobile {
         border: none;
         width: 3rem;
