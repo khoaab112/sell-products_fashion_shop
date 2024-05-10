@@ -7,6 +7,7 @@
         </div>
         <div class="container">
             <div class="d-flex align-items-start">
+                <div class="background-menu-mobile" :class="{ 'none-background-menu': !isActiveTab }" @click="isActiveTab = false"></div> 
                 <div class="nav flex-column nav-pills  list-btn" :class="{ 'show-tap': isActiveTab }" id="v-pills-tab"
                     role="tablist" aria-orientation="vertical">
                     <div class="icon-close" @click="isActiveTab = false"><font-awesome-icon icon="fa-solid fa-xmark" />
@@ -806,9 +807,10 @@ button.remove-item {
 }
 
 @media(max-width: 700px) {
-    div.icon-close{
+    div.icon-close {
         display: block;
     }
+
     input.btn-change-mobile {
         border: none;
         width: 3rem;
@@ -1051,5 +1053,26 @@ section#history-buy .list-box .box:nth-child(3) {
 
 section#history-buy .list-box .box:last-child {
     background-color: #6c757d;
+}
+
+.background-menu-mobile {
+    position: absolute;
+    background-color: rgb(255 255 255 / 0%);
+    height: 100vh;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+}
+
+@media (max-width:700px) {
+    .background-menu-mobile {
+        display: block;
+    }
+
+    .none-background-menu {
+        display: none !important;
+    }
 }
 </style>
